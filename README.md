@@ -24,6 +24,9 @@ Yarn/NPM let you implement scripts that run commands for testing/production util
 * Nodemon: restarts Node server when file changes happen on it
 * PM2: Node process manager
   * rimraf: cleans production folder before a new build
+* ImmutableJS: used to manipulate collections by returning a new object instead of the original
+* Fetch: function to make asynchronous calls
 ### Front-end
 * Webpack: bundles all the code into a single JS file for the client to execute
 * React: used to build interfaces using JSX syntax to create HTML elements with embedded JS
+* Redux: handles application lifecycle by creation a store which is the single "source of truth" for the application
