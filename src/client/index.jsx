@@ -13,6 +13,7 @@ import { AppContainer } from 'react-hot-loader'
 import { Provider } from 'react-redux'
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
 import thunkMiddleware from 'redux-thunk'
+import { BrowserRouter } from 'react-router-dom'
 
 import App from './app'
 import helloReducer from './reducer/hello'
@@ -34,9 +35,11 @@ const rootEl = document.querySelector(APP_CONTAINER_SELECTOR)
 const wrapApp = (AppComponent, reduxStore) =>
   (
     <Provider store={reduxStore}>
-      <AppContainer>
-        <AppComponent />
-      </AppContainer>
+      <BrowserRouter>
+        <AppContainer>
+          <AppComponent />
+        </AppContainer>
+      </BrowserRouter>
     </Provider>
   )
 

@@ -26,6 +26,7 @@ Yarn/NPM let you implement scripts that run commands for testing/production util
   * rimraf: cleans production folder before a new build
 * ImmutableJS: used to manipulate collections by returning a new object instead of the original
 * Fetch: function to make asynchronous calls
+* React Router: allows you to navigate between multiple pages
 ### Front-end
 * Webpack: bundles all the code into a single JS file for the client to execute
 * React: used to build interfaces using JSX syntax to create HTML elements with embedded JS
