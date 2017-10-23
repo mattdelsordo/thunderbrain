@@ -30,4 +30,5 @@ Yarn/NPM let you implement scripts that run commands for testing/production util
 ### Front-end
 * Webpack: bundles all the code into a single JS file for the client to execute
 * React: used to build interfaces using JSX syntax to create HTML elements with embedded JS
+  * React Helmet: injects content to the <head> of the webpage
 * Redux: handles application lifecycle by creation a store which is the single "source of truth" for the application
