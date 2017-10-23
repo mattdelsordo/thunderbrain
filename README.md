@@ -1,5 +1,5 @@
 # Thunderbrain
-This is where the readme is going to go! For now, we can use this as a teaching document to inform everyone on how this stack and the file structure even work. If you do something whack, add it here! For initial setup, Matt followed this tutorial: https://github.com/verekia/js-stack-from-scratc
+This is where the readme is going to go! For now, we can use this as a teaching document to inform everyone on how this stack and the file structure even work. If you do something whack, add it here! For initial setup, Matt followed this tutorial: https://github.com/verekia/js-stack-from-scratch
 
 ## Script usage
 Yarn/NPM let you implement scripts that run commands for testing/production utilities. You invoke them by doing "yarn (or npm) scriptname" in the console. Here's what they all do (add to this if you add scripts!):
