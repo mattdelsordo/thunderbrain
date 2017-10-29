@@ -3,7 +3,8 @@ This is where the readme is going to go! For now, we can use this as a teaching 
 
 ## Script usage
 Yarn/NPM let you implement scripts that run commands for testing/production utilities. You invoke them by doing "yarn (or npm) scriptname" in the console. Here's what they all do (add to this if you add scripts!):
-* **start**: starts dev server (by calling dev:start)
+* **start**: used by google cloud to launch the app
+* **dev:start**: starts development server
 * **dev:wds**: starts webpack dev server (in another terminal!)
 * **test**: runs testing suite (eslint, flow, and jest)
 * **precommit/prepush**: get called when you commit/push to make sure you dont commit/push non-functional code (not sure how much we really need this functionality??) 
