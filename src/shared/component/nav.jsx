@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-redundant-roles,jsx-a11y/anchor-is-valid */
 // @flow
 
 import $ from 'jquery'
@@ -8,7 +9,7 @@ import {
   HOME_PAGE_ROUTE,
   HELLO_PAGE_ROUTE,
   HELLO_ASYNC_PAGE_ROUTE,
-  NOT_FOUND_DEMO_PAGE_ROUTE,
+  NOT_FOUND_DEMO_PAGE_ROUTE, PROFILE_VIEW,
 } from '../routes'
 
 const handleNavLinkClick = () => {
@@ -30,6 +31,7 @@ const Nav = () =>
             { route: HELLO_PAGE_ROUTE, label: 'Say Hello' },
             { route: HELLO_ASYNC_PAGE_ROUTE, label: 'Say Hello Asynchronously' },
             { route: NOT_FOUND_DEMO_PAGE_ROUTE, label: '404 Demo' },
+            { route: PROFILE_VIEW, label: 'Profile View' },
           ].map(link => (
             <li className="nav-item" key={link.route}>
               <NavLink to={link.route} className="nav-link" activeStyle={{ color: 'white' }} exact onClick={handleNavLinkClick}>{link.label}</NavLink>
