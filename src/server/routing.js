@@ -9,6 +9,7 @@ import {
   helloPage,
   helloAsyncPage,
   helloEndpoint,
+  proposalPage,
 } from './controller'
 
 import {
@@ -16,6 +17,7 @@ import {
   HELLO_PAGE_ROUTE,
   HELLO_ASYNC_PAGE_ROUTE,
   helloEndpointRoute,
+  PROPOSAL_ROUTE,
 } from '../shared/routes'
 
 import renderApp from './render-app'
@@ -31,6 +33,10 @@ export default (app: Object) => {
 
   app.get(HELLO_ASYNC_PAGE_ROUTE, (req, res) => {
     res.send(renderApp(req.url, helloAsyncPage()))
+  })
+
+  app.get(PROPOSAL_ROUTE, (req, res) => {
+    res.send(renderApp(req.url, proposalPage()))
   })
 
   app.get(helloEndpointRoute(), (req, res) => {
