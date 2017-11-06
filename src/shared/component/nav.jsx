@@ -7,9 +7,9 @@ import { Link, NavLink } from 'react-router-dom'
 import { APP_NAME } from '../config'
 import {
   HOME_PAGE_ROUTE,
-  HELLO_PAGE_ROUTE,
-  HELLO_ASYNC_PAGE_ROUTE,
-  NOT_FOUND_DEMO_PAGE_ROUTE,
+  // HELLO_PAGE_ROUTE,
+  // HELLO_ASYNC_PAGE_ROUTE,
+  // NOT_FOUND_DEMO_PAGE_ROUTE,
   PROFILE_VIEW,
   PROPOSAL_ROUTE,
 } from '../routes'

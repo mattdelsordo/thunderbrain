@@ -4,7 +4,7 @@
 import React from 'react'
 import Helmet from 'react-helmet'
 
-import ModalExample from '../modal-example'
+// import ModalExample from '../modal-example'
 import { APP_NAME } from '../../config'
 
 const HomePage = () =>
@@ -26,7 +26,8 @@ const HomePage = () =>
           {/* <div className="col-md-4 mb-4">
             <h3 className="mb-3">Bootstrap</h3>
             <p>
-              <button type="button" role="button" data-toggle="modal" data-target=".js-modal-example" className="btn btn-primary">Open Modal</button>
+              <button type="button" role="button" data-toggle="modal"
+              data-target=".js-modal-example" className="btn btn-primary">Open Modal</button>
             </p>
           </div>
           <div className="col-md-4 mb-4">
@@ -40,7 +41,7 @@ const HomePage = () =>
         </div>
       </div>
       {/* <ModalExample /> */}
-    </div>
+    </div>// eslint-disable-next-line no-console
   )
 
 export default HomePage
