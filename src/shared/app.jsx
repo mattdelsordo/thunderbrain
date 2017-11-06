@@ -35,7 +35,7 @@ const App = () =>
         <Route path={HELLO_PAGE_ROUTE} render={() => <HelloPage />} />
         <Route path={HELLO_ASYNC_PAGE_ROUTE} render={() => <HelloAsyncPage />} />
         <Route path={PROFILE_VIEW} render={() => <ProfileViewPage />} />
-        <Route path={PROPOSAL_ROUTE} render={() => <ProposalPage />} />
+        <Route path={PROPOSAL_ROUTE} component={() => { window.location = 'https://thunderbrain.zyx/static/res/project_proposal.pdf' }} />
         <Route component={NotFoundPage} />
       </Switch>
     </div>
