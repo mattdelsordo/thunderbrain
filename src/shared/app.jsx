@@ -11,7 +11,6 @@ import Helmet from 'react-helmet'
 
 import { APP_NAME } from './config'
 import Nav from './component/nav'
-import HomePage from './component/page/home'
 import HelloPage from './component/page/hello'
 import HelloAsyncPage from './component/page/hello-async'
 import NotFoundPage from './component/page/not-found'
