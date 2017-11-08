@@ -9,11 +9,16 @@ import express from 'express'
 import { Server } from 'http'
 import socketIO from 'socket.io'
 
+import { AccessToken } from 'twilio'
+const VideoGrant = AccessToken.VideoGrant
+require('dotenv').load() // load in twillio credentials
+
 import routing from './routing'
 import { WEB_PORT, STATIC_PATH } from '../shared/config'
 import { isProd } from '../shared/util'
 import setUpSocket from './socket'
 import User from '../../models/User'
+import randomname from '../shared/randomname'
 
 const app = express()
 
@@ -38,6 +43,34 @@ db.once('open', () => {
 app.use(compression())
 app.use(STATIC_PATH, express.static('dist'))
 app.use(STATIC_PATH, express.static('public'))
+
+/**
+ * Generate Token for chat user to connect to twilio
+ */
+app.get('/token', (req, res) => {
+  const identity = randomName()
+
+  // Create access token that gets signed and returned to the client
+  let token = new AccesToken(
+    process.env.TWILIO_ACCOUNT_SID,
+    process.env.TWILIO_API_KEY,
+    process.env.TWILIO_API_SECRET
+  )
+
+  // Assign generated identity to the token
+  // This is also where a username will go
+  token.identity = identity
+
+  // Grant access token Twilio Video capabilities
+  const grant = new VideoGrant()
+  token.addGrant(grant)
+
+  // Serialize token to a JWT string and include it in a JSON response
+  response.sent({
+    identity: identity,
+    token: token.toJwt()
+  })
+})
 
 // call instead of implementing routing here
 routing(app)
