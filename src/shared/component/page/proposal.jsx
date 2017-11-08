@@ -4,7 +4,7 @@ import React from 'react'
 import Helmet from 'react-helmet'
 // import { SimplePDF } from 'simple-react-pdf'
 // import PDF from 'react-pdf-js'
-import { Document, Page } from 'react-pdf/build/entry.webpack'
+import { Document, Page } from 'react-pdf'
 
 import { STATIC_PATH } from '../../config'
 
@@ -49,24 +49,24 @@ class ProposalPage extends React.Component {
                     ]}
                 />
 
-                        <Document
-                            file={proposal}
-                            onLoadSuccess={this.onDocumentLoad.bind(this)}
-                        >
-                            {
-                                Array.from(
-                                    new Array(numPages),
-                                    (e1, index) => (
-                                        <Page
-                                            key={`page_${index+1}`}
-                                            pageNumber={index + 1}
-                                            onRenderSuccess={this.onPageRenderSuccess}
-                                        />
-                                    )
-                                )
-                            }
-                        </Document>
-                        <p>Page {pageNumber} of {numPages}</p>
+                <Document
+                    file={proposal}
+                    onLoadSuccess={this.onDocumentLoad.bind(this)}
+                >
+                    {
+                        Array.from(
+                            new Array(numPages),
+                            (e1, index) => (
+                                <Page
+                                    key={`page_${index + 1}`}
+                                    pageNumber={index + 1}
+                                    onRenderSuccess={this.onPageRenderSuccess}
+                                />
+                            )
+                        )
+                    }
+                </Document>
+                <p>Page {pageNumber} of {numPages}</p>
             </div>
         )
     }
@@ -79,19 +79,19 @@ class ProposalPage extends React.Component {
     // onDocumentComplete(pages) {
     //     this.setState({ page: 1, pages });
     // }
-     
+
     // onPageComplete(page) {
     //     this.setState({ page });
     // }
-    
+
     // handlePrevious() {
     //     this.setState({ page: this.state.page - 1 });
     // }
-    
+
     // handleNext() {
     //     this.setState({ page: this.state.page + 1 });
     // }
-    
+
     // renderPagination(page, pages) {
     //     let previousButton = <li className="previous" onClick={this.handlePrevious}><a href="#"><i className="fa fa-arrow-left"></i> Previous</a></li>;
     //     if (page === 1) {

@@ -22,3 +22,7 @@ export const helloEndpoint = (num: number) => ({
 export const proposalPage = () => ({
   hello: { message: 'Preloaded proposal message' },
 })
+
+export const chatPage = () => ({
+  hello: { message: 'Welcome to the chat page' },
+})

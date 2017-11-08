@@ -10,6 +10,7 @@ import {
   helloAsyncPage,
   helloEndpoint,
   proposalPage,
+  chatPage,
 } from './controller'
 
 import {
@@ -18,6 +19,7 @@ import {
   HELLO_ASYNC_PAGE_ROUTE,
   helloEndpointRoute,
   PROPOSAL_ROUTE,
+  CHAT_ROUTE,
 } from '../shared/routes'
 
 import renderApp from './render-app'
@@ -41,6 +43,10 @@ export default (app: Object) => {
 
   app.get(helloEndpointRoute(), (req, res) => {
     res.json(helloEndpoint(req.params.num))
+  })
+
+  app.get(CHAT_ROUTE, (req, res) => {
+    res.send(renderApp(req.url, chatPage()))
   })
 
   app.get('/500', () => {

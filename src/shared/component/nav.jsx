@@ -7,11 +7,12 @@ import { Link, NavLink } from 'react-router-dom'
 import { APP_NAME } from '../config'
 import {
   HOME_PAGE_ROUTE,
-  HELLO_PAGE_ROUTE,
-  HELLO_ASYNC_PAGE_ROUTE,
-  NOT_FOUND_DEMO_PAGE_ROUTE,
+  // HELLO_PAGE_ROUTE,
+  // HELLO_ASYNC_PAGE_ROUTE,
+  // NOT_FOUND_DEMO_PAGE_ROUTE,
   PROFILE_VIEW,
   PROPOSAL_ROUTE,
+  CHAT_ROUTE,
 } from '../routes'
 
 const handleNavLinkClick = () => {
@@ -35,6 +36,7 @@ const Nav = () =>
             // { route: NOT_FOUND_DEMO_PAGE_ROUTE, label: '404 Demo' },
             { route: PROPOSAL_ROUTE, label: 'Project Proposal' },
             { route: PROFILE_VIEW, label: 'Profile View' },
+            { route: CHAT_ROUTE, label: 'Video Chat Test' },
           ].map(link => (
             <li className="nav-item" key={link.route}>
               <NavLink to={link.route} className="nav-link" activeStyle={{ color: 'white' }} exact onClick={handleNavLinkClick}>{link.label}</NavLink>

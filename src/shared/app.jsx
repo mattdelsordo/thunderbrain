@@ -17,12 +17,14 @@ import HelloAsyncPage from './component/page/hello-async'
 import NotFoundPage from './component/page/not-found'
 import ProfileViewPage from './component/page/profile-view'
 import ProposalPage from './component/page/proposal'
+import VideoChatPage from './component/page/video-chat-page'
 import {
   HOME_PAGE_ROUTE,
   HELLO_PAGE_ROUTE,
   HELLO_ASYNC_PAGE_ROUTE,
   PROFILE_VIEW,
   PROPOSAL_ROUTE,
+  CHAT_ROUTE,
 } from './routes'
 
 const App = () =>
@@ -36,6 +38,7 @@ const App = () =>
         <Route path={HELLO_ASYNC_PAGE_ROUTE} render={() => <HelloAsyncPage />} />
         <Route path={PROFILE_VIEW} render={() => <ProfileViewPage />} />
         <Route path={PROPOSAL_ROUTE} render={() => <ProposalPage />} />
+        <Route path={CHAT_ROUTE} render={() => <VideoChatPage />} />
         <Route component={NotFoundPage} />
       </Switch>
     </div>
