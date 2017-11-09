@@ -13,6 +13,7 @@ import {
   PROFILE_VIEW,
   PROPOSAL_ROUTE,
   CHAT_ROUTE,
+  STORYBOARD_ROUTE,
 } from '../routes'
 
 const handleNavLinkClick = () => {
@@ -34,7 +35,8 @@ const Nav = () =>
             // { route: HELLO_PAGE_ROUTE, label: 'Say Hello' },
             // { route: HELLO_ASYNC_PAGE_ROUTE, label: 'Say Hello Asynchronously' },
             // { route: NOT_FOUND_DEMO_PAGE_ROUTE, label: '404 Demo' },
-            { route: PROPOSAL_ROUTE, label: 'Project Proposal' },
+            { route: STORYBOARD_ROUTE, label: 'Storyboard' },
+            { route: PROPOSAL_ROUTE, label: 'Proposal' },
             { route: PROFILE_VIEW, label: 'Profile View' },
             { route: CHAT_ROUTE, label: 'Video Chat Test' },
           ].map(link => (

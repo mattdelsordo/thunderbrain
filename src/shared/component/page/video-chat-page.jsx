@@ -76,7 +76,7 @@ class VideoChatPage extends React.Component {
     document.getElementById('room-controls').style.display = 'block'
 
     // Bind join room button
-    document.getElementById('button-join').onclick = function() {
+    document.getElementById('button-join').onclick = function () {
       this.setState({ roomName: document.getElementById('room-name').value })
       if (!this.state.roomName) {
         alert('Please enter a room name.')
@@ -99,7 +99,7 @@ class VideoChatPage extends React.Component {
     }.bind(this)
 
     // bind leave room button
-    document.getElementById('button-leave').onclick = function() {
+    document.getElementById('button-leave').onclick = function () {
       this.log('Leaving room...')
       this.state.activeRoom.disconnect()
     }.bind(this)
@@ -206,20 +206,27 @@ class VideoChatPage extends React.Component {
             { property: 'og:title', content: title },
           ]}
         />
-        <div id="remote-media" />
-        <div id="controls">
-          <div id="preview">
-            <p className="instructions">Hello Beautiful</p>
-            <div id="local-media" />
-            <Button label="Preview My Camera" handleClick={this.previewCamera.bind(this)} />
+        <div className="row">
+          <div className="col-12">
+            <h1>{title}</h1>
+
+            <div id="remote-media" />
+            <div id="controls">
+              <div id="preview">
+                <p className="instructions">Hello Beautiful</p>
+                <div id="local-media" />
+                <Button label="Preview My Camera" handleClick={this.previewCamera.bind(this)} />
+              </div>
+              <div id="room-controls">
+                <p className="instructions" >Room Name:</p>
+                <input id="room-name" type="text" placeholder="Enter a room name" />
+                <button id="button-join">Join Room</button>
+                <button id="button-leave">Leave Room</button>
+              </div>
+              <div id="log" />
+              
+            </div>
           </div>
-          <div id="room-controls">
-            <p className="instructions" >Room Name:</p>
-            <input id="room-name" type="text" placeholder="Enter a room name" />
-            <button id="button-join">Join Room</button>
-            <button id="button-leave">Leave Room</button>
-          </div>
-          <div id="log" />
         </div>
       </div>
     )
