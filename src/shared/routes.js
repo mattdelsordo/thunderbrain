@@ -6,5 +6,6 @@ export const HELLO_ASYNC_PAGE_ROUTE = '/hello-async'
 export const NOT_FOUND_DEMO_PAGE_ROUTE = '/404'
 export const PROFILE_VIEW = '/profileView'
 export const PROPOSAL_ROUTE = '/proposal'
+export const STORYBOARD_ROUTE = '/storyboard'
 
 export const helloEndpointRoute = (num: ?number) => `/ajax/hello/${num || ':num'}`

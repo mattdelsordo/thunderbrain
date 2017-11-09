@@ -17,12 +17,14 @@ import NotFoundPage from './component/page/not-found'
 import ProfileViewPage from './component/page/profile-view'
 import ProposalPage from './component/page/proposal'
 import SignInPage from './component/page/sign-in'
+import StoryboardPage from './component/page/storyboard'
 import {
   HOME_PAGE_ROUTE,
   HELLO_PAGE_ROUTE,
   HELLO_ASYNC_PAGE_ROUTE,
   PROFILE_VIEW,
   PROPOSAL_ROUTE,
+  STORYBOARD_ROUTE,
 } from './routes'
 
 const App = () =>
@@ -36,6 +38,7 @@ const App = () =>
         <Route path={HELLO_ASYNC_PAGE_ROUTE} render={() => <HelloAsyncPage />} />
         <Route path={PROFILE_VIEW} render={() => <ProfileViewPage />} />
         <Route path={PROPOSAL_ROUTE} render={() => <ProposalPage />} />
+        <Route path={STORYBOARD_ROUTE} render={() => <StoryboardPage />} />
         <Route component={NotFoundPage} />
       </Switch>
     </div>

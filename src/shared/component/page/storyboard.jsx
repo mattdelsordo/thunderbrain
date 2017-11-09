@@ -6,9 +6,13 @@ import Helmet from 'react-helmet'
 
 import { STATIC_PATH } from '../../config'
 
-const title = 'ThunderBrain Storyboard'
+const title = 'The ThunderBrain Story'
 
-const StoryboardPage = () => 
+const path1 = `${STATIC_PATH}/res/storyboard1.png`
+const path2 = `${STATIC_PATH}/res/storyboard2.png`
+const path3 = `${STATIC_PATH}/res/storyboard3.png`
+
+const StoryboardPage = () =>
   (
     <div className="container mt-4">
       <Helmet
@@ -21,9 +25,9 @@ const StoryboardPage = () =>
       <div className="row">
         <div className="col-12">
           <h1>{title}</h1>
-          <img src="" class="img-responsive" alt="The tragedy of the modern age.">
-          <img src="" class="img-responsive" alt="Suddenly, a new savior appears.">
-          <img src="" class="img-responsive" alt="ThunderBrain: the true hero of our time.">
+          <img src={path1} className="storyboard_cell" alt="The tragedy of the modern age." />
+          <img src={path2} className="storyboard_cell" alt="Suddenly, a new savior appears." />
+          <img src={path3} className="storyboard_cell" alt="ThunderBrain: the true hero of our time." />
         </div>
       </div>
     </div>
