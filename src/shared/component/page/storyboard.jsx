@@ -8,9 +8,9 @@ import { STATIC_PATH } from '../../config'
 
 const title = 'The ThunderBrain Story'
 
-const path1 = `${STATIC_PATH}/res/storyboard1.png`
-const path2 = `${STATIC_PATH}/res/storyboard2.png`
-const path3 = `${STATIC_PATH}/res/storyboard3.png`
+const path1 = `${STATIC_PATH}/res/storyboard1.jpg`
+const path2 = `${STATIC_PATH}/res/storyboard2.jpg`
+const path3 = `${STATIC_PATH}/res/storyboard3.jpg`
 
 const StoryboardPage = () =>
   (
