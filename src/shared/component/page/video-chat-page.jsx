@@ -39,7 +39,7 @@ class VideoChatPage extends React.Component {
   // Attach Participants tracks to the DOM
   attachParticipantTracks(participant, container) {
     const tracks = Array.from(participant.tracks.values())
-    attachTracks(tracks, container)
+    this.attachTracks(tracks, container)
   }
 
   // Detach the tracks from the DOM
