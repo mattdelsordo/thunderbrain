@@ -14,8 +14,8 @@
     "prod:stop": "pm2 delete server",
     "lint": "eslint src webpack.config.babel.js --ext .js,.jsx",
     "test": "yarn lint && jest --coverage",
-    "precommit": "yarn test",
-    "prepush": "yarn test && yarn prod:build"
+    // "precommit": "yarn test",
+    // "prepush": "yarn test && yarn prod:build"
   },
   "devDependencies": {
     "eslint": "^4.9.0",
