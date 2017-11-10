@@ -9,7 +9,7 @@ class BrainstormPhase extends React.Component {
     super(props)
 
     this.state = {
-      time: props.time || 30,
+      time: props.time || 10,
       question: props.question || 'What would be cool features to add to a spaceship?',
       ideas: [],
       redirect: false,

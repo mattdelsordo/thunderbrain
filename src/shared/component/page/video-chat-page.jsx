@@ -2,6 +2,7 @@ import React from 'react'
 import Helmet from 'react-helmet'
 import Video from 'twilio-video'
 import jQuery from 'jquery'
+import ReactCountdownClock from 'react-countdown-clock'
 
 import Button from '../button'
 import { STATIC_PATH } from '../../config'
@@ -23,7 +24,10 @@ class VideoChatPage extends React.Component {
       activeRoom: null,
       previewTracks: null,
       identity: null,
-      roomName: null,
+      roomName: null || '2dfh92',
+      ideas: props.ideas || ['space dog', 'infinite freeze-dried beef stroganoff', 'alien propulsion'],
+      time: props.time || 90,
+      question: props.question || 'What would be cool features to add to a spaceship?',
     }
 
     jQuery.getJSON('/token', this.processToken.bind(this))
@@ -73,38 +77,46 @@ class VideoChatPage extends React.Component {
   processToken(data) {
     console.log('processing token....')
     this.setState({ identity: data.identity })
-    document.getElementById('room-controls').style.display = 'block'
+    //document.getElementById('room-controls').style.display = 'block'
 
-    // Bind join room button
-    document.getElementById('button-join').onclick = function () {
-      this.setState({ roomName: document.getElementById('room-name').value })
-      if (!this.state.roomName) {
-        alert('Please enter a room name.')
-        return
-      }
+    this.joinRoom(data).bind(this)
 
-      this.log(`Joining room '${this.state.roomName}'...`)
-      const connectOptions = {
-        name: this.state.roomName,
-        logLevel: 'debug',
-      }
+    // // Bind join room button
+    // document.getElementById('button-join').onclick = function () {
+      
+    // }.bind(this)
 
-      if (this.state.previewTracks) {
-        connectOptions.tracks = this.state.previewTracks
-      }
+    // // bind leave room button
+    // document.getElementById('button-leave').onclick = function () {
 
-      Video.connect(data.token, connectOptions).then(this.roomJoined.bind(this), (error) => {
-        this.log(`Could not connect to Twilio: ${error.message}`)
-      })
-    }.bind(this)
+    // }.bind(this)
+  }
 
-    // bind leave room button
-    document.getElementById('button-leave').onclick = function () {
-      this.log('Leaving room...')
-      this.state.activeRoom.disconnect()
-    }.bind(this)
+  joinRoom(data) {
+    // this.setState({ roomName: document.getElementById('room-name').value })
+    // if (!this.state.roomName) {
+    //   alert('Please enter a room name.')
+    //   return
+    // }
 
-    console.log('made it to the end of process token')
+    this.log(`Joining room '${this.state.roomName}'...`)
+    const connectOptions = {
+      name: this.state.roomName,
+      logLevel: 'debug',
+    }
+
+    if (this.state.previewTracks) {
+      connectOptions.tracks = this.state.previewTracks
+    }
+
+    Video.connect(data.token, connectOptions).then(this.roomJoined.bind(this), (error) => {
+      this.log(`Could not connect to Twilio: ${error.message}`)
+    })
+  }
+
+  leaveRoom() {
+    this.log('Leaving room...')
+    this.state.activeRoom.disconnect()
   }
 
   // Successfully joined!
@@ -113,8 +125,8 @@ class VideoChatPage extends React.Component {
     this.setState({ activeRoom: room })
 
     this.log(`Joined as '${this.state.identity}'`)
-    document.getElementById('button-join').style.display = 'none'
-    document.getElementById('button-leave').style.display = 'inline'
+    // document.getElementById('button-join').style.display = 'none'
+    // document.getElementById('button-leave').style.display = 'inline'
 
     // Attach LocalParticipant's Tracks, if not already done
     const previewContainer = document.getElementById('local-media')
@@ -206,25 +218,33 @@ class VideoChatPage extends React.Component {
             { property: 'og:title', content: title },
           ]}
         />
-        <div className="row">
-          <div className="col-12">
-            <h1>{title}</h1>
-
-            <div id="remote-media" />
-            <div id="controls">
-              <div id="preview">
-                <p className="instructions">Hello Beautiful</p>
-                <div id="local-media" />
-                <Button label="Preview My Camera" handleClick={this.previewCamera.bind(this)} />
+        <div className="container">
+          <div className="row">
+            <div className="col-sm-6">
+              <div className="row">
+                <div className="col-sm-6">
+                  <ReactCountdownClock seconds={this.state.time} color="#000" alpha="0.9" size={100} onComplete={this.leaveRoom.bind(this)} />
+                </div>
+                <div className="col-sm-6">
+                  <h1>{this.state.question}</h1>
+                </div>
               </div>
-              <div id="room-controls">
-                <p className="instructions" >Room Name:</p>
-                <input id="room-name" type="text" placeholder="Enter a room name" />
-                <button id="button-join">Join Room</button>
-                <button id="button-leave">Leave Room</button>
-              </div>
+              <ul className="list-group">
+                {this.state.ideas.map((idea) => {
+                  return <li className="list-group-item" key={idea}>{idea}</li>
+                })}
+              </ul>
+            </div>
+            <div className="col-sm-6">
               <div id="log" />
-              
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-sm-6">
+              <div id="local-media" />
+            </div>
+            <div className="col-sm-6">
+              <div id="remote-media" />
             </div>
           </div>
         </div>
