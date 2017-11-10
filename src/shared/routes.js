@@ -8,5 +8,7 @@ export const PROFILE_VIEW = '/profileView'
 export const PROPOSAL_ROUTE = '/proposal'
 export const CHAT_ROUTE = '/chat'
 export const STORYBOARD_ROUTE = '/storyboard'
+export const LOBBY_ROUTE = '/lobby'
+export const BRAINSTORM_ROUTE = '/brainstorm'
 
 export const helloEndpointRoute = (num: ?number) => `/ajax/hello/${num || ':num'}`

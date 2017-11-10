@@ -19,6 +19,8 @@ import ProposalPage from './component/page/proposal'
 import VideoChatPage from './component/page/video-chat-page'
 import SignInPage from './component/page/sign-in'
 import StoryboardPage from './component/page/storyboard'
+import LobbyPage from './component/page/lobby-page'
+import BrainstormPhase from './component/page/brainstorm-phase'
 import {
   HOME_PAGE_ROUTE,
   HELLO_PAGE_ROUTE,
@@ -27,6 +29,8 @@ import {
   PROPOSAL_ROUTE,
   CHAT_ROUTE,
   STORYBOARD_ROUTE,
+  LOBBY_ROUTE,
+  BRAINSTORM_ROUTE,
 } from './routes'
 
 const App = () =>
@@ -42,6 +46,8 @@ const App = () =>
         <Route path={PROPOSAL_ROUTE} render={() => <ProposalPage />} />
         <Route path={CHAT_ROUTE} render={() => <VideoChatPage />} />
         <Route path={STORYBOARD_ROUTE} render={() => <StoryboardPage />} />
+        <Route path={LOBBY_ROUTE} render={() => <LobbyPage />} />
+        <Route path={BRAINSTORM_ROUTE} render={() => <BrainstormPhase />} />
         <Route component={NotFoundPage} />
       </Switch>
     </div>

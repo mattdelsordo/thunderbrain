@@ -37,8 +37,8 @@ const Nav = () =>
             // { route: NOT_FOUND_DEMO_PAGE_ROUTE, label: '404 Demo' },
             { route: STORYBOARD_ROUTE, label: 'Storyboard' },
             { route: PROPOSAL_ROUTE, label: 'Proposal' },
-            { route: PROFILE_VIEW, label: 'Profile View' },
-            { route: CHAT_ROUTE, label: 'Video Chat Test' },
+            { route: PROFILE_VIEW, label: 'Start Session' },
+            // { route: CHAT_ROUTE, label: 'Video Chat Test' },
           ].map(link => (
             <li className="nav-item" key={link.route}>
               <NavLink to={link.route} className="nav-link" activeStyle={{ color: 'white' }} exact onClick={handleNavLinkClick}>{link.label}</NavLink>
