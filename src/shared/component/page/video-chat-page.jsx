@@ -162,7 +162,7 @@ class VideoChatPage extends React.Component {
     // When a Participant leaves the Room, detach its Tracks.
     room.on('participantDisconnected', (participant) => {
       this.log(`Participant '${participant.identity} left the room`)
-      this.detachParticipantTracks(participant)
+      this.detachParticipantTracks(participant).bind(this)
     })
 
     // Once the LocalParticipant leaves the room, detach the Tracks
@@ -175,7 +175,7 @@ class VideoChatPage extends React.Component {
         })
       }
       this.detachParticipantTracks(room.localParticipant)
-      room.participants.forEach(this.detachParticipantTracks)
+      room.participants.forEach(this.detachParticipantTracks.bind(this))
       this.setState({ activeRoom: null })
       document.getElementById('button-join').style.display = 'inline'
       document.getElementById('button-leave').style.display = 'none'
