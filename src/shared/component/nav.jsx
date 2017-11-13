@@ -14,6 +14,7 @@ import {
   PROPOSAL_ROUTE,
   CHAT_ROUTE,
   STORYBOARD_ROUTE,
+  COMMERCIAL_ROUTE,
 } from '../routes'
 
 const handleNavLinkClick = () => {
@@ -35,15 +36,27 @@ const Nav = () =>
             // { route: HELLO_PAGE_ROUTE, label: 'Say Hello' },
             // { route: HELLO_ASYNC_PAGE_ROUTE, label: 'Say Hello Asynchronously' },
             // { route: NOT_FOUND_DEMO_PAGE_ROUTE, label: '404 Demo' },
-            { route: STORYBOARD_ROUTE, label: 'Storyboard' },
             { route: PROPOSAL_ROUTE, label: 'Proposal' },
+            { route: STORYBOARD_ROUTE, label: 'Storyboard' },
+            { route: COMMERCIAL_ROUTE, label: 'Commercial' },
+            { route: 'wireframe', label: 'Wireframe' },
             { route: PROFILE_VIEW, label: 'Profile View' },
             { route: CHAT_ROUTE, label: 'Video Chat Test' },
-          ].map(link => (
-            <li className="nav-item" key={link.route}>
-              <NavLink to={link.route} className="nav-link" activeStyle={{ color: 'white' }} exact onClick={handleNavLinkClick}>{link.label}</NavLink>
-            </li>
-          ))}
+
+          ].map((link) => {
+            if (link.label === 'Wireframe') {
+              return (
+                <li className="nav-item" key={link.route}>
+                  <a href="https://invis.io/HAEF2JFFD#/263444606_All" className="nav-link" key="wireframe">Wireframe</a>
+                </li>
+              )
+            }
+            return (
+              <li className="nav-item" key={link.route}>
+                <NavLink to={link.route} className="nav-link" activeStyle={{ color: 'white' }} exact onClick={handleNavLinkClick}>{link.label}</NavLink>
+              </li>
+            )
+          })}
         </ul>
       </div>
     </nav>
