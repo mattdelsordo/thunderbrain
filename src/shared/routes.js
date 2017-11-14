@@ -12,5 +12,6 @@ export const STORYBOARD_ROUTE = '/info/storyboard'
 export const COMMERCIAL_ROUTE = '/info/commercial'
 export const LOBBY_ROUTE = '/app/lobby'
 export const BRAINSTORM_ROUTE = '/app/brainstorm'
+export const SIGN_IN_ROUTE = '/app/sign_in'
 
 export const helloEndpointRoute = (num: ?number) => `/ajax/hello/${num || ':num'}`

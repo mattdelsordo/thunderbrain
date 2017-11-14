@@ -2,7 +2,7 @@ import React from 'react'
 import ReactCountdownClock from 'react-countdown-clock'
 import { Redirect } from 'react-router'
 
-import { CHAT_ROUTE } from '../../routes'
+import { CHAT_ROUTE } from '../../../routes'
 
 class BrainstormPhase extends React.Component {
   constructor(props) {

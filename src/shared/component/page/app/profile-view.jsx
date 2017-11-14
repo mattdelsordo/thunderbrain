@@ -5,10 +5,10 @@ import Helmet from 'react-helmet'
 import { Link, Redirect } from 'react-router-dom'
 import $ from 'jquery'
 
-import ProfileViewInfo from '../profile-view-info'
-import { LOBBY_ROUTE } from '../../routes'
-import JoinGroupModal from '../join-group-modal'
-import Nav from '../nav'
+import ProfileViewInfo from '../../profile-view-info'
+import { LOBBY_ROUTE } from '../../../routes'
+import JoinGroupModal from '../../join-group-modal'
+import Nav from '../../nav'
 
 const title = 'Profile View'
 

@@ -4,8 +4,8 @@ import Video from 'twilio-video'
 import jQuery from 'jquery'
 import ReactCountdownClock from 'react-countdown-clock'
 
-import Button from '../button'
-import { STATIC_PATH } from '../../config'
+import Button from '../../button'
+import { STATIC_PATH } from '../../../config'
 
 const title = 'Video Chat'
 

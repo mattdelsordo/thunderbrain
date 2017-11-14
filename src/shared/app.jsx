@@ -11,18 +11,18 @@ import Helmet from 'react-helmet'
 
 import { APP_NAME } from './config'
 import Nav from './component/nav'
-import Home from './component/page/home'
-import HelloPage from './component/page/hello'
-import HelloAsyncPage from './component/page/hello-async'
+import Home from './component/page/info/home'
+import HelloPage from './component/page/app/hello'
+import HelloAsyncPage from './component/page/app/hello-async'
 import NotFoundPage from './component/page/not-found'
-import ProfileViewPage from './component/page/profile-view'
-import ProposalPage from './component/page/proposal'
-import VideoChatPage from './component/page/video-chat-page'
-import SignInPage from './component/page/sign-in'
-import StoryboardPage from './component/page/storyboard'
-import CommercialPage from './component/page/commercial-page'
-import LobbyPage from './component/page/lobby-page'
-import BrainstormPhase from './component/page/brainstorm-phase'
+import ProfileViewPage from './component/page/app/profile-view'
+import ProposalPage from './component/page/info/proposal'
+import VideoChatPage from './component/page/app/video-chat-page'
+import SignInPage from './component/page/app/sign-in'
+import StoryboardPage from './component/page/info/storyboard'
+import CommercialPage from './component/page/info/commercial-page'
+import LobbyPage from './component/page/app/lobby-page'
+import BrainstormPhase from './component/page/app/brainstorm-phase'
 import {
   HOME_PAGE_ROUTE,
   // HELLO_PAGE_ROUTE,
@@ -35,6 +35,7 @@ import {
   BRAINSTORM_ROUTE,
   DEFAULT_ROUTE,
   LOBBY_ROUTE,
+  SIGN_IN_ROUTE,
 } from './routes'
 
 const App = () =>
@@ -51,6 +52,7 @@ const App = () =>
         <Route path={COMMERCIAL_ROUTE} render={() => <CommercialPage />} />
         <Route path={LOBBY_ROUTE} render={() => <LobbyPage />} />
         <Route path={BRAINSTORM_ROUTE} render={() => <BrainstormPhase />} />
+        <Route path={SIGN_IN_ROUTE} render={() => <SignInPage />} />
         <Route component={NotFoundPage} />
       </Switch>
     </div>

@@ -4,8 +4,8 @@ import React from 'react'
 import { randomBytes } from 'crypto'
 import { Link } from 'react-router-dom'
 
-import randomname from '../../randomname'
-import { BRAINSTORM_ROUTE, PROFILE_VIEW } from '../../routes'
+import randomname from '../../../randomname'
+import { BRAINSTORM_ROUTE, PROFILE_VIEW } from '../../../routes'
 
 class LobbyPage extends React.Component {
   constructor(props) {
