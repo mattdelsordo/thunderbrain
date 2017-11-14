@@ -3,6 +3,7 @@
 import React from 'react'
 import Helmet from 'react-helmet'
 import ProfileViewInfo from '../profile-view-info'
+import Nav from '../nav'
 
 const title = 'Profile View'
 
@@ -16,6 +17,7 @@ const ProfileViewPage = () =>
                     { property: 'og:title', content: title },
                 ]}
       />
+      <Nav />
       <div className="row">
         <div className="col-12">
           <h1>{title}</h1>

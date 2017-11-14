@@ -2,6 +2,7 @@
 
 import React from 'react'
 import Helmet from 'react-helmet'
+import Nav from '../nav'
 // import { Document, Page } from 'react-pdf'
 
 // import { STATIC_PATH } from '../../config'
@@ -19,7 +20,7 @@ const ProposalPage = () =>
                     { property: 'og:title', content: title },
                 ]}
       />
-
+      <Nav />
       <div className="row">
         <div className="col-12">
           <h1>{title}</h1>

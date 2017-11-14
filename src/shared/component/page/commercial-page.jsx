@@ -1,6 +1,8 @@
 import React from 'react'
 import Helmet from 'react-helmet'
 
+import Nav from '../nav'
+
 const title = 'Thunderbrain Commercial'
 
 const CommercialPage = () =>
@@ -12,6 +14,7 @@ const CommercialPage = () =>
           { property: 'og:title', content: title },
         ]}
       />
+      <Nav />
       <div className="container">
         <div className="row align-items-center">
           <div className="col-12 mt-4 center-block">

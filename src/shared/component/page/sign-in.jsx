@@ -1,6 +1,7 @@
 import React from 'react'
 import Helmet from 'react-helmet'
 import SignInForm from '../sign-in-form'
+import Nav from '../nav'
 
 const title = 'Sign In'
 
@@ -14,6 +15,7 @@ const SignInPage = () =>
                     { property: 'og:title', content: title },
                 ]}
       />
+      <Nav />
       <div className="row">
         <div className="col-12">
           <h1>{title}</h1>
