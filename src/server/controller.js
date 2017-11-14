@@ -1,11 +1,17 @@
 // @flow
 
+import User from '../../models/User'
+
 /**
  * Controller with hard-coded results to facilitate MVC paradigm
  * Apparently this is where business logic and database calls are meant to be made
  */
 
 export const homePage = () => null
+
+export const signUpPage = () => ({
+  hello: { message: 'Server-side sign up message' },
+})
 
 export const helloPage = () => ({
   hello: { message: 'Server-side preloaded message' },
@@ -26,3 +32,13 @@ export const proposalPage = () => ({
 export const chatPage = () => ({
   hello: { message: 'Welcome to the chat page' },
 })
+
+export default function createNewUser(inputUserName, inputEmail, inputPassword) {
+  const newlyRegisteredUser = new User({
+    userName: inputUserName,
+    email: inputEmail,
+    password: inputPassword,
+  })
+
+  newlyRegisteredUser.save()
+}

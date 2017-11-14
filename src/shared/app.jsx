@@ -19,6 +19,7 @@ import ProfileViewPage from './component/page/profile-view'
 import ProposalPage from './component/page/proposal'
 import VideoChatPage from './component/page/video-chat-page'
 import SignInPage from './component/page/sign-in'
+import SignUpPage from './component/page/register'
 import StoryboardPage from './component/page/storyboard'
 import CommercialPage from './component/page/commercial-page'
 import LobbyPage from './component/page/lobby-page'
@@ -43,7 +44,7 @@ const App = () =>
       <Helmet titleTemplate={`%s | ${APP_NAME}`} defaultTitle={APP_NAME} />
       <Switch>
         <Route exact path={DEFAULT_ROUTE} render={() => <Redirect to={HOME_PAGE_ROUTE} />} />
-        <Route exact path={HOME_PAGE_ROUTE} render={() => <Home />} />
+        <Route exact path={HOME_PAGE_ROUTE} render={() => <SignUpPage />} />
         <Route path={PROFILE_VIEW} render={() => <ProfileViewPage />} />
         <Route path={PROPOSAL_ROUTE} render={() => <ProposalPage />} />
         <Route path={CHAT_ROUTE} render={() => <VideoChatPage />} />
