@@ -6,7 +6,10 @@ import {
   IO_CLIENT_JOIN_ROOM,
   IO_CLIENT_HELLO,
   IO_SERVER_HELLO,
+  IO_CREATE_USER,
 } from '../shared/config'
+
+import createUser from './controller'
 
 /* eslint-disable no-console */
 const setUpSocket = (io: Object) => {
@@ -32,6 +35,12 @@ const setUpSocket = (io: Object) => {
     // log disconnections
     socket.on(IO_DISCONNECT, () => {
       console.log('[socket.io] A client disconnected.')
+    })
+
+    // create a user in the database
+    socket.on(IO_CREATE_USER, (user) => {
+      console.log('[socket.io] A user has been registered.')
+      createUser(user.userName, user.email, user.password)
     })
   })
 }

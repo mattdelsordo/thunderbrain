@@ -7,7 +7,7 @@ const SignInForm = () =>
         <input
           className="form-control"
           type="text"
-          placeholder="email"
+          placeholder="user name"
         />
         <input
           className="form-control"
@@ -21,7 +21,6 @@ const SignInForm = () =>
         >
                     Sign In
         </button>
-        <div className="AccountCreationLink" />
       </div>
     </div>
   )

@@ -22,6 +22,7 @@ import SignInPage from './component/page/app/sign-in'
 import StoryboardPage from './component/page/info/storyboard'
 import CommercialPage from './component/page/info/commercial-page'
 import LobbyPage from './component/page/app/lobby-page'
+import SignUpPage from './component/page/register'
 import BrainstormPhase from './component/page/app/brainstorm-phase'
 import {
   HOME_PAGE_ROUTE,
@@ -44,7 +45,7 @@ const App = () =>
       <Helmet titleTemplate={`%s | ${APP_NAME}`} defaultTitle={APP_NAME} />
       <Switch>
         <Route exact path={DEFAULT_ROUTE} render={() => <Redirect to={HOME_PAGE_ROUTE} />} />
-        <Route exact path={HOME_PAGE_ROUTE} render={() => <Home />} />
+        <Route exact path={HOME_PAGE_ROUTE} render={() => <SignUpPage />} />
         <Route path={PROFILE_VIEW} render={() => <ProfileViewPage />} />
         <Route path={PROPOSAL_ROUTE} render={() => <ProposalPage />} />
         <Route path={CHAT_ROUTE} render={() => <VideoChatPage />} />
