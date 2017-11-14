@@ -17,12 +17,12 @@ import HelloAsyncPage from './component/page/app/hello-async'
 import NotFoundPage from './component/page/not-found'
 import ProfileViewPage from './component/page/app/profile-view'
 import ProposalPage from './component/page/info/proposal'
-import VideoChatPage from './component/page/app/video-chat-page'
+import VideoChatPage from './component/page/app/voting-page'
 import SignInPage from './component/page/app/sign-in'
 import StoryboardPage from './component/page/info/storyboard'
 import CommercialPage from './component/page/info/commercial-page'
 import LobbyPage from './component/page/app/lobby-page'
-import SignUpPage from './component/page/register'
+import SignUpPage from './component/page/app/register'
 import BrainstormPhase from './component/page/app/brainstorm-phase'
 import {
   HOME_PAGE_ROUTE,
@@ -37,6 +37,7 @@ import {
   DEFAULT_ROUTE,
   LOBBY_ROUTE,
   SIGN_IN_ROUTE,
+  REGISTER_ROUTE,
 } from './routes'
 
 const App = () =>
@@ -54,7 +55,8 @@ const App = () =>
         <Route path={LOBBY_ROUTE} render={() => <LobbyPage />} />
         <Route path={BRAINSTORM_ROUTE} render={() => <BrainstormPhase />} />
         <Route path={SIGN_IN_ROUTE} render={() => <SignInPage />} />
-        <Route component={NotFoundPage} />
+        <Route path={REGISTER_ROUTE} render={() => <SignUpPage />}/>
+          <Route component={NotFoundPage} />
       </Switch>
     </div>
   )

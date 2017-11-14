@@ -2,8 +2,8 @@ import React from 'react'
 import Helmet from 'react-helmet'
 import Video from 'twilio-video'
 import jQuery from 'jquery'
-import ReactCountdownClock from 'react-countdown-clock'
 
+import Countdown from '../../countdown'
 import Button from '../../button'
 import { STATIC_PATH } from '../../../config'
 
@@ -223,7 +223,7 @@ class VideoChatPage extends React.Component {
             <div className="col-sm-6">
               <div className="row">
                 <div className="col-sm-6">
-                  <ReactCountdownClock seconds={this.state.time} color="#000" alpha="0.9" size={100} onComplete={this.leaveRoom.bind(this)} />
+                  <Countdown time="??:??" />
                 </div>
                 <div className="col-sm-6">
                   <h1>{this.state.question}</h1>
