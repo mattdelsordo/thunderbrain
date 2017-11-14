@@ -6,6 +6,7 @@ import Helmet from 'react-helmet'
 
 // import ModalExample from '../modal-example'
 import { APP_NAME } from '../../config'
+import Nav from '../nav'
 
 const HomePage = () =>
   (
@@ -16,6 +17,7 @@ const HomePage = () =>
           { property: 'og:title', content: APP_NAME },
         ]}
       />
+      <Nav />
       <div className="jumbotron">
         <div className="container">
           <h1 className="display-3 mb-4">{APP_NAME}</h1>
