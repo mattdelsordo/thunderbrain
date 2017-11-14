@@ -3,7 +3,7 @@
 import User from '../../models/User'
 
 /**
- * Controller with hard-coded results to facilitate MVC paradigm
+ * Controller with hard-coded results.jsx to facilitate MVC paradigm
  * Apparently this is where business logic and database calls are meant to be made
  */
 

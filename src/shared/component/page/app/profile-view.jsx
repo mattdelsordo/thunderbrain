@@ -5,10 +5,11 @@ import Helmet from 'react-helmet'
 import { Link, Redirect } from 'react-router-dom'
 import $ from 'jquery'
 
-import ProfileViewInfo from '../profile-view-info'
-import { LOBBY_ROUTE } from '../../routes'
-import JoinGroupModal from '../join-group-modal'
-import Nav from '../nav'
+import ProfileViewInfo from '../../profile-view-info'
+import { LOBBY_ROUTE } from '../../../routes'
+import JoinGroupModal from '../../join-group-modal'
+import CreateGroupModal from '../../create-room-modal'
+import Nav from '../../nav'
 
 const title = 'Profile View'
 
@@ -18,11 +19,13 @@ class ProfileViewPage extends React.Component {
 
     this.state = {
       redirect: false,
+      pastCalls: props.pastCalls || ['No past calls.'],
     }
   }
 
   redirect() {
     $('.join-group-modal').modal('hide')
+    $('.create-group-modal').modal('hide')
 
     this.setState({
       redirect: true,
@@ -44,13 +47,12 @@ class ProfileViewPage extends React.Component {
         <Nav />
         <div className="row" width="100%">
           <div className="col-xs-6" width="50%">
-            <h1>{title}</h1>
             <ProfileViewInfo />
           </div>
           <div className="col-xs-6" width="50%">
             <div className="row m-2">
               <div className="col-lg-12">
-                <Link to={LOBBY_ROUTE} className="btn btn-primary mt-1">Create Room</Link>
+                <button type="button" role="button" data-toggle="modal" data-target=".create-group-modal" className="btn btn-primary mt-1"> Create Room </button>
               </div>
               <div className="col-lg-12">
                 <button type="button" role="button" data-toggle="modal" data-target=".join-group-modal" className="btn btn-primary mt-1"> Join Room </button>
@@ -58,7 +60,17 @@ class ProfileViewPage extends React.Component {
             </div>
           </div>
         </div>
+          <div>
+              <ul>
+                  {this.state.pastCalls.map((call, i) => {
+                      return (
+                          <li key={i}>{call}</li>
+                      )
+                  })}
+              </ul>
+          </div>
         <JoinGroupModal handleClick={this.redirect.bind(this)} />
+        <CreateGroupModal handleClick={this.redirect.bind(this)} />
       </div>
     )
   }

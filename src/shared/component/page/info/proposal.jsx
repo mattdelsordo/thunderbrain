@@ -2,7 +2,7 @@
 
 import React from 'react'
 import Helmet from 'react-helmet'
-import Nav from '../nav'
+import Nav from '../../nav'
 // import { Document, Page } from 'react-pdf'
 
 // import { STATIC_PATH } from '../../config'

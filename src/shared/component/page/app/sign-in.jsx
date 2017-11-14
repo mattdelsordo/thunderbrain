@@ -1,6 +1,8 @@
 import React from 'react'
 import Helmet from 'react-helmet'
-import SignInForm from '../sign-in-form'
+
+import SignInForm from '../../sign-in-form'
+import Nav from '../../nav'
 
 const title = 'Sign In'
 

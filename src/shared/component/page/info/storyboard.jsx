@@ -3,9 +3,9 @@
 // This page is in charge of displaying the storyboard we made
 import React from 'react'
 import Helmet from 'react-helmet'
-import Nav from '../nav'
+import Nav from '../../nav'
 
-import { STATIC_PATH } from '../../config'
+import { STATIC_PATH } from '../../../config'
 
 const title = 'The ThunderBrain Story'
 

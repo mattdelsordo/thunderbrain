@@ -5,8 +5,8 @@ import React from 'react'
 import Helmet from 'react-helmet'
 
 // import ModalExample from '../modal-example'
-import { APP_NAME } from '../../config'
-import Nav from '../nav'
+import { APP_NAME } from '../../../config'
+import Nav from '../../nav'
 
 const HomePage = () =>
   (

@@ -1,8 +1,8 @@
 import React from 'react'
-import ReactCountdownClock from 'react-countdown-clock'
 import { Redirect } from 'react-router'
 
-import { CHAT_ROUTE } from '../../routes'
+import { CHAT_ROUTE } from '../../../routes'
+import Countdown from '../../countdown'
 
 class BrainstormPhase extends React.Component {
   constructor(props) {
@@ -46,7 +46,7 @@ class BrainstormPhase extends React.Component {
             <div className="jumbotron mh-100">
               <h3>Enter as many ideas as you can for the following question:</h3>
               <h4>{this.state.question}</h4>
-              <ReactCountdownClock seconds={this.state.time} color="#000" alpha="0.9" size={300} onComplete={this.end.bind(this)} />
+              <Countdown time={'??:??'} />
             </div>
           </div>
           <div className="col-sm-6 p-4">

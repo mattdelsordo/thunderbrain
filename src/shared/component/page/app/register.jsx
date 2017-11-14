@@ -1,7 +1,7 @@
 import React from 'react'
 import Helmet from 'react-helmet'
-import SignUpForm from '../sign-up-form'
-import Nav from '../nav'
+import SignUpForm from '../../sign-up-form'
+import Nav from '../../nav'
 
 const title = 'Sign Up'
 
