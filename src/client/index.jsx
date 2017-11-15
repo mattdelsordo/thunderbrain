@@ -19,7 +19,7 @@ import $ from 'jquery'
 import Tether from 'tether'
 
 import App from '../shared/app'
-import helloReducer from '../shared/reducer/hello'
+import helloReducer from '../shared/reducer/reducer'
 import { APP_CONTAINER_SELECTOR } from '../shared/config'
 import { isProd } from '../shared/util'
 import setUpSocket from './socket'

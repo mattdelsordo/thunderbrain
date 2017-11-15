@@ -7,9 +7,9 @@ import {
   sayHelloAsyncRequest,
   sayHelloAsyncSuccess,
   sayHelloAsyncFailure,
-} from '../action/hello'
+} from '../action/actions'
 
-import helloReducer from './hello'
+import helloReducer from './reducer'
 
 let helloState
 

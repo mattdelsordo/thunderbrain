@@ -7,7 +7,7 @@
 
 import { connect } from 'react-redux'
 
-import { sayHello } from '../action/hello'
+import { sayHello } from '../action/actions'
 import Button from '../component/button'
 
 const mapStateToProps = () => ({

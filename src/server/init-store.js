@@ -9,7 +9,7 @@ import Immutable from 'immutable'
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 import thunkMiddleware from 'redux-thunk'
 
-import helloReducer from '../shared/reducer/hello'
+import helloReducer from '../shared/reducer/reducer'
 
 const initStore = (plainPartialState: ?Object) => {
   const preloadedState = plainPartialState ? {} : undefined

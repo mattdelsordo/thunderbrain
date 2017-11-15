@@ -3,6 +3,9 @@ import { Redirect } from 'react-router'
 
 import { CHAT_ROUTE } from '../../../routes'
 import Countdown from '../../countdown'
+import IdeaList from '../../../container/idea-list'
+import SubmitString from '../../../container/submit-string'
+import { addIdea } from '../../../action/actions'
 
 class BrainstormPhase extends React.Component {
   constructor(props) {
@@ -50,15 +53,17 @@ class BrainstormPhase extends React.Component {
             </div>
           </div>
           <div className="col-sm-6 p-4">
-            <div className="input-group">
-              <input id="idea-field" type="text" className="form-control" placeholder="Your next great idea" />
-              <button className="input-group-addon" onClick={this.submitIdea.bind(this)}>Submit</button>
-            </div>
-            <ul className="list-group">
-              {this.state.ideas.map((idea) => {
-                return <li className="list-group-item" key={idea}>{idea}</li>
-              })}
-            </ul>
+            {/*<div className="input-group">*/}
+              {/*<input id="idea-field" type="text" className="form-control" placeholder="Your next great idea" />*/}
+              {/*<button className="input-group-addon" onClick={this.submitIdea.bind(this)}>Submit</button>*/}
+            {/*</div>*/}
+            {/*<ul className="list-group">*/}
+              {/*{this.state.ideas.map((idea) => {*/}
+                {/*return <li className="list-group-item" key={idea}>{idea}</li>*/}
+              {/*})}*/}
+            {/*</ul>*/}
+            <IdeaList />
+            <SubmitString placeholder="Your next great idea." buttonText="Add" action={addIdea} />
           </div>
         </div>
       </div>

@@ -32,3 +32,9 @@ export const sayHelloAsync = (num: number) => (dispatch: Function) => {
       dispatch(sayHelloAsyncFailure())
     })
 }
+
+export const ADD_IDEA = 'ADD_IDEA'
+export const addIdea = text => ({
+  type: ADD_IDEA,
+  text,
+})
