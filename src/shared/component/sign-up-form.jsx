@@ -1,16 +1,17 @@
 import React from 'react'
+import io from 'socket.io-client';
 
 class SignUpForm extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       username: '',
-      email: '',
       password: '',
       confirmpassword: '',
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.socket = io('localhost:8080');
   }
   handleChange(e) {
     const newState = {}
@@ -22,6 +23,10 @@ class SignUpForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault()
     if (this.state.password === this.state.confirmpassword) {
+      this.socket.emit('create_user', {
+        Username: this.state.username,
+        Password: this.state.password,
+      })
       alert("You've submitted it!")
     } else {
       alert("You're passwords don't match!")
@@ -42,15 +47,6 @@ class SignUpForm extends React.Component {
           name="username"
           onChange={this.handleChange}
           value={this.state.username}
-        />
-        <input
-          className="form-control"
-          type="text"
-          placeholder="email"
-          required
-          name="email"
-          onChange={this.handleChange}
-          value={this.state.email}
         />
         <input
           className="form-control"

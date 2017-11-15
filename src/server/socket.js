@@ -9,7 +9,10 @@ import {
   IO_CREATE_USER,
 } from '../shared/config'
 
-import createUser from './controller'
+const User = require('../../models/User')
+const bcrypt = require('bcrypt')
+
+const saltRounds = 10
 
 /* eslint-disable no-console */
 const setUpSocket = (io: Object) => {
@@ -38,9 +41,17 @@ const setUpSocket = (io: Object) => {
     })
 
     // create a user in the database
-    socket.on(IO_CREATE_USER, (user) => {
+    socket.on('create_user', (user) => {
       console.log('[socket.io] A user has been registered.')
-      createUser(user.userName, user.email, user.password)
+      console.log(user.Username)
+      console.log(user.Password)
+      const hashedPassword = bcrypt.hashSync(user.Password, saltRounds)
+      const newUser = User({
+        username: user.Username,
+        password: hashedPassword,
+      })
+      newUser.save()
+      console.log('worked')
     })
   })
 }
