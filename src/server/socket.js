@@ -9,7 +9,9 @@ import {
   IO_CREATE_USER,
 } from '../shared/config'
 
-import createUser from './controller'
+const mongoose = require('mongoose')
+
+const User = require('../../models/User')
 
 /* eslint-disable no-console */
 const setUpSocket = (io: Object) => {
@@ -38,9 +40,18 @@ const setUpSocket = (io: Object) => {
     })
 
     // create a user in the database
-    socket.on(IO_CREATE_USER, (user) => {
+    socket.on('create_user', (user) => {
       console.log('[socket.io] A user has been registered.')
-      createUser(user.userName, user.email, user.password)
+      console.log(user.Username)
+      console.log(user.Email)
+      console.log(user.Password)
+      const newUser = User({
+        username: user.Username,
+        email: user.Email,
+        password: user.Password,
+      })
+      newUser.save()
+      console.log('worked')
     })
   })
 }

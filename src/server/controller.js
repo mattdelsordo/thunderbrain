@@ -32,13 +32,3 @@ export const proposalPage = () => ({
 export const chatPage = () => ({
   hello: { message: 'Welcome to the chat page' },
 })
-
-export default function createNewUser(inputUserName, inputEmail, inputPassword) {
-  const newlyRegisteredUser = new User({
-    userName: inputUserName,
-    email: inputEmail,
-    password: inputPassword,
-  })
-
-  newlyRegisteredUser.save()
-}

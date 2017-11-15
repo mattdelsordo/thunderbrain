@@ -31,7 +31,7 @@ const http = Server(app)
 const io = socketIO(http)
 setUpSocket(io)
 
-mongoose.connect('mongodb://LudwigNova:thunderbrain@ds229435.mlab.com:29435/thunderbraindatabase')
+mongoose.connect('mongodb://LudwigNova:thunderbrain@ds229435.mlab.com:29435/thunderbraindatabase', { useMongoClient: true })
 mongoose.connection.on('error', () => {
   console.info('Error: Could not connect to MongoDB. Did you forget to run `mongod`?')
 })
