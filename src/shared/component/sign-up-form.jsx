@@ -6,7 +6,6 @@ class SignUpForm extends React.Component {
     super(props)
     this.state = {
       username: '',
-      email: '',
       password: '',
       confirmpassword: '',
     }
@@ -26,7 +25,6 @@ class SignUpForm extends React.Component {
     if (this.state.password === this.state.confirmpassword) {
       this.socket.emit('create_user', {
         Username: this.state.username,
-        Email: this.state.email,
         Password: this.state.password,
       })
       alert("You've submitted it!")
@@ -49,15 +47,6 @@ class SignUpForm extends React.Component {
           name="username"
           onChange={this.handleChange}
           value={this.state.username}
-        />
-        <input
-          className="form-control"
-          type="text"
-          placeholder="email"
-          required
-          name="email"
-          onChange={this.handleChange}
-          value={this.state.email}
         />
         <input
           className="form-control"

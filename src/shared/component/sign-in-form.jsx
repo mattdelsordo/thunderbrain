@@ -9,12 +9,6 @@ const SignInForm = () =>
           type="text"
           placeholder="user name"
         />
-        <input
-          className="form-control"
-          type="password"
-          placeholder="password"
-        />
-
         <button
           className="btn btn-primary"
           type="button"

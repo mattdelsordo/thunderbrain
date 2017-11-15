@@ -9,9 +9,10 @@ import {
   IO_CREATE_USER,
 } from '../shared/config'
 
-const mongoose = require('mongoose')
-
 const User = require('../../models/User')
+const bcrypt = require('bcrypt')
+
+const saltRounds = 10
 
 /* eslint-disable no-console */
 const setUpSocket = (io: Object) => {
@@ -43,12 +44,11 @@ const setUpSocket = (io: Object) => {
     socket.on('create_user', (user) => {
       console.log('[socket.io] A user has been registered.')
       console.log(user.Username)
-      console.log(user.Email)
       console.log(user.Password)
+      const hashedPassword = bcrypt.hashSync(user.Password, saltRounds)
       const newUser = User({
         username: user.Username,
-        email: user.Email,
-        password: user.Password,
+        password: hashedPassword,
       })
       newUser.save()
       console.log('worked')
