@@ -11,7 +11,7 @@ class SignUpForm extends React.Component {
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
-    this.socket = io('localhost:8080');
+    this.socket = io('localhost:8080')
   }
   handleChange(e) {
     const newState = {}

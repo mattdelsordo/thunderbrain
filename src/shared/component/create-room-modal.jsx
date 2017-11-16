@@ -3,8 +3,9 @@
 
 import React from 'react'
 
-const CreateGroupModal = ({ handleClick }: Props) =>
-  (
+const CreateGroupModal = ({ handleClick }: Props) => {
+  let topic
+  return (
     <div className="create-group-modal modal fade">
       <div className="modal-dialog">
         <div className="modal-content">
@@ -12,16 +13,35 @@ const CreateGroupModal = ({ handleClick }: Props) =>
             <h5 className="modal-title">Enter a Topic</h5>
             <button type="button" className="close" data-dismiss="modal">×</button>
           </div>
-          <div className="modal-body">
-            <input id="lobby-id" type="text" className="form-control" placeholder="Enter lobby name" />
-          </div>
-          <div className="modal-footer">
-            <button type="button" role="button" className="btn btn-primary" onClick={handleClick}>Join</button>
-            <button type="button" role="button" className="btn btn-secondary" data-dismiss="modal">Cancel</button>
-          </div>
+
+          <form
+            onSubmit={(e) => {
+              e.preventDefault()
+              if (!topic.value.trim()) return
+              handleClick(topic.value)
+              topic.value = ''
+            }}
+          >
+            <div className="modal-body">
+              <input
+                ref={(node) => {
+                  topic = node
+                }}
+                placeholder="Enter your discussion topic"
+              />
+            </div>
+            <div className="modal-footer">
+              <button type="submit" className="btn btn-primary">
+                Submit
+              </button>
+              <button type="button" role="button" className="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
   )
+}
+
 
 export default CreateGroupModal

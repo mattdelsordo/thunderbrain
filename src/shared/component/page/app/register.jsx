@@ -1,6 +1,6 @@
 import React from 'react'
 import Helmet from 'react-helmet'
-import SignUpForm from '../../sign-up-form'
+import SignUpForm from '../../../container/sign-up-form'
 import Nav from '../../nav'
 import { CookiesProvider } from 'react-cookie'
 
