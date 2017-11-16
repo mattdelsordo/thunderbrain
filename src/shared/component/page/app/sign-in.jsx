@@ -33,6 +33,7 @@ const SIP = ({ notLoggedIn }: Props) => {
             <SignInForm />
             <Link to={REGISTER_ROUTE} className="btn btn-primary"> Need an account? </Link>
           </div>
+
         </div>
       </div>
     )
