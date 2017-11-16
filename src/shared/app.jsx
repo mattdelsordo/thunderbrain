@@ -46,7 +46,7 @@ const App = () =>
       <Helmet titleTemplate={`%s | ${APP_NAME}`} defaultTitle={APP_NAME} />
       <Switch>
         <Route exact path={DEFAULT_ROUTE} render={() => <Redirect to={HOME_PAGE_ROUTE} />} />
-        <Route exact path={HOME_PAGE_ROUTE} render={() => <SignUpPage />} />
+        <Route exact path={HOME_PAGE_ROUTE} render={() => <SignInPage />} />
         <Route path={PROFILE_VIEW} render={() => <ProfileViewPage />} />
         <Route path={PROPOSAL_ROUTE} render={() => <ProposalPage />} />
         <Route path={CHAT_ROUTE} render={() => <VideoChatPage />} />
@@ -55,8 +55,8 @@ const App = () =>
         <Route path={LOBBY_ROUTE} render={() => <LobbyPage />} />
         <Route path={BRAINSTORM_ROUTE} render={() => <BrainstormPhase />} />
         <Route path={SIGN_IN_ROUTE} render={() => <SignInPage />} />
-        <Route path={REGISTER_ROUTE} render={() => <SignUpPage />}/>
-          <Route component={NotFoundPage} />
+        <Route path={REGISTER_ROUTE} render={() => <SignUpPage />} />
+        <Route component={NotFoundPage} />
       </Switch>
     </div>
   )

@@ -1,5 +1,5 @@
 import React from 'react'
-import io from 'socket.io-client';
+import io from 'socket.io-client'
 
 class SignUpForm extends React.Component {
   constructor(props) {
@@ -11,7 +11,7 @@ class SignUpForm extends React.Component {
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
-    this.socket = io('localhost:8080');
+    this.socket = io('localhost:8080')
   }
   handleChange(e) {
     const newState = {}
@@ -29,7 +29,7 @@ class SignUpForm extends React.Component {
       })
       alert("You've submitted it!")
     } else {
-      alert("You're passwords don't match!")
+      alert("UR passwords don't match!")
     }
   }
 
@@ -64,7 +64,7 @@ class SignUpForm extends React.Component {
           required
           name="confirmpassword"
           onChange={this.handleChange}
-          value={this.confirmpassword}
+          value={this.state.confirmpassword}
         />
         <button
           className="btn btn-primary"

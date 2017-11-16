@@ -43,15 +43,26 @@ const setUpSocket = (io: Object) => {
     // create a user in the database
     socket.on('create_user', (user) => {
       console.log('[socket.io] A user has been registered.')
-      console.log(user.Username)
-      console.log(user.Password)
       const hashedPassword = bcrypt.hashSync(user.Password, saltRounds)
       const newUser = User({
         username: user.Username,
         password: hashedPassword,
       })
       newUser.save()
-      console.log('worked')
+    })
+
+    // log a user from the database into the site
+    socket.on('log_in', (user) => {
+      User.findOne({ username: user.Username }, 'password', (err, matchedUser) => {
+        console.log(matchedUser.password)
+        bcrypt.compare(user.Password, matchedUser.password, (res) => {
+          if (res === true) {
+            console.log('[socket.io] A user has been logged in.')
+          } else {
+            console.log('[socket.io] A user has tried to log in with incorrect credentials.')
+          }
+        })
+      })
     })
   })
 }
