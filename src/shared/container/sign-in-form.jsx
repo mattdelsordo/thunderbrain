@@ -19,7 +19,7 @@ const SIF = ({ dispatch }: Props) => {
           }
           // TODO: Here is where you would validate the login stuff, before
           // dispatching to the state
-          dispatch(logIn(username.value))
+          dispatch(logIn(username.value.trim()))
           username.value = ''
         }}
       >

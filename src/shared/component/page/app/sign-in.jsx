@@ -3,11 +3,12 @@
 import React from 'react'
 import Helmet from 'react-helmet'
 import { Redirect } from 'react-router'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 import SignInForm from '../../../container/sign-in-form'
 // import Nav from '../../nav'
-import { PROFILE_VIEW } from '../../../routes'
+import { PROFILE_VIEW, REGISTER_ROUTE } from '../../../routes'
 
 const title = 'Sign In'
 
@@ -30,8 +31,7 @@ const SIP = ({ notLoggedIn }: Props) => {
           <div className="col-12">
             <h1>{title}</h1>
             <SignInForm />
-            <br />
-            Need an account?
+            <Link to={REGISTER_ROUTE} className="btn btn-primary"> Need an account? </Link>
           </div>
         </div>
       </div>

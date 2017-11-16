@@ -16,6 +16,7 @@ import {
   STORYBOARD_ROUTE,
   COMMERCIAL_ROUTE,
   SIGN_IN_ROUTE,
+  REGISTER_ROUTE
 } from '../routes'
 
 const handleNavLinkClick = () => {
@@ -43,7 +44,7 @@ const Nav = () =>
             { route: 'wireframe', label: 'Wireframe' },
             // { route: PROFILE_VIEW, label: 'Profile View' },
             // { route: CHAT_ROUTE, label: 'Video Chat Test' },
-            { route: SIGN_IN_ROUTE, label: 'Try It Out' },
+            { route: REGISTER_ROUTE, label: 'Try It Out' },
 
           ].map((link) => {
             if (link.label === 'Wireframe') {

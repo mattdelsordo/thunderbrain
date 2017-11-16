@@ -1,43 +1,36 @@
+// @flow
+
 import React from 'react'
-import io from 'socket.io-client';
+import { connect } from 'react-redux'
 
-class SignUpForm extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      username: '',
-      password: '',
-      confirmpassword: '',
-    }
-    this.handleChange = this.handleChange.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
-    this.socket = io('localhost:8080')
-  }
-  handleChange(e) {
-    const newState = {}
+import { logIn } from '../action/actions'
 
-    newState[e.target.name] = e.target.value
-
-    this.setState(newState)
-  }
-  handleSubmit(e) {
-    e.preventDefault()
-    if (this.state.password === this.state.confirmpassword) {
-      this.socket.emit('create_user', {
-        Username: this.state.username,
-        Password: this.state.password,
-      })
-      alert("You've submitted it!")
-    } else {
-      alert("You're passwords don't match!")
-    }
-  }
-
-  render() {
-    return (
+const SignUpForm = ({ dispatch, socket }: Props) => {
+  let password
+  let confirm
+  let username
+  return (
+    <div>
       <form
         className="react-form"
-        onSubmit={this.handleSubmit}
+        onSubmit={(e) => {
+          e.preventDefault()
+          if (!password.value.trim() || !confirm.value.trim() || !username.value.trim()) {
+            alert('Fields must not be blank!')
+          } else if (password.value.trim() === confirm.value.trim()) {
+            // emit socket
+            socket.emit('create_user', {
+              Username: username.value.trim(),
+              Password: password.value.trim(),
+            })
+
+            // 'log the user in' after signing up
+            dispatch(logIn(username.value.trim()))
+            username.value = ''
+          } else {
+            alert('Passwords don\'t match!')
+          }
+        }}
       >
         <input
           className="form-control"
@@ -45,8 +38,9 @@ class SignUpForm extends React.Component {
           placeholder="user name"
           required
           name="username"
-          onChange={this.handleChange}
-          value={this.state.username}
+          ref={(node) => {
+            username = node
+          }}
         />
         <input
           className="form-control"
@@ -54,8 +48,9 @@ class SignUpForm extends React.Component {
           placeholder="password"
           required
           name="password"
-          onChange={this.handleChange}
-          value={this.state.password}
+          ref={(node) => {
+            password = node
+          }}
         />
         <input
           className="form-control"
@@ -63,18 +58,19 @@ class SignUpForm extends React.Component {
           placeholder="confirm password"
           required
           name="confirmpassword"
-          onChange={this.handleChange}
-          value={this.confirmpassword}
+          ref={(node) => {
+            confirm = node
+          }}
         />
         <button
           className="btn btn-primary"
           type="submit"
         >
-                        Sign Up
+          Sign Up
         </button>
       </form>
-    )
-  }
+    </div>
+  )
 }
 
-export default SignUpForm
+export default connect()(SignUpForm)

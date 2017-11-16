@@ -2,6 +2,7 @@
 
 import Immutable from 'immutable'
 import type { fromJS as Immut } from 'immutable'
+import io from 'socket.io-client'
 
 import {
   // SAY_HELLO,
@@ -21,6 +22,7 @@ const initialState = Immutable.fromJS({
   // messageAsync: 'Initial reducer message for async call',
   user: null,
   session: null,
+  socket: io('localhost:8080'),
 })
 
 const userReducer = (state, action) => {

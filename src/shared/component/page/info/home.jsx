@@ -39,7 +39,7 @@ const HomePage = () =>
             <h3 className="mb-3">Websockets</h3>
             <p>Open your browser console.</p>
           </div> */}
-          Coming Soon.
+          {`Click on 'Try It Out' to access the app!`}
         </div>
       </div>
       {/* <ModalExample /> */}
