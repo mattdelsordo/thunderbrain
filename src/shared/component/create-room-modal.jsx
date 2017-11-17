@@ -24,6 +24,7 @@ const CreateGroupModal = ({ handleClick }: Props) => {
           >
             <div className="modal-body">
               <input
+                className="form-control"
                 ref={(node) => {
                   topic = node
                 }}

@@ -23,6 +23,7 @@ const JoinGroupModal = ({ handleClick }: Props) => {
           >
             <div className="modal-body">
               <input
+                className="form-control"
                 ref={(node) => {
                   roomID = node
                 }}
