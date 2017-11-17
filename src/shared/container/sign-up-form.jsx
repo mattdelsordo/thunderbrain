@@ -2,10 +2,12 @@
 
 import React from 'react'
 import { connect } from 'react-redux'
-
+import io from 'socket.io-client'
 import { logIn } from '../action/actions'
 
-const SignUpForm = ({ dispatch, socket }: Props) => {
+const socket = io('http://localhost:8080')
+
+const SignUpForm = ({ dispatch }: Props) => {
   let password
   let confirm
   let username
@@ -18,7 +20,7 @@ const SignUpForm = ({ dispatch, socket }: Props) => {
           if (!password.value.trim() || !confirm.value.trim() || !username.value.trim()) {
             alert('Fields must not be blank!')
           } else if (password.value.trim() === confirm.value.trim()) {
-            // emit socket
+            // emitting a socket event to register a user
             socket.emit('create_user', {
               Username: username.value.trim(),
               Password: password.value.trim(),

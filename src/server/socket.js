@@ -51,17 +51,30 @@ const setUpSocket = (io: Object) => {
       newUser.save()
     })
 
+    // create a guest user in the database
+    socket.on('create_guest_user', (user) => {
+      console.log('[socket.io] A guest user has been registered.')
+      const newUser = User({
+        username: user.Username,
+        password: 'guest',
+      })
+      newUser.save()
+    })
+
     // log a user from the database into the site
     socket.on('log_in', (user) => {
       User.findOne({ username: user.Username }, 'password', (err, matchedUser) => {
-        console.log(matchedUser.password)
-        bcrypt.compare(user.Password, matchedUser.password, (res) => {
-          if (res === true) {
+        if (matchedUser != null) {
+          console.log(matchedUser.password)
+          console.log(user.Password)
+          if (bcrypt.compareSync(user.Password, matchedUser.password) === true) {
             console.log('[socket.io] A user has been logged in.')
           } else {
             console.log('[socket.io] A user has tried to log in with incorrect credentials.')
           }
-        })
+        } else {
+          console.log('[socket.io] A user that does not exist has tried to log in.')
+        }
       })
     })
   })

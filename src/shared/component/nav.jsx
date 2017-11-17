@@ -44,7 +44,7 @@ const Nav = () =>
             { route: 'wireframe', label: 'Wireframe' },
             // { route: PROFILE_VIEW, label: 'Profile View' },
             // { route: CHAT_ROUTE, label: 'Video Chat Test' },
-            { route: REGISTER_ROUTE, label: 'Try It Out' },
+            { route: PROFILE_VIEW, label: 'Try It Out' },
 
           ].map((link) => {
             if (link.label === 'Wireframe') {

@@ -23,6 +23,7 @@ import CommercialPage from './component/page/info/commercial-page'
 import LobbyPage from './component/page/app/lobby-page'
 import SignUpPage from './component/page/app/register'
 import SignInPage from './component/page/app/sign-in'
+import GuestSignInPage from './component/page/app/guest-sign-in'
 import BrainstormPhase from './component/page/app/brainstorm-phase'
 import {
   HOME_PAGE_ROUTE,
@@ -38,6 +39,7 @@ import {
   LOBBY_ROUTE,
   SIGN_IN_ROUTE,
   REGISTER_ROUTE,
+  GUEST_ROUTE
 } from './routes'
 
 const App = () =>
@@ -56,6 +58,7 @@ const App = () =>
         <Route path={BRAINSTORM_ROUTE} render={() => <BrainstormPhase />} />
         <Route path={SIGN_IN_ROUTE} render={() => <SignInPage />} />
         <Route path={REGISTER_ROUTE} render={() => <SignUpPage />} />
+        <Route path={GUEST_ROUTE} render={() => <GuestSignInPage />} />
         <Route component={NotFoundPage} />
       </Switch>
     </div>

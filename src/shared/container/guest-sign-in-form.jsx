@@ -8,9 +8,8 @@ import { logIn } from '../action/actions'
 
 const socket = io('http://localhost:8080')
 
-const SIF = ({ dispatch }: Props) => {
+const GSIF = ({ dispatch }: Props) => {
   let username
-  let password
 
   return (
     <div>
@@ -18,13 +17,12 @@ const SIF = ({ dispatch }: Props) => {
         className="react-form"
         onSubmit={(e) => {
           e.preventDefault()
-          if (!username.value.trim() || !password.value.trim()) {
+          if (!username.value.trim()) {
             return
           }
           // emitting a socket event to check login credentials
-          socket.emit('log_in', {
+          socket.emit('create_guest_user', {
             Username: username.value.trim(),
-            Password: password.value.trim(),
           })
 
           // dispatching to the state
@@ -41,26 +39,17 @@ const SIF = ({ dispatch }: Props) => {
             username = node
           }}
         />
-        <input
-          className="form-control"
-          type="password"
-          placeholder="password"
-          required
-          ref={(node) => {
-            password = node
-          }}
-        />
         <button
           className="btn btn-primary"
           type="submit"
         >
-          Sign In
+          Sign In As a Guest
         </button>
       </form>
     </div>
   )
 }
 
-const SignInForm = connect()(SIF)
+const GuestSignInForm = connect()(GSIF)
 
-export default SignInForm
+export default GuestSignInForm

@@ -8,7 +8,7 @@ import { CookiesProvider } from 'react-cookie'
 import { connect } from 'react-redux'
 
 import SignUpForm from '../../../container/sign-up-form'
-import { PROFILE_VIEW, SIGN_IN_ROUTE } from '../../../routes'
+import { PROFILE_VIEW, SIGN_IN_ROUTE, GUEST_ROUTE } from '../../../routes'
 
 const title = 'Sign Up'
 
@@ -38,6 +38,7 @@ const SignUpPage = ({ socket, notLoggedIn }: Props) => {
               <h1>{title}</h1>
               <SignUpForm socket={socket} />
               <Link to={SIGN_IN_ROUTE} className="btn btn-primary"> Already have an account? </Link>
+              <Link to={GUEST_ROUTE} className="btn btn-primary"> Want to just be a guest? </Link>
             </div>
           </div>
         </div>

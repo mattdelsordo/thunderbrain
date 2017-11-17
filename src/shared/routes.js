@@ -14,5 +14,6 @@ export const LOBBY_ROUTE = '/app/lobby'
 export const BRAINSTORM_ROUTE = '/app/brainstorm'
 export const SIGN_IN_ROUTE = '/app/login'
 export const REGISTER_ROUTE = '/app/register'
+export const GUEST_ROUTE = '/app/guest'
 
 export const helloEndpointRoute = (num: ?number) => `/ajax/hello/${num || ':num'}`
