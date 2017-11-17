@@ -14,7 +14,7 @@ const SignUpForm = ({ dispatch }: Props) => {
   return (
     <div>
       <form
-        className="react-form"
+        className="form-group"
         onSubmit={(e) => {
           e.preventDefault()
           if (!password.value.trim() || !confirm.value.trim() || !username.value.trim()) {

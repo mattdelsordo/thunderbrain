@@ -15,7 +15,7 @@ const SIF = ({ dispatch }: Props) => {
   return (
     <div>
       <form
-        className="react-form"
+        className="form-group"
         onSubmit={(e) => {
           e.preventDefault()
           if (!username.value.trim() || !password.value.trim()) {

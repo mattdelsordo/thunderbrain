@@ -31,8 +31,8 @@ const GSIP = ({ notLoggedIn }: Props) => {
           <div className="col-12">
             <h1>{title}</h1>
             <GuestSignInForm />
-            <Link to={REGISTER_ROUTE} className="btn btn-primary"> Want an account? </Link>
-            <Link to={SIGN_IN_ROUTE} className="btn btn-primary"> Have an account? </Link>
+            <Link to={REGISTER_ROUTE} className="btn btn-outline-primary"> Want an account? </Link>
+            <Link to={SIGN_IN_ROUTE} className="btn btn-outline-primary"> Have an account? </Link>
           </div>
 
         </div>

@@ -37,8 +37,8 @@ const SignUpPage = ({ socket, notLoggedIn }: Props) => {
             <div className="col-12">
               <h1>{title}</h1>
               <SignUpForm socket={socket} />
-              <Link to={SIGN_IN_ROUTE} className="btn btn-primary"> Already have an account? </Link>
-              <Link to={GUEST_ROUTE} className="btn btn-primary"> Want to just be a guest? </Link>
+              <Link to={SIGN_IN_ROUTE} className="btn btn-outline-primary"> Already have an account? </Link>
+              <Link to={GUEST_ROUTE} className="btn btn-outline-primary"> Want to just be a guest? </Link>
             </div>
           </div>
         </div>
