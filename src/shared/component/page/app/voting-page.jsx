@@ -4,6 +4,7 @@ import Video from 'twilio-video'
 import jQuery from 'jquery'
 
 import Countdown from '../../countdown'
+import AppNav from '../../../container/app-nav'
 import Button from '../../button'
 import { STATIC_PATH } from '../../../config'
 
@@ -218,6 +219,7 @@ class VideoChatPage extends React.Component {
             { property: 'og:title', content: title },
           ]}
         />
+        <AppNav />
         <div className="container">
           <div className="row">
             <div className="col-sm-6">

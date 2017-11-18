@@ -39,6 +39,7 @@ class BrainstormPhase extends React.Component {
     this.setState({ redirect: true })
   }
 
+  // TODO: this needs a helmet
   render() {
     if (this.state.redirect) return <Redirect push to={CHAT_ROUTE} />
 

@@ -9,6 +9,7 @@ import { connect } from 'react-redux'
 
 import SignUpForm from '../../../container/sign-up-form'
 import { PROFILE_VIEW, SIGN_IN_ROUTE, GUEST_ROUTE } from '../../../routes'
+import AppNav from '../../../container/app-nav'
 
 const title = 'Sign Up'
 
@@ -33,6 +34,7 @@ const SignUpPage = ({ socket, notLoggedIn }: Props) => {
               { property: 'og:title', content: title },
             ]}
           />
+          <AppNav />
           <div className="row">
             <div className="col-12">
               <h1>{title}</h1>

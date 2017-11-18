@@ -16,6 +16,7 @@ import JoinGroupModal from '../../join-group-modal'
 import CreateGroupModal from '../../create-room-modal'
 import { joinRoom, createRoom } from '../../../action/actions'
 import { LOGOUT, INROOM } from '../../../redirect'
+import AppNav from '../../../container/app-nav'
 
 const mapStateToProps = (state) => {
   const user = state.hello.get('user')
@@ -59,6 +60,7 @@ const PVP = ({ dispatch, username, photoPath, pastCalls, redirect }: Props) => {
           { property: 'og:title', content: title },
         ]}
       />
+      <AppNav />
       <div className="row" width="100%">
         <div className="col-xs-6" width="50%">
           <ProfileViewInfo username={user} photoPath={photoPath}/>

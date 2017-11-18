@@ -9,6 +9,7 @@ import { connect } from 'react-redux'
 import GuestSignInForm from '../../../container/guest-sign-in-form'
 // import Nav from '../../nav'
 import { PROFILE_VIEW, REGISTER_ROUTE, SIGN_IN_ROUTE } from '../../../routes'
+import AppNav from '../../../container/app-nav'
 
 const title = 'Guest Sign In'
 
@@ -27,6 +28,7 @@ const GSIP = ({ notLoggedIn }: Props) => {
             { property: 'og:title', content: title },
           ]}
         />
+        <AppNav />
         <div className="row">
           <div className="col-12">
             <h1>{title}</h1>

@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 
 import randomname from '../../../randomname'
 import { BRAINSTORM_ROUTE, PROFILE_VIEW } from '../../../routes'
+import AppNav from '../../../container/app-nav'
 
 class LobbyPage extends React.Component {
   constructor(props) {
@@ -20,6 +21,7 @@ class LobbyPage extends React.Component {
     }
   }
 
+  // TODO: this needs a helmet??
   render() {
     if (this.state.owner === this.state.username) {
       return (
