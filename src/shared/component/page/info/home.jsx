@@ -7,22 +7,19 @@ import Helmet from 'react-helmet'
 // import ModalExample from '../modal-example'
 import { APP_NAME } from '../../../config'
 import Nav from '../../nav'
+import BigTitle from '../../big-title'
 
 const HomePage = () =>
   (
     <div>
       <Helmet
         meta={[
-          { name: 'description', content: 'Hello App is an app to say hello' },
-          { property: 'og:title', content: APP_NAME },
-        ]}
+                    { name: 'description', content: 'Hello App is an app to say hello' },
+                    { property: 'og:title', content: APP_NAME },
+                ]}
       />
       <Nav />
-      <div className="jumbotron">
-        <div className="container">
-          <h1 className="display-3 mb-4">{APP_NAME}</h1>
-        </div>
-      </div>
+      <BigTitle alexkautz={APP_NAME} />
       <div className="container">
         <div className="row">
           {/* <div className="col-md-4 mb-4">
@@ -39,7 +36,7 @@ const HomePage = () =>
             <h3 className="mb-3">Websockets</h3>
             <p>Open your browser console.</p>
           </div> */}
-          {`Click on 'Try It Out' to access the app!`}
+          {''}
         </div>
       </div>
       {/* <ModalExample /> */}

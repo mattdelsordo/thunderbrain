@@ -1,0 +1,5 @@
+#3C3744     -Dark Grey
+#41099B     -Dark Blue
+#783ED6     -Purple
+#C5B3E2     -Lavender
+#F7F2FF     -Weight
