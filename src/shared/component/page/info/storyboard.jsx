@@ -8,7 +8,7 @@ import Nav from '../../nav'
 import { STATIC_PATH } from '../../../config'
 import BigTitle from '../../big-title'
 
-const title = 'The ThunderBrain Story'
+const title = 'Our story'
 
 const path1 = `${STATIC_PATH}/res/storyboard1.jpg`
 const path2 = `${STATIC_PATH}/res/storyboard2.jpg`

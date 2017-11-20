@@ -8,7 +8,7 @@ import BigTitle from '../../big-title'
 
 // import { STATIC_PATH } from '../../config'
 
-const title = 'ThunderBrain Proposal'
+const title = 'Proposal'
 // const proposal = `${STATIC_PATH}/res/project_proposal.pdf`
 
 const ProposalPage = () =>
