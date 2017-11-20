@@ -39,7 +39,8 @@ import {
   LOBBY_ROUTE,
   SIGN_IN_ROUTE,
   REGISTER_ROUTE,
-  GUEST_ROUTE
+  GUEST_ROUTE,
+  APP_DEFAULT,
 } from './routes'
 
 const App = () =>
@@ -49,6 +50,7 @@ const App = () =>
       <Switch>
         <Route exact path={DEFAULT_ROUTE} render={() => <Redirect to={HOME_PAGE_ROUTE} />} />
         <Route exact path={HOME_PAGE_ROUTE} render={() => <Home />} />
+        <Route exact path={APP_DEFAULT} render={() => <SignInPage />} />
         <Route path={PROFILE_VIEW} render={() => <ProfileViewPage />} />
         <Route path={PROPOSAL_ROUTE} render={() => <ProposalPage />} />
         <Route path={CHAT_ROUTE} render={() => <VideoChatPage />} />

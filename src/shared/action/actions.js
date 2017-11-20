@@ -1,37 +1,12 @@
 // @flow
 
 import 'isomorphic-fetch'
-
-import { createAction } from 'redux-actions'
-import { helloEndpointRoute } from '../../shared/routes'
-
-// export const SAY_HELLO = 'SAY_HELLO'
-// export const SAY_HELLO_ASYNC_REQUEST = 'SAY_HELLO_ASYNC_REQUEST'
-// export const SAY_HELLO_ASYNC_SUCCESS = 'SAY_HELLO_ASYNC_SUCCESS'
-// export const SAY_HELLO_ASYNC_FAILURE = 'SAY_HELLO_ASYNC_FAILURE'
-
-// export const sayHello = createAction(SAY_HELLO)
-// export const sayHelloAsyncRequest = createAction(SAY_HELLO_ASYNC_REQUEST)
-// export const sayHelloAsyncSuccess = createAction(SAY_HELLO_ASYNC_SUCCESS)
-// export const sayHelloAsyncFailure = createAction(SAY_HELLO_ASYNC_FAILURE)
-
-// // returns a function which launches a fetch call which itself returns a Promise
-// // which is used to dispatch different actions depending on the state of the call
-// export const sayHelloAsync = (num: number) => (dispatch: Function) => {
-//   dispatch(sayHelloAsyncRequest())
-//   return fetch(helloEndpointRoute(num), { method: 'GET' })
-//     .then((res) => {
-//       if (!res.ok) throw Error(res.statusText)
-//       return res.json()
-//     })
-//     .then((data) => {
-//       if (!data.serverMessage) throw Error('No message received')
-//       dispatch(sayHelloAsyncSuccess(data.serverMessage))
-//     })
-//     .catch(() => {
-//       dispatch(sayHelloAsyncFailure())
-//     })
-// }
+import {
+  LOBBY,
+  BRAINSTORM,
+  DELIBERATION,
+  RESULTS,
+} from '../phases'
 
 // Make user logged in
 export const LOG_IN = 'LOG_IN'
@@ -53,6 +28,7 @@ export const createRoom = (roomID, hostName, topic) => ({
   roomID,
   hostName,
   topic,
+  phase: LOBBY,
 })
 
 // Join a room
@@ -63,6 +39,7 @@ export const joinRoom = (roomID, hostName, topic, members) => ({
   hostName,
   topic,
   members,
+  phase: LOBBY,
 })
 
 // leave your room
@@ -76,4 +53,13 @@ export const ADD_IDEA = 'ADD_IDEA'
 export const addIdea = text => ({
   type: ADD_IDEA,
   text,
+})
+
+// Begins the room brainstorming phase
+export const BEGIN_BRAINSTORM = 'BEGIN_BRAINSTORMING'
+export const beginBrainstorm = (brainstormSeconds, deliberationSeconds) => ({
+  type: BEGIN_BRAINSTORM,
+  brainstormSeconds,
+  deliberationSeconds,
+  phase: BRAINSTORM,
 })

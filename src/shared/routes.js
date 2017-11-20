@@ -15,5 +15,7 @@ export const BRAINSTORM_ROUTE = '/app/brainstorm'
 export const SIGN_IN_ROUTE = '/app/login'
 export const REGISTER_ROUTE = '/app/register'
 export const GUEST_ROUTE = '/app/guest'
+export const RESULTS_ROUTE = '/app/results'
+export const APP_DEFAULT = '/app'
 
 export const helloEndpointRoute = (num: ?number) => `/ajax/hello/${num || ':num'}`

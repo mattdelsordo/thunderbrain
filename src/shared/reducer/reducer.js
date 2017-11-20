@@ -14,7 +14,7 @@ import {
   CREATE_ROOM,
   JOIN_ROOM,
   ADD_IDEA,
-  LEAVE_ROOM,
+  LEAVE_ROOM, BEGIN_BRAINSTORM,
 } from '../action/actions'
 
 const initialState = Immutable.fromJS({
@@ -54,6 +54,7 @@ const sessionReducer = (state, action) => {
         topic: action.topic,
         members: [action.hostName],
         ideas: [],
+        phase: action.phase,
       })
     case JOIN_ROOM:
       return Immutable.fromJS({
@@ -62,6 +63,7 @@ const sessionReducer = (state, action) => {
         topic: action.topic,
         members: action.members,
         ideas: [],
+        phase: action.phase,
       })
     case LEAVE_ROOM:
       return null
@@ -73,6 +75,14 @@ const sessionReducer = (state, action) => {
           points: 0,
         },
       ])
+    case BEGIN_BRAINSTORM:
+      return state.merge({
+        brainstormSeconds: action.brainstormSeconds,
+        deliberationSeconds: action.deliberationSeconds,
+        phase: action.phase,
+      })
+    case LOG_OUT:
+      return null
     default:
       return state
   }
