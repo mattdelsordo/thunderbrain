@@ -2,7 +2,7 @@
 
 import React from 'react'
 import Helmet from 'react-helmet'
-import { Link, Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 import {
@@ -20,20 +20,16 @@ import {
   RESULTS,
 } from '../../../phases'
 
-const title = 'Lobby'
-
 const mapStateToProps = (state) => {
   const user = state.hello.get('user')
   const session = state.hello.get('session')
 
   if (!user) {
-    console.log('no user')
     return {
       redirect: NO_USER,
       members: [],
     }
   } else if (!session) {
-    console.log('no session')
     return {
       redirect: NO_SESSION,
       members: [],
@@ -63,10 +59,10 @@ const LobbyPage = ({ dispatch, username, host, members, roomID, topic, redirect,
     return (
       <div className="container mt-4">
         <Helmet
-          title={title}
+          title={`Lobby | ${topic}`}
           meta={[
-            { name: 'description', content: title },
-            { property: 'og:title', content: title },
+            { name: 'description', content: topic },
+            { property: 'og:title', content: topic },
           ]}
         />
         <AppNav />

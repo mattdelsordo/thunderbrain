@@ -14,7 +14,7 @@ import {
   CREATE_ROOM,
   JOIN_ROOM,
   ADD_IDEA,
-  LEAVE_ROOM, BEGIN_BRAINSTORM,
+  LEAVE_ROOM, BEGIN_BRAINSTORM, BEGIN_DELIBERATIONS,
 } from '../action/actions'
 
 const initialState = Immutable.fromJS({
@@ -81,6 +81,8 @@ const sessionReducer = (state, action) => {
         deliberationSeconds: action.deliberationSeconds,
         phase: action.phase,
       })
+    case BEGIN_DELIBERATIONS:
+      return state.set('phase', action.phase)
     case LOG_OUT:
       return null
     default:

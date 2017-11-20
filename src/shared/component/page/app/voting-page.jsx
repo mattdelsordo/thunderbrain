@@ -3,7 +3,7 @@ import Helmet from 'react-helmet'
 import Video from 'twilio-video'
 import jQuery from 'jquery'
 
-import Countdown from '../../countdown'
+import Countdown from '../../clock'
 import AppNav from '../../../container/app-nav'
 import Button from '../../button'
 import { STATIC_PATH } from '../../../config'

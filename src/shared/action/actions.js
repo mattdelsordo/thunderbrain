@@ -63,3 +63,10 @@ export const beginBrainstorm = (brainstormSeconds, deliberationSeconds) => ({
   deliberationSeconds,
   phase: BRAINSTORM,
 })
+
+// Begins deliberations
+export const BEGIN_DELIBERATIONS = 'BEGIN_DELIBERATIONS'
+export const beginDeliberations = () => ({
+  type: BEGIN_DELIBERATIONS,
+  phase: DELIBERATION,
+})
