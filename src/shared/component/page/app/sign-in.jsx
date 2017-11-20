@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 // @flow
 
 import React from 'react'
@@ -39,11 +40,10 @@ const SIP = ({ notLoggedIn }: Props) => {
       </div>
     )
   }
-  else {
-    return (
-      <Redirect to={PROFILE_VIEW} />
-    )
-  }
+
+  return (
+    <Redirect to={PROFILE_VIEW} />
+  )
 }
 
 const SignInPage = connect(mapStateToProps)(SIP)

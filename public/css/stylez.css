@@ -11,13 +11,30 @@ body{
   /*text-align: center;*/
   padding: 10px;
 }
-.jumbotron p, .jumbotron h1{
+.jumbotron p, .jumbotron h1, .jumbotron h2, .jumbotron h3, .jumbotron h4, .jumbotron h5{
   color: #F7F2FF;
   padding-left: 10px;
 }
 
+/* BUTTONS */
 
+.btn, .form-control {
+  margin: 10px;
+  margin-left: 0;
+  margin-bottom: 0;
+}
 
+.btn {
+  background-color: #3c3744;
+  border-color: #3c3744;
+  color: #F7F2FF !important;
+}
+
+.btn:hover {
+  background-color: #783ED6;
+  border-color:#783ED6 ;
+  color: #F7F2FF !important;
+}
 
 
 

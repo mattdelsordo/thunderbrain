@@ -17,20 +17,20 @@ const SIF = ({ dispatch }: Props) => {
       <form
         className="form-group"
         onSubmit={(e) => {
-          e.preventDefault()
-          if (!username.value.trim() || !password.value.trim()) {
-            return
-          }
-          // emitting a socket event to check login credentials
-          socket.emit('log_in', {
-            Username: username.value.trim(),
-            Password: password.value.trim(),
-          })
+                    e.preventDefault()
+                    if (!username.value.trim() || !password.value.trim()) {
+                        return
+                    }
+                    // emitting a socket event to check login credentials
+                    socket.emit('log_in', {
+                        Username: username.value.trim(),
+                        Password: password.value.trim(),
+                    })
 
-          // dispatching to the state
-          dispatch(logIn(username.value.trim()))
-          username.value = ''
-        }}
+                    // dispatching to the state
+                    dispatch(logIn(username.value.trim()))
+                    username.value = ''
+                }}
       >
         <input
           className="form-control"
@@ -38,8 +38,8 @@ const SIF = ({ dispatch }: Props) => {
           placeholder="user name"
           required
           ref={(node) => {
-            username = node
-          }}
+                        username = node
+                    }}
         />
         <input
           className="form-control"
@@ -47,14 +47,14 @@ const SIF = ({ dispatch }: Props) => {
           placeholder="password"
           required
           ref={(node) => {
-            password = node
-          }}
+                        password = node
+                    }}
         />
         <button
           className="btn btn-primary"
           type="submit"
         >
-          Sign In
+                    Sign In
         </button>
       </form>
     </div>
