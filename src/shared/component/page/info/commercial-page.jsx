@@ -16,10 +16,8 @@ const CommercialPage = () =>
       />
       <Nav />
       <div className="container">
-        <div className="row align-items-center">
-          <div className="col-12 mt-4 center-block">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/jf5SAm59Zf4" frameborder="0" gesture="media" allowfullscreen />
-          </div>
+        <div className="embed-responsive embed-responsive-16by9 col-xs-12 text-center">
+          <iframe title="Thunderbrain Commercial" className="embed-responsive-item" width="560" height="315" src="https://www.youtube.com/embed/jf5SAm59Zf4" frameBorder="0" gesture="media" allowFullScreen />
         </div>
       </div>
     </div>
