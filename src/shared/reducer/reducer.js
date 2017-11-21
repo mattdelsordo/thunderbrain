@@ -14,7 +14,11 @@ import {
   CREATE_ROOM,
   JOIN_ROOM,
   ADD_IDEA,
-  LEAVE_ROOM, BEGIN_BRAINSTORM, BEGIN_DELIBERATIONS,
+  LEAVE_ROOM,
+  BEGIN_BRAINSTORM,
+  BEGIN_DELIBERATIONS,
+  VOTE_IDEA,
+  UNVOTE_IDEA, SET_DELIB_TIME,
 } from '../action/actions'
 
 const initialState = Immutable.fromJS({
@@ -73,6 +77,7 @@ const sessionReducer = (state, action) => {
         {
           text: action.text,
           points: 0,
+          userDidVote: false,
         },
       ])
     case BEGIN_BRAINSTORM:
@@ -83,6 +88,27 @@ const sessionReducer = (state, action) => {
       })
     case BEGIN_DELIBERATIONS:
       return state.set('phase', action.phase)
+    case VOTE_IDEA:
+      return state.set('ideas', state.get('ideas').map((idea) => {
+        if (idea.text === action.idea) {
+          if (idea.userDidVote === false) {
+            return {
+              text: idea.text,
+              points: idea.points + 1,
+              userDidVote: true,
+            }
+          } else if (idea.userDidVote === true) {
+            return {
+              text: idea.text,
+              points: idea.points - 1,
+              userDidVote: false,
+            }
+          }
+        }
+        return idea
+      }))
+    case SET_DELIB_TIME:
+      return state.set('deliberationSeconds', 0)
     case LOG_OUT:
       return null
     default:

@@ -70,3 +70,16 @@ export const beginDeliberations = () => ({
   type: BEGIN_DELIBERATIONS,
   phase: DELIBERATION,
 })
+
+// Idea voting actions
+export const VOTE_IDEA = 'VOTE_IDEA'
+export const voteIdea = idea => ({
+  type: VOTE_IDEA,
+  idea,
+})
+
+export const SET_DELIB_TIME = 'SET_DELIBERATION_TIME'
+export const setDelibTime = newTime => ({
+  type: SET_DELIB_TIME,
+  newTime,
+})

@@ -5,6 +5,7 @@
     "react"
   ],
   "plugins": [
-    "flow-react-proptypes"
+    "flow-react-proptypes",
+    "transform-class-properties"
   ]
 }

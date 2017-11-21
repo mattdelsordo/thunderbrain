@@ -4,7 +4,6 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 const mapStateToProps = (state) => {
-  console.log(state)
   return {
     // ideas: state.ideas,
     ideas: state.hello.get('session').get('ideas'),
