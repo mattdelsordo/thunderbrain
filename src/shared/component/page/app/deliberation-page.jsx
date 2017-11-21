@@ -45,6 +45,7 @@ const mapStateToProps = (state) => {
     ideas: session.get('ideas'),
     phase: session.get('phase'),
     deliberationSeconds: session.get('deliberationSeconds'),
+    host: session.get('host'),
     username: user.get('name'),
   }
 }
@@ -57,6 +58,7 @@ const DeliberationPage = ({
                             ideas,
                             deliberationSeconds,
                             username,
+                            host,
                             phase,
                             redirect,
                           }: Props) => {
@@ -118,6 +120,13 @@ const DeliberationPage = ({
           </div>
           <div className="row">
             <Clock time={deliberationSeconds} />
+            {username === host &&
+            <button
+              className="btn btn-primary"
+              onClick={() => { dispatch(setDelibTime(30)) }}
+            >
+              30 More Seconds?
+            </button>}
           </div>
           <div className="row">
             <ol className="list-group">

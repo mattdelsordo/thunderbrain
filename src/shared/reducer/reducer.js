@@ -108,7 +108,7 @@ const sessionReducer = (state, action) => {
         return idea
       }))
     case SET_DELIB_TIME:
-      return state.set('deliberationSeconds', 0)
+      return state.set('deliberationSeconds', action.newTime)
     case LOG_OUT:
       return null
     default:
