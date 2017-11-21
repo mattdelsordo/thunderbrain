@@ -26,13 +26,13 @@ const handleNavLinkClick = () => {
 
 const Nav = () =>
   (
-    <nav className="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
+    <nav className="navbar navbar-toggleable-md navbar-default fixed-top">
       <button className="navbar-toggler navbar-toggler-right" type="button" role="button" data-toggle="collapse" data-target=".js-navbar-collapse">
         <span className="navbar-toggler-icon" />
       </button>
       <Link to={HOME_PAGE_ROUTE} className="navbar-brand">{APP_NAME}</Link>
       <div className="js-navbar-collapse collapse navbar-collapse">
-        <ul className="navbar-nav mr-auto">
+        <ul className="navbar-nav mr-auto ak-7">
           {[
             { route: HOME_PAGE_ROUTE, label: 'Home' },
             // { route: HELLO_PAGE_ROUTE, label: 'Say Hello' },
@@ -44,7 +44,7 @@ const Nav = () =>
             { route: 'wireframe', label: 'Wireframe' },
             // { route: PROFILE_VIEW, label: 'Profile View' },
             // { route: CHAT_ROUTE, label: 'Video Chat Test' },
-            { route: PROFILE_VIEW, label: 'Try It Out' },
+            { route: PROFILE_VIEW, label: 'Web App' },
 
           ].map((link) => {
             if (link.label === 'Wireframe') {
