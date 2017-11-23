@@ -2,8 +2,11 @@
 // @flow
 
 import React from 'react'
+import { connect } from 'react-redux'
+import $ from 'jquery'
+import { createRoom } from '../action/actions'
 
-const CreateGroupModal = ({ handleClick }: Props) => {
+const CGM = ({ dispatch }: Props) => {
   let topic
   return (
     <div className="create-group-modal modal fade">
@@ -18,8 +21,8 @@ const CreateGroupModal = ({ handleClick }: Props) => {
             onSubmit={(e) => {
               e.preventDefault()
               if (!topic.value.trim()) return
-              handleClick(topic.value)
-              topic.value = ''
+              $('.create-group-modal').modal('hide')
+              dispatch(createRoom(topic.value.trim()))
             }}
           >
             <div className="modal-body">
@@ -35,7 +38,14 @@ const CreateGroupModal = ({ handleClick }: Props) => {
               <button type="submit" className="btn btn-primary">
                 Submit
               </button>
-              <button type="button" role="button" className="btn btn-secondary" data-dismiss="modal">Cancel</button>
+              <button
+                type="button"
+                role="button"
+                className="btn btn-secondary"
+                data-dismiss="modal"
+              >
+                Cancel
+              </button>
             </div>
           </form>
         </div>
@@ -44,5 +54,6 @@ const CreateGroupModal = ({ handleClick }: Props) => {
   )
 }
 
+const CreateGroupModal = connect()(CGM)
 
 export default CreateGroupModal

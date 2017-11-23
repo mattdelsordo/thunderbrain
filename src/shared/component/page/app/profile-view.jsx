@@ -6,6 +6,7 @@ import { Redirect } from 'react-router-dom'
 import $ from 'jquery'
 import { randomBytes } from 'crypto'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 
 import ProfileViewInfo from '../../profile-view-info'
 import {
@@ -37,13 +38,22 @@ const mapStateToProps = (state) => {
   }
 }
 
-const PVP = ({ dispatch, username, photoPath, pastCalls, redirect }: Props) => {
+// const mapDispatchToProps = (dispatch) => {
+//   return bindActionCreators({ joinRoom, createRoom} , dispatch)
+// }
+
+const PVP = ({
+  dispatch,
+  username,
+  photoPath,
+  pastCalls,
+  redirect,
+}: Props) => {
   if (redirect === LOGOUT) {
     return (
       <Redirect to={SIGN_IN_ROUTE} />
     )
-  }
-  else if (redirect === INROOM) {
+  } else if (redirect === INROOM) {
     return (
       <Redirect to={LOBBY_ROUTE} />
     )
@@ -63,7 +73,7 @@ const PVP = ({ dispatch, username, photoPath, pastCalls, redirect }: Props) => {
       <AppNav />
       <div className="row" width="100%">
         <div className="col-xs-6" width="50%">
-          <ProfileViewInfo username={user} photoPath={photoPath}/>
+          <ProfileViewInfo username={user} photoPath={photoPath} />
         </div>
         <div className="col-xs-6" width="50%">
           <div className="row m-2">
@@ -78,11 +88,9 @@ const PVP = ({ dispatch, username, photoPath, pastCalls, redirect }: Props) => {
       </div>
       <div>
         <ul>
-          {pastCalls.map((call, i) => {
-            return (
-              <li key={i}>{`${call.date} "${call.topic}"`}</li>
-            )
-          })}
+          {pastCalls.map((call, i) => (
+            <li key={i}>{`${call.date} "${call.topic}"`}</li>
+            ))}
         </ul>
       </div>
       <JoinGroupModal
