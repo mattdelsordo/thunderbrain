@@ -100,6 +100,7 @@ const PVP = ({
         }}
       />
       <CreateGroupModal
+        host={username}
         handleClick={(topic) => {
           $('.create-group-modal').modal('hide')
           dispatch(createRoom(randomBytes(3).toString('hex'), user, topic))

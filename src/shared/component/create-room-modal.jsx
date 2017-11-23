@@ -4,9 +4,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import $ from 'jquery'
+
 import { createRoom } from '../action/actions'
 
-const CGM = ({ dispatch }: Props) => {
+const CGM = ({ dispatch, host }: Props) => {
   let topic
   return (
     <div className="create-group-modal modal fade">
@@ -22,7 +23,7 @@ const CGM = ({ dispatch }: Props) => {
               e.preventDefault()
               if (!topic.value.trim()) return
               $('.create-group-modal').modal('hide')
-              dispatch(createRoom(topic.value.trim()))
+              dispatch(createRoom(null, host, topic.value.trim()))
             }}
           >
             <div className="modal-body">
