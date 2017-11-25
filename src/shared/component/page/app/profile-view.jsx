@@ -7,6 +7,9 @@ import $ from 'jquery'
 import { randomBytes } from 'crypto'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import io from 'socket.io-client'
+
+const socket = io('http://localhost:8080')
 
 import ProfileViewInfo from '../../profile-view-info'
 import {
@@ -95,6 +98,8 @@ const PVP = ({
       </div>
       <JoinGroupModal
         handleClick={(roomID) => {
+          // emitting socket event to join the host to the socket for the new room
+          socket.emit('join_room', 'joined_room')
           $('.join-group-modal').modal('hide')
           dispatch(joinRoom(roomID, '???', '???', '???', []))
         }}
@@ -102,6 +107,7 @@ const PVP = ({
       <CreateGroupModal
         host={username}
         handleClick={(topic) => {
+          socket.emit('join_room', 'created_room')
           $('.create-group-modal').modal('hide')
           dispatch(createRoom(randomBytes(3).toString('hex'), user, topic))
         }}

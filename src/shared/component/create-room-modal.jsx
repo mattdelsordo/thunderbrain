@@ -4,10 +4,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import $ from 'jquery'
-
+import io from 'socket.io-client'
+import { IO_CLIENT_JOIN_ROOM } from '../routes'
 import { createRoom } from '../action/actions'
 
-const CGM = ({ dispatch, host }: Props) => {
+const socket = io('http://localhost:8080')
+
+const CGM = ({ handleClick}: Props) => {
   let topic
   return (
     <div className="create-group-modal modal fade">
@@ -22,8 +25,8 @@ const CGM = ({ dispatch, host }: Props) => {
             onSubmit={(e) => {
               e.preventDefault()
               if (!topic.value.trim()) return
-              $('.create-group-modal').modal('hide')
-              dispatch(createRoom(null, host, topic.value.trim()))
+                handleClick(topic.value)
+                topic.value = ''
             }}
           >
             <div className="modal-body">

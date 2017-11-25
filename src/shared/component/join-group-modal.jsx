@@ -4,6 +4,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import $ from 'jquery'
+import io from 'socket.io-client'
+
+import { IO_CLIENT_JOIN_ROOM } from '../routes'
+import { joinRoom } from '../action/actions'
+
+const socket = io('http://localhost:8080')
 
 const JGM = ({ handleClick }: Props) => {
   let roomID
@@ -19,9 +25,9 @@ const JGM = ({ handleClick }: Props) => {
             onSubmit={(e) => {
               e.preventDefault()
               if (!roomID.value.trim()) return
-              $('.join-group-modal').modal('hide')
-              handleClick(roomID.value)
-              roomID.value = ''
+                $('.join-group-modal').modal('hide')
+                handleClick(roomID.value)
+                roomID.value = ''
             }}
           >
             <div className="modal-body">

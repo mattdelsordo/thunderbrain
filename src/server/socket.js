@@ -77,6 +77,16 @@ const setUpSocket = (io: Object) => {
         }
       })
     })
+
+    // make client join the room it wants
+    socket.on('join_room', (room) => {
+      socket.join(room)
+      console.log(`[socket.io] A client joined room ${room}.`)
+
+      io.emit(IO_SERVER_HELLO, 'Hello everyone!')
+      io.to(room).emit(IO_SERVER_HELLO, `Hello clients of room ${room}!`)
+      socket.emit(IO_SERVER_HELLO, 'Hello you!')
+    })
   })
 }
 /* eslint-enable no-console */
