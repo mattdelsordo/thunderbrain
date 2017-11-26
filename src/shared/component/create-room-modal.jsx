@@ -3,12 +3,6 @@
 
 import React from 'react'
 import { connect } from 'react-redux'
-import $ from 'jquery'
-import io from 'socket.io-client'
-import { IO_CLIENT_JOIN_ROOM } from '../routes'
-import { createRoom } from '../action/actions'
-
-const socket = io('http://localhost:8080')
 
 const CGM = ({ handleClick}: Props) => {
   let topic
@@ -20,12 +14,11 @@ const CGM = ({ handleClick}: Props) => {
             <h5 className="modal-title">Enter a Topic</h5>
             <button type="button" className="close" data-dismiss="modal">×</button>
           </div>
-
           <form
             onSubmit={(e) => {
               e.preventDefault()
               if (!topic.value.trim()) return
-                handleClick(topic.value)
+                handleClick(topic.value.trim())
                 topic.value = ''
             }}
           >
