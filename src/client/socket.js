@@ -20,8 +20,8 @@ const socket = socketIOClient(window.location.host)
 const setUpSocket = (store: Object) => {
   socket.on(IO_CONNECT, () => {
     console.log('[socket.io] Connected.')
-    socket.emit(IO_CLIENT_JOIN_ROOM, 'hello-1234')
-    socket.emit(IO_CLIENT_HELLO, 'Hello!')
+    //socket.emit(IO_CLIENT_JOIN_ROOM, 'hello-1234')
+    //socket.emit(IO_CLIENT_HELLO, 'Hello!')
   })
 
   socket.on(IO_SERVER_HELLO, (serverMessage) => {
