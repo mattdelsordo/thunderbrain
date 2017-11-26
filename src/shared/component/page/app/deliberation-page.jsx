@@ -2,8 +2,8 @@
 
 import React from 'react'
 import Helmet from 'react-helmet'
-import {Redirect} from 'react-router-dom'
-import {connect} from 'react-redux'
+import { Redirect } from 'react-router-dom'
+import { connect } from 'react-redux'
 
 import Clock from '../../clock'
 import AppNav from '../../../container/app-nav'
@@ -21,9 +21,9 @@ import {
   DELIBERATION,
   RESULTS,
 } from '../../../phases'
-import {NO_SESSION, NO_USER} from '../../../redirect'
+import { NO_SESSION, NO_USER } from '../../../redirect'
 import VotingButton from '../../../container/voting-button'
-import {leaveRoom, setDelibTime} from '../../../action/actions'
+import { leaveRoom, setDelibTime } from '../../../action/actions'
 
 const mapStateToProps = (state) => {
   const user = state.hello.get('user')
@@ -51,24 +51,24 @@ const mapStateToProps = (state) => {
 }
 
 const DeliberationPage = ({
-                            dispatch,
-                            roomID,
-                            topic,
-                            members,
-                            ideas,
-                            deliberationSeconds,
-                            username,
-                            host,
-                            phase,
-                            redirect,
-                          }: Props) => {
+  dispatch,
+  roomID,
+  topic,
+  members,
+  ideas,
+  deliberationSeconds,
+  username,
+  host,
+  phase,
+  redirect,
+}: Props) => {
   const title = `Deliberations | ${topic}`
 
-  if (redirect === NO_USER) return (<Redirect to={SIGN_IN_ROUTE}/>)
-  else if (redirect === NO_SESSION) return (<Redirect to={PROFILE_VIEW}/>)
-  else if (phase === LOBBY) return (<Redirect to={LOBBY_ROUTE}/>)
-  else if (phase === BRAINSTORM) return (<Redirect to={BRAINSTORM_ROUTE}/>)
-  else if (phase === RESULTS) return (<Redirect to={RESULTS_ROUTE}/>)
+  if (redirect === NO_USER) return (<Redirect to={SIGN_IN_ROUTE} />)
+  else if (redirect === NO_SESSION) return (<Redirect to={PROFILE_VIEW} />)
+  else if (phase === LOBBY) return (<Redirect to={LOBBY_ROUTE} />)
+  else if (phase === BRAINSTORM) return (<Redirect to={BRAINSTORM_ROUTE} />)
+  else if (phase === RESULTS) return (<Redirect to={RESULTS_ROUTE} />)
   else if (phase === DELIBERATION) {
     if (deliberationSeconds > 0) {
       return (
@@ -90,9 +90,7 @@ const DeliberationPage = ({
             </div>
             <div className="row">
               <div>
-                {ideas.map((idea, i) => {
-                  return <VotingButton key={i} idea={idea} totalMembers={members.length} />
-                })}
+                {ideas.map((idea, i) => <VotingButton key={i} idea={idea} totalMembers={members.length} />)}
               </div>
             </div>
             <div className="row">
@@ -134,9 +132,7 @@ const DeliberationPage = ({
                 if (a.points > b.points) return -1
                 else if (a.points < b.points) return 1
                 return 0
-              }).map((idea, i) => {
-                return (<li key={i} className="list-group-item">{idea.text}</li>)
-              })}
+              }).map((idea, i) => (<li key={i} className="list-group-item">{idea.text}</li>))}
             </ol>
             <button onClick={() => dispatch(leaveRoom())} className="btn btn-primary m-3">Exit Call</button>
           </div>

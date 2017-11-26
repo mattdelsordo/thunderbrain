@@ -9,8 +9,6 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import io from 'socket.io-client'
 
-const socket = io('http://localhost:8080')
-
 import ProfileViewInfo from '../../profile-view-info'
 import {
   LOBBY_ROUTE,
@@ -21,6 +19,8 @@ import CreateGroupModal from '../../create-room-modal'
 import { joinRoom, createRoom } from '../../../action/actions'
 import { LOGOUT, INROOM } from '../../../redirect'
 import AppNav from '../../../container/app-nav'
+
+const socket = io('http://localhost:8080')
 
 const mapStateToProps = (state) => {
   const user = state.hello.get('user')
@@ -40,10 +40,6 @@ const mapStateToProps = (state) => {
     redirect: LOGOUT,
   }
 }
-
-// const mapDispatchToProps = (dispatch) => {
-//   return bindActionCreators({ joinRoom, createRoom} , dispatch)
-// }
 
 const PVP = ({
   dispatch,

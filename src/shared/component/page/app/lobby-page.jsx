@@ -4,6 +4,7 @@ import React from 'react'
 import Helmet from 'react-helmet'
 import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
+import io from 'socket.io-client'
 
 import {
   SIGN_IN_ROUTE,
@@ -19,6 +20,8 @@ import {
   DELIBERATION,
   RESULTS,
 } from '../../../phases'
+
+ const socket = io('http://localhost:8080')
 
 const mapStateToProps = (state) => {
   const user = state.hello.get('user')
@@ -46,9 +49,16 @@ const mapStateToProps = (state) => {
   }
 }
 
-const LobbyPage = ({ dispatch, username, host, members, roomID, topic, redirect, phase }: Props) => {
+const LobbyPage = ({
+  dispatch, username, host, members, roomID, topic, redirect, phase,
+}: Props) => {
   let brainstorm
   let deliberation
+
+  socket.on('new_member', (newMember) => {
+    console.log(`[socket.io] ${newMember} joined the lobby`)
+    // members.add(newMember)
+  })
 
   if (redirect === NO_USER) return (<Redirect to={SIGN_IN_ROUTE} />)
   else if (redirect === NO_SESSION) return (<Redirect to={PROFILE_VIEW} />)
@@ -57,6 +67,7 @@ const LobbyPage = ({ dispatch, username, host, members, roomID, topic, redirect,
   else if (phase === RESULTS) return (<Redirect to={RESULTS_ROUTE} />)
   else if (phase === LOBBY) {
     return (
+
       <div className="container mt-4">
         <Helmet
           title={`Lobby | ${topic}`}
