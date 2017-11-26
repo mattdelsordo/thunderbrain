@@ -39,7 +39,7 @@ const mapStateToProps = (state) => {
     }
   }
   return {
-    roomID: session.get('id'),
+    roomID: session.get('roomID'),
     topic: session.get('topic'),
     members: session.get('members'),
     ideas: session.get('ideas'),
@@ -90,7 +90,7 @@ const DeliberationPage = ({
             </div>
             <div className="row">
               <div>
-                {ideas.map((idea, i) => <VotingButton key={i} idea={idea} totalMembers={members.length} />)}
+                {ideas.map((idea, i) => <VotingButton key={i} idea={idea} totalMembers={members.length} user={username} />)}
               </div>
             </div>
             <div className="row">

@@ -73,9 +73,10 @@ export const beginDeliberations = () => ({
 
 // Idea voting actions
 export const VOTE_IDEA = 'VOTE_IDEA'
-export const voteIdea = idea => ({
+export const voteIdea = (idea, user) => ({
   type: VOTE_IDEA,
   idea,
+  user,
 })
 
 export const SET_DELIB_TIME = 'SET_DELIBERATION_TIME'

@@ -25,7 +25,6 @@ const ss = ({ placeholder = 'Enter your text.', buttonText = 'Submit', action, d
             input = node
           }}
           placeholder={placeholder}
-          autofocus
         />
         <button className="btn btn-primary mt-1" type="submit" onClick={() => {
           input.focus()

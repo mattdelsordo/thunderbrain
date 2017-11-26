@@ -76,7 +76,7 @@ const sessionReducer = (state, action) => {
         ...state.get('ideas'),
         {
           text: action.text,
-          points: 0,
+          points: [],
           userDidVote: false,
         },
       ])
@@ -91,16 +91,20 @@ const sessionReducer = (state, action) => {
     case VOTE_IDEA:
       return state.set('ideas', state.get('ideas').map((idea) => {
         if (idea.text === action.idea) {
+          // add point to idea
           if (idea.userDidVote === false) {
             return {
               text: idea.text,
-              points: idea.points + 1,
+              points: idea.points.concat([action.user]),
               userDidVote: true,
             }
+          // remove point from idea
           } else if (idea.userDidVote === true) {
             return {
               text: idea.text,
-              points: idea.points - 1,
+              points: idea.points.filter((user) => {
+                return user !== action.user
+              }),
               userDidVote: false,
             }
           }
