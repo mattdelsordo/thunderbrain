@@ -53,7 +53,7 @@ const sessionReducer = (state, action) => {
   switch (action.type) {
     case CREATE_ROOM:
       return Immutable.fromJS({
-        id: action.roomID,
+        roomID: action.roomID,
         host: action.hostName,
         topic: action.topic,
         members: [action.hostName],
@@ -62,7 +62,7 @@ const sessionReducer = (state, action) => {
       })
     case JOIN_ROOM:
       return Immutable.fromJS({
-        id: action.roomID,
+        roomID: action.roomID,
         host: action.hostName,
         topic: action.topic,
         members: action.members,
