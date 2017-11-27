@@ -9,6 +9,7 @@ import { connect } from 'react-redux'
 
 import SignInForm from '../../../container/sign-in-form'
 // import Nav from '../../nav'
+import Nav2 from '../../nav2'
 import { PROFILE_VIEW, REGISTER_ROUTE, GUEST_ROUTE } from '../../../routes'
 
 const title = 'Sign In'
@@ -21,6 +22,7 @@ const SIP = ({ notLoggedIn }: Props) => {
   if (notLoggedIn) {
     return (
       <div className="container mt-4">
+        <Nav2 />
         <Helmet
           title={title}
           meta={[
