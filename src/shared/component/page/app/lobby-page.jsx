@@ -1,74 +1,151 @@
 // @flow
 
 import React from 'react'
-import { randomBytes } from 'crypto'
-import { Link } from 'react-router-dom'
+import Helmet from 'react-helmet'
+import { Redirect } from 'react-router-dom'
+import { connect } from 'react-redux'
+import io from 'socket.io-client'
 
-import randomname from '../../../randomname'
-import { BRAINSTORM_ROUTE, PROFILE_VIEW } from '../../../routes'
+import {
+  SIGN_IN_ROUTE,
+  PROFILE_VIEW,
+  BRAINSTORM_ROUTE, CHAT_ROUTE, RESULTS_ROUTE,
+} from '../../../routes'
+import AppNav from '../../../container/app-nav'
+import { NO_USER, NO_SESSION } from '../../../redirect'
+import { leaveRoom, beginBrainstorm } from '../../../action/actions'
+import {
+  LOBBY,
+  BRAINSTORM,
+  DELIBERATION,
+  RESULTS,
+} from '../../../phases'
 
-class LobbyPage extends React.Component {
-  constructor(props) {
-    super(props)
+ const socket = io('http://localhost:8080')
 
-    const username = props.username || randomname()
-    this.state = {
-      owner: props.owner || username,
-      username,
-      members: [username],
-      roomName: props.roomName || randomBytes(3).toString('hex'),
+const mapStateToProps = (state) => {
+  const user = state.hello.get('user')
+  const session = state.hello.get('session')
+
+  if (!user) {
+    return {
+      redirect: NO_USER,
+      members: [],
+    }
+  } else if (!session) {
+    return {
+      redirect: NO_SESSION,
+      members: [],
     }
   }
 
-  render() {
-    if (this.state.owner === this.state.username) {
-      return (
-        <div className="container mt-4">
-          <div className="row">
-            <div className="col-sm-6 p-4">
-              <h2 className="m-10">Room: {this.state.roomName}</h2>
-              <h3>Members:</h3>
-              <ul className="list-group">
-                {this.state.members.map((member) => {
-                  if (member === this.state.username) return <li className="list-group-item list-group-item-info" key={member}>{member}</li>
-                  return <li className="list-group-item" key={member}>{member}</li>
-                })}
-              </ul>
-              <Link to={PROFILE_VIEW} className="btn btn-primary mt-1"> Leave </Link>
-            </div>
+  return {
+    username: user.get('name'),
+    host: session.get('host'),
+    members: session.get('members'),
+    roomID: session.get('roomID'),
+    topic: session.get('topic'),
+    phase: session.get('phase'),
+  }
+}
 
-            <div className="col-sm-6 p-4" >
-              <input id="topic-field" type="text" className="form-control mt-1" placeholder="Enter your premise" />
-              <div className="input-group mt-1">
-                <input id="time-field" type="text" className="form-control" placeholder="Time Limit" />
-                <span className="input-group-addon">seconds</span>
-              </div>
-              <Link to={BRAINSTORM_ROUTE} className="btn btn-primary mt-1"> Begin Session </Link>
-            </div>
-          </div>
-        </div>
-      )
-    }
+const LobbyPage = ({
+  dispatch, username, host, members, roomID, topic, redirect, phase,
+}: Props) => {
+  let brainstorm
+  let deliberation
 
+  socket.on('new_member', (newMember) => {
+    console.log(`[socket.io] ${newMember} joined the lobby`)
+    // members.add(newMember)
+  })
+
+  if (redirect === NO_USER) return (<Redirect to={SIGN_IN_ROUTE} />)
+  else if (redirect === NO_SESSION) return (<Redirect to={PROFILE_VIEW} />)
+  else if (phase === BRAINSTORM) return (<Redirect to={BRAINSTORM_ROUTE} />)
+  else if (phase === DELIBERATION) return (<Redirect to={CHAT_ROUTE} />)
+  else if (phase === RESULTS) return (<Redirect to={RESULTS_ROUTE} />)
+  else if (phase === LOBBY) {
     return (
-      <div className="container mt-4">
-        <div className="row">
-          <div className="col-12">
-            <h2 className="m-10">Room: {this.state.roomName}</h2>
 
-            <h3>Members:</h3>
+      <div className="container mt-4">
+        <Helmet
+          title={`Lobby | ${topic}`}
+          meta={[
+            { name: 'description', content: topic },
+            { property: 'og:title', content: topic },
+          ]}
+        />
+        <AppNav />
+        <div className="row">
+          <div className="col-sm-6 p-4">
+            <h2 className="m=10">Topic: {topic} </h2>
+            <h3 className="m-10">Room ID: {roomID}</h3>
+            <h4>Members:</h4>
             <ul className="list-group">
-              {this.state.members.map((member) => {
-                if (member === this.state.username) return <li className="list-group-item list-group-item-info" key={member}>{member}</li>
-                return <li className="list-group-item" key={member}>{member}</li>
+              {members.map((member) => {
+                if (member === username) {
+                  return <li className="list-group-item list-group-item-info" key={member}>{member}</li>
+                }
+                  return <li className="list-group-item" key={member}>{member}</li>
               })}
             </ul>
-            <Link to={PROFILE_VIEW} className="btn btn-primary mt-1"> Leave </Link>
+            <button className="btn btn-primary mt-1" onClick={() => { dispatch(leaveRoom()) }}>Leave</button>
           </div>
+          {username === host &&
+            <div className="col-sm-6 p-4">
+              <form
+                className="form-group"
+                onSubmit={(e) => {
+                  e.preventDefault()
+                  const bsTrimmed = brainstorm.value.trim()
+                  const dTrimmed = deliberation.value.trim()
+                  if (!bsTrimmed || !dTrimmed) {
+                    return
+                  }
+                  dispatch(beginBrainstorm(Number(bsTrimmed), Number(dTrimmed)))
+                }}
+              >
+                <div className="input-group mt-1">
+                  <input
+                    required
+                    type="number"
+                    className="form-control"
+                    placeholder="Brainstorming Time"
+                    ref={(node) => {
+                      brainstorm = node
+                    }}
+                  />
+                  <span className="input-group-addon">seconds</span>
+                </div>
+                <div className="input-group mt-1">
+                  <input
+                    required
+                    type="number"
+                    className="form-control"
+                    placeholder="Deliberation Time"
+                    ref={(node) => {
+                      deliberation = node
+                    }}
+                  />
+                  <span className="input-group-addon">seconds</span>
+                </div>
+                <button
+                  className="btn btn-primary"
+                  type="submit"
+                >
+                  Begin Session
+                </button>
+              </form>
+            </div>
+            }
         </div>
       </div>
     )
   }
+
+  console.log('ERROR: invalid redirect in lobby page')
+  return (<Redirect to={PROFILE_VIEW} />)
 }
 
-export default LobbyPage
+export default connect(mapStateToProps)(LobbyPage)

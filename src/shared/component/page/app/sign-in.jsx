@@ -11,6 +11,7 @@ import SignInForm from '../../../container/sign-in-form'
 // import Nav from '../../nav'
 import Nav2 from '../../nav2'
 import { PROFILE_VIEW, REGISTER_ROUTE, GUEST_ROUTE } from '../../../routes'
+import AppNav from '../../../container/app-nav'
 
 const title = 'Sign In'
 
@@ -30,6 +31,7 @@ const SIP = ({ notLoggedIn }: Props) => {
             { property: 'og:title', content: title },
           ]}
         />
+        <AppNav />
         <div className="row">
           <div className="col-12">
             <h1>{title}</h1>

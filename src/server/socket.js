@@ -20,15 +20,15 @@ const setUpSocket = (io: Object) => {
   io.on(IO_CONNECT, (socket) => {
     console.log('[socket.io] A client connected.')
 
-    // make client join the room it wants
-    socket.on(IO_CLIENT_JOIN_ROOM, (room) => {
-      socket.join(room)
-      console.log(`[socket.io] A client joined room ${room}.`)
-
-      io.emit(IO_SERVER_HELLO, 'Hello everyone!')
-      io.to(room).emit(IO_SERVER_HELLO, `Hello clients of room ${room}!`)
-      socket.emit(IO_SERVER_HELLO, 'Hello you!')
-    })
+    // // make client join the room it wants
+    // socket.on(IO_CLIENT_JOIN_ROOM, (room) => {
+    //   socket.join(room)
+    //   console.log(`[socket.io] A client joined room ${room}.`)
+    //
+    //   io.emit(IO_SERVER_HELLO, 'Hello everyone!')
+    //   io.to(room).emit(IO_SERVER_HELLO, `Hello clients of room ${room}!`)
+    //   socket.emit(IO_SERVER_HELLO, 'Hello you!')
+    // })
 
     // log message in server console
     socket.on(IO_CLIENT_HELLO, (clientMessage) => {
@@ -77,6 +77,19 @@ const setUpSocket = (io: Object) => {
         }
       })
     })
+
+    // make client join the room it wants
+    socket.on('join_room', (room, member) => {
+      socket.join(room, () => {
+        console.log(`[socket.io] ${member} joined room ${room}.`)
+        io.to(room).emit('new_member', member)
+      })
+    })
+
+    // // get list of members of a room
+    // socket.on('get_room_members', (room) => {
+    //
+    // })
   })
 }
 /* eslint-enable no-console */

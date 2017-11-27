@@ -1,74 +1,92 @@
+// @flow
+
 import React from 'react'
 import { Redirect } from 'react-router'
+import Helmet from 'react-helmet'
+import { connect } from 'react-redux'
 
-import { CHAT_ROUTE } from '../../../routes'
-import Countdown from '../../countdown'
+import {
+  SIGN_IN_ROUTE,
+  PROFILE_VIEW,
+  CHAT_ROUTE,
+  RESULTS_ROUTE,
+  LOBBY_ROUTE,
+} from '../../../routes'
+import Countdown from '../../clock'
 import IdeaList from '../../../container/idea-list'
 import SubmitString from '../../../container/submit-string'
-import { addIdea } from '../../../action/actions'
+import {addIdea, beginDeliberations} from '../../../action/actions'
+import AppNav from '../../../container/app-nav'
+import {
+  LOBBY,
+  BRAINSTORM,
+  DELIBERATION,
+  RESULTS,
+} from '../../../phases'
+import { NO_SESSION, NO_USER } from '../../../redirect'
 
-class BrainstormPhase extends React.Component {
-  constructor(props) {
-    super(props)
+const mapStateToProps = (state) => {
+  const user = state.hello.get('user')
+  const session = state.hello.get('session')
 
-    this.state = {
-      time: props.time || 10,
-      question: props.question || 'What would be cool features to add to a spaceship?',
-      ideas: [],
-      redirect: false,
+  if (!user) {
+    return {
+      redirect: NO_USER,
     }
-
-    // document.getElementById('idea-field').focus()
-  }
-
-  // adds ideas to the current list
-  submitIdea() {
-    const field = document.getElementById('idea-field')
-    if (field.value) {
-      const { ideas } = this.state
-      ideas.push(field.value)
-      this.setState({
-        ideas,
-      })
-      field.value = ''
+  } else if (!session) {
+    return {
+      redirect: NO_SESSION,
     }
-    field.focus()
   }
-
-  end() {
-    this.setState({ redirect: true })
+  return {
+    brainstormSeconds: session.get('brainstormSeconds'),
+    topic: session.get('topic'),
+    phase: session.get('phase'),
   }
+}
 
-  render() {
-    if (this.state.redirect) return <Redirect push to={CHAT_ROUTE} />
-
+const BrainstormPhase = ({ brainstormSeconds, topic, redirect, phase, dispatch }: Props) => {
+  if (redirect === NO_USER) return (<Redirect to={SIGN_IN_ROUTE} />)
+  else if (redirect === NO_SESSION) return (<Redirect to={PROFILE_VIEW} />)
+  else if (phase === LOBBY) return (<Redirect to={LOBBY_ROUTE} />)
+  else if (phase === DELIBERATION) return (<Redirect to={CHAT_ROUTE} />)
+  else if (phase === RESULTS) return (<Redirect to={RESULTS_ROUTE} />)
+  else if (phase === BRAINSTORM) {
     return (
       <div className="container" width="100%">
+        <Helmet
+          title={`Brainstorm | ${topic}`}
+          meta={[
+            { name: 'description', content: topic },
+            { property: 'og:title', content: topic },
+          ]}
+        />
+        <AppNav />
         <div className="row">
           <div className="col-sm-6 p-4">
             <div className="jumbotron mh-100">
               <h3>Enter as many ideas as you can for the following question:</h3>
-              <h4>{this.state.question}</h4>
-              <Countdown time={'??:??'} />
+              <h4>{topic}</h4>
+              <Countdown time={brainstormSeconds} />
             </div>
           </div>
           <div className="col-sm-6 p-4">
-            {/*<div className="input-group">*/}
-              {/*<input id="idea-field" type="text" className="form-control" placeholder="Your next great idea" />*/}
-              {/*<button className="input-group-addon" onClick={this.submitIdea.bind(this)}>Submit</button>*/}
-            {/*</div>*/}
-            {/*<ul className="list-group">*/}
-              {/*{this.state.ideas.map((idea) => {*/}
-                {/*return <li className="list-group-item" key={idea}>{idea}</li>*/}
-              {/*})}*/}
-            {/*</ul>*/}
             <IdeaList />
             <SubmitString placeholder="Your next great idea." buttonText="Add" action={addIdea} />
           </div>
         </div>
+
+        <button
+          onClick={() => { dispatch(beginDeliberations()) }}
+        >
+          DEBUG ONLY PLS COMMENT OUT
+        </button>
       </div>
     )
   }
+
+  console.log('ERROR: invalid redirect in lobby page')
+  return (<Redirect to={PROFILE_VIEW} />)
 }
 
-export default BrainstormPhase
+export default connect(mapStateToProps)(BrainstormPhase)

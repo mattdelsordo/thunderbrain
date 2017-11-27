@@ -15,6 +15,10 @@ import {
   JOIN_ROOM,
   ADD_IDEA,
   LEAVE_ROOM,
+  BEGIN_BRAINSTORM,
+  BEGIN_DELIBERATIONS,
+  VOTE_IDEA,
+  UNVOTE_IDEA, SET_DELIB_TIME,
 } from '../action/actions'
 
 const initialState = Immutable.fromJS({
@@ -49,19 +53,21 @@ const sessionReducer = (state, action) => {
   switch (action.type) {
     case CREATE_ROOM:
       return Immutable.fromJS({
-        id: action.roomID,
+        roomID: action.roomID,
         host: action.hostName,
         topic: action.topic,
         members: [action.hostName],
         ideas: [],
+        phase: action.phase,
       })
     case JOIN_ROOM:
       return Immutable.fromJS({
-        id: action.roomID,
+        roomID: action.roomID,
         host: action.hostName,
         topic: action.topic,
         members: action.members,
         ideas: [],
+        phase: action.phase,
       })
     case LEAVE_ROOM:
       return null
@@ -70,9 +76,45 @@ const sessionReducer = (state, action) => {
         ...state.get('ideas'),
         {
           text: action.text,
-          points: 0,
+          points: [],
+          userDidVote: false,
         },
       ])
+    case BEGIN_BRAINSTORM:
+      return state.merge({
+        brainstormSeconds: action.brainstormSeconds,
+        deliberationSeconds: action.deliberationSeconds,
+        phase: action.phase,
+      })
+    case BEGIN_DELIBERATIONS:
+      return state.set('phase', action.phase)
+    case VOTE_IDEA:
+      return state.set('ideas', state.get('ideas').map((idea) => {
+        if (idea.text === action.idea) {
+          // add point to idea
+          if (idea.userDidVote === false) {
+            return {
+              text: idea.text,
+              points: idea.points.concat([action.user]),
+              userDidVote: true,
+            }
+          // remove point from idea
+          } else if (idea.userDidVote === true) {
+            return {
+              text: idea.text,
+              points: idea.points.filter((user) => {
+                return user !== action.user
+              }),
+              userDidVote: false,
+            }
+          }
+        }
+        return idea
+      }))
+    case SET_DELIB_TIME:
+      return state.set('deliberationSeconds', action.newTime)
+    case LOG_OUT:
+      return null
     default:
       return state
   }

@@ -1,0 +1,4 @@
+export const LOBBY = 'LOBBY_PHASE'
+export const BRAINSTORM = 'BRAINSTORMING_PHASE'
+export const DELIBERATION = 'DELIBERATION_PHASE'
+export const RESULTS = 'RESULTS_PAGE'

@@ -2,8 +2,9 @@
 // @flow
 
 import React from 'react'
+import { connect } from 'react-redux'
 
-const CreateGroupModal = ({ handleClick }: Props) => {
+const CGM = ({ handleClick}: Props) => {
   let topic
   return (
     <div className="create-group-modal modal fade">
@@ -13,13 +14,12 @@ const CreateGroupModal = ({ handleClick }: Props) => {
             <h5 className="modal-title">Enter a Topic</h5>
             <button type="button" className="close" data-dismiss="modal">×</button>
           </div>
-
           <form
             onSubmit={(e) => {
               e.preventDefault()
               if (!topic.value.trim()) return
-              handleClick(topic.value)
-              topic.value = ''
+                handleClick(topic.value.trim())
+                topic.value = ''
             }}
           >
             <div className="modal-body">
@@ -35,7 +35,14 @@ const CreateGroupModal = ({ handleClick }: Props) => {
               <button type="submit" className="btn btn-primary">
                 Submit
               </button>
-              <button type="button" role="button" className="btn btn-secondary" data-dismiss="modal">Cancel</button>
+              <button
+                type="button"
+                role="button"
+                className="btn btn-secondary"
+                data-dismiss="modal"
+              >
+                Cancel
+              </button>
             </div>
           </form>
         </div>
@@ -44,5 +51,6 @@ const CreateGroupModal = ({ handleClick }: Props) => {
   )
 }
 
+const CreateGroupModal = connect()(CGM)
 
 export default CreateGroupModal

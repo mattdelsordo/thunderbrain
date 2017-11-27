@@ -2,8 +2,9 @@
 // @flow
 
 import React from 'react'
+import { connect } from 'react-redux'
 
-const JoinGroupModal = ({ handleClick }: Props) => {
+const JGM = ({ handleClick }: Props) => {
   let roomID
   return (
     <div className="join-group-modal modal fade">
@@ -17,8 +18,8 @@ const JoinGroupModal = ({ handleClick }: Props) => {
             onSubmit={(e) => {
               e.preventDefault()
               if (!roomID.value.trim()) return
-              handleClick(roomID.value)
-              roomID.value = ''
+                handleClick(roomID.value.trim())
+                roomID.value = ''
             }}
           >
             <div className="modal-body">
@@ -42,5 +43,7 @@ const JoinGroupModal = ({ handleClick }: Props) => {
     </div>
   )
 }
+
+const JoinGroupModal = connect()(JGM)
 
 export default JoinGroupModal
