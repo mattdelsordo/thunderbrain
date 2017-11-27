@@ -21,7 +21,7 @@ import {
   RESULTS,
 } from '../../../phases'
 
- const socket = io('http://localhost:8080')
+const socket = io('http://localhost:8080')
 
 const mapStateToProps = (state) => {
   const user = state.hello.get('user')
@@ -67,7 +67,6 @@ const LobbyPage = ({
   else if (phase === RESULTS) return (<Redirect to={RESULTS_ROUTE} />)
   else if (phase === LOBBY) {
     return (
-
       <div className="container mt-4">
         <Helmet
           title={`Lobby | ${topic}`}
@@ -80,7 +79,7 @@ const LobbyPage = ({
         <div className="row">
           <div className="col-sm-6 p-4">
             <h2 className="m=10">Topic: {topic} </h2>
-            <h3 className="m-10">Room ID: {roomID}</h3>
+            <h3 className="m-10">Room ID: {roomID.toUpperCase()}</h3>
             <h4>Members:</h4>
             <ul className="list-group">
               {members.map((member) => {

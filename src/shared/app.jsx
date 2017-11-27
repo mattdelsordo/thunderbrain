@@ -50,7 +50,7 @@ const App = () =>
       <Switch>
         <Route exact path={DEFAULT_ROUTE} render={() => <Redirect to={HOME_PAGE_ROUTE} />} />
         <Route exact path={HOME_PAGE_ROUTE} render={() => <Home />} />
-        <Route exact path={APP_DEFAULT} render={() => <SignInPage />} />
+        <Route exact path={APP_DEFAULT} render={() => <GuestSignInPage />} />
         <Route path={PROFILE_VIEW} render={() => <ProfileViewPage />} />
         <Route path={PROPOSAL_ROUTE} render={() => <ProposalPage />} />
         <Route path={CHAT_ROUTE} render={() => <VideoChatPage />} />

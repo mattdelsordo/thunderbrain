@@ -13,6 +13,7 @@ import ProfileViewInfo from '../../profile-view-info'
 import {
   LOBBY_ROUTE,
   SIGN_IN_ROUTE,
+  GUEST_ROUTE,
 } from '../../../routes'
 import JoinGroupModal from '../../join-group-modal'
 import CreateGroupModal from '../../create-room-modal'
@@ -20,7 +21,7 @@ import { joinRoom, createRoom } from '../../../action/actions'
 import { LOGOUT, INROOM } from '../../../redirect'
 import AppNav from '../../../container/app-nav'
 
-const socket = io('http://localhost:8080')
+// const socket = io('http://localhost:8080')
 
 const mapStateToProps = (state) => {
   const user = state.hello.get('user')
@@ -50,7 +51,7 @@ const PVP = ({
 }: Props) => {
   if (redirect === LOGOUT) {
     return (
-      <Redirect to={SIGN_IN_ROUTE} />
+      <Redirect to={GUEST_ROUTE} />
     )
   } else if (redirect === INROOM) {
     return (
@@ -97,7 +98,7 @@ const PVP = ({
           // emitting socket event to join the host to the socket for the new room
           // socket.emit('join_room', roomID, user)
           $('.join-group-modal').modal('hide')
-          dispatch(joinRoom(roomID, user))
+          dispatch(joinRoom(roomID.toLowerCase(), user))
         }}
       />
       <CreateGroupModal
@@ -105,7 +106,7 @@ const PVP = ({
           const newRoomID = randomBytes(3).toString('hex')
           // socket.emit('join_room', newRoomID, user)
           $('.create-group-modal').modal('hide')
-          dispatch(createRoom(newRoomID, user, topic))
+          dispatch(createRoom(newRoomID.toLowerCase(), user, topic))
         }}
       />
     </div>
