@@ -55,10 +55,10 @@ const LobbyPage = ({
   let brainstorm
   let deliberation
 
-  socket.on('new_member', (newMember) => {
-    console.log(`[socket.io] ${newMember} joined the lobby`)
-    // members.add(newMember)
-  })
+  // socket.on('new_member', (newMember) => {
+  //   console.log(`[socket.io] ${newMember} joined the lobby`)
+  //   // members.add(newMember)
+  // })
 
   if (redirect === NO_USER) return (<Redirect to={SIGN_IN_ROUTE} />)
   else if (redirect === NO_SESSION) return (<Redirect to={PROFILE_VIEW} />)

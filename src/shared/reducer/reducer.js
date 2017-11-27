@@ -63,9 +63,9 @@ const sessionReducer = (state, action) => {
     case JOIN_ROOM:
       return Immutable.fromJS({
         roomID: action.roomID,
-        host: action.hostName,
-        topic: action.topic,
-        members: action.members,
+        host: '???',
+        topic: '???',
+        members: [action.username],
         ideas: [],
         phase: action.phase,
       })

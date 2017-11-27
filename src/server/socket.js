@@ -28,7 +28,10 @@ const setUpSocket = (io: Object) => {
     socket.on(IO_CLIENT_JOIN_ROOM, (payload) => {
       socket.join(payload.roomID)
       console.log(`${payload.username} has connected to room ${payload.roomID}`)
-      io.to(payload.roomID).emit(IO_USER_JOIN_ROOM, payload)
+      io.to(payload.roomID).emit(IO_USER_JOIN_ROOM, {
+        username: payload.username,
+        socketID: socket.id,
+      })
     })
 
     // After a user joins, all the other members send in their info

@@ -17,12 +17,21 @@ import * as actions from '../shared/action/actions'
 // const socket = socketIOClient(window.location.host)
 let socket = null
 
-export const sessionMiddleware = (store) => {
+export function sessionMiddleware({ getState }) {
   return next => (action) => {
     if (socket) {
+      // console.log('middleware works!', getState())
       // check action types
       if (action.type === actions.JOIN_ROOM) {
-        console.log('joined a room')
+        socket.emit(IO_CLIENT_JOIN_ROOM, {
+          roomID: action.roomID,
+          username: action.username,
+        })
+      } else if (action.type === actions.CREATE_ROOM) {
+        socket.emit(IO_CLIENT_JOIN_ROOM, {
+          roomID: action.roomID,
+          username: action.hostName,
+        })
       }
     }
     return next(action)
@@ -35,16 +44,24 @@ export const setUpSocket = (store: Object) => {
   socket = io('http://localhost:8080')
 
   socket.on(IO_USER_JOIN_ROOM, (payload) => {
-    store.dispatch(actions.ADD_MEMBER(payload.username))
+    console.log(`${payload.username} joined your room.`)
 
-    if (store.hello.get('user').get('name') === store.hello.get('session').get('host')) {
-      socket.emit(IO_USER_JOIN_ROOM, {
-        roomID: store.hello.get('session').get('roomID'),
-        host: store.hello.get('session').get('host'),
-        members: store.hello.get('session').get('memebers'),
-        topic: store.hello.get('session').get('topic'),
-        phase: store.hello.get('session').get('phase'),
-      })
+    if (payload.socketID !== socket.id) {
+      store.dispatch(actions.addMember(payload.username))
+
+      // if host, broadcast state to the rest of the users
+      const state = store.getState()
+      console.log(state.hello.get('session').get('members'))
+      // comparing usernames is very shitty if two users sign up with the same name
+      if (state.hello.get('user').get('name') === state.hello.get('session').get('host')) {
+        socket.emit(IO_USER_JOIN_ROOM, {
+          roomID: state.hello.get('session').get('roomID'),
+          host: state.hello.get('session').get('host'),
+          members: state.hello.get('session').get('members'),
+          topic: state.hello.get('session').get('topic'),
+          phase: state.hello.get('session').get('phase'),
+        })
+      }
     }
   })
 

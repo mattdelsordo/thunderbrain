@@ -33,12 +33,10 @@ export const createRoom = (roomID, hostName, topic) => ({
 
 // Join a room
 export const JOIN_ROOM = 'JOIN_ROOM'
-export const joinRoom = (roomID, hostName, topic, members) => ({
+export const joinRoom = (roomID, username) => ({
   type: JOIN_ROOM,
+  username,
   roomID,
-  hostName,
-  topic,
-  members,
   phase: LOBBY,
 })
 

@@ -95,15 +95,15 @@ const PVP = ({
       <JoinGroupModal
         handleClick={(roomID) => {
           // emitting socket event to join the host to the socket for the new room
-          socket.emit('join_room', roomID, user)
+          // socket.emit('join_room', roomID, user)
           $('.join-group-modal').modal('hide')
-          dispatch(joinRoom(roomID, '???', '???', '???', []))
+          dispatch(joinRoom(roomID, user))
         }}
       />
       <CreateGroupModal
         handleClick={(topic) => {
           const newRoomID = randomBytes(3).toString('hex')
-          socket.emit('join_room', newRoomID, user)
+          // socket.emit('join_room', newRoomID, user)
           $('.create-group-modal').modal('hide')
           dispatch(createRoom(newRoomID, user, topic))
         }}
