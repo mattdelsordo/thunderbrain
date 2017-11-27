@@ -42,6 +42,21 @@ export const joinRoom = (roomID, hostName, topic, members) => ({
   phase: LOBBY,
 })
 
+export const ADD_MEMBER = 'ADD_MEMBER'
+export const addMember = member => ({
+  type: ADD_MEMBER,
+  member,
+})
+
+export const REFRESH_USER_JOINED = 'REFRESH_USER_JOINED'
+export const refreshUserJoined = payload => ({
+  type: REFRESH_USER_JOINED,
+  host: payload.host,
+  members: payload.members,
+  topic: payload.topic,
+  phase: payload.phase,
+})
+
 // leave your room
 export const LEAVE_ROOM = 'LEAVE_ROOM'
 export const leaveRoom = () => ({

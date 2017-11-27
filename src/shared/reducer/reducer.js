@@ -18,7 +18,7 @@ import {
   BEGIN_BRAINSTORM,
   BEGIN_DELIBERATIONS,
   VOTE_IDEA,
-  UNVOTE_IDEA, SET_DELIB_TIME,
+  UNVOTE_IDEA, SET_DELIB_TIME, ADD_MEMBER, REFRESH_USER_JOINED,
 } from '../action/actions'
 
 const initialState = Immutable.fromJS({
@@ -115,6 +115,18 @@ const sessionReducer = (state, action) => {
       return state.set('deliberationSeconds', action.newTime)
     case LOG_OUT:
       return null
+    case ADD_MEMBER:
+      return state.set('members', [
+        ...state.get('members'),
+        action.member,
+      ])
+    case REFRESH_USER_JOINED:
+      return state.merge({
+        host: action.host,
+        members: action.members,
+        topic: action.topic,
+        phase: action.phase,
+      })
     default:
       return state
   }

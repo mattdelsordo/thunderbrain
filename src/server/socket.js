@@ -1,13 +1,9 @@
 // @flow
 
-import {
-  IO_CONNECT,
-  IO_DISCONNECT,
-  IO_CLIENT_JOIN_ROOM,
-  IO_CLIENT_HELLO,
-  IO_SERVER_HELLO,
-  IO_CREATE_USER,
-} from '../shared/config'
+import * as config from '../shared/config'
+import {IO_CLIENT_JOIN_ROOM} from "../shared/config";
+import {IO_USER_JOIN_ROOM} from "../shared/config";
+import {IO_USER_JOIN_RESPONSE} from "../shared/config";
 
 const User = require('../../models/User')
 const bcrypt = require('bcrypt')
@@ -17,7 +13,7 @@ const saltRounds = 10
 /* eslint-disable no-console */
 const setUpSocket = (io: Object) => {
   // when client connects get access to socket object
-  io.on(IO_CONNECT, (socket) => {
+  io.on(config.IO_CONNECT, (socket) => {
     console.log('[socket.io] A client connected.')
 
     // // make client join the room it wants
@@ -29,15 +25,26 @@ const setUpSocket = (io: Object) => {
     //   io.to(room).emit(IO_SERVER_HELLO, `Hello clients of room ${room}!`)
     //   socket.emit(IO_SERVER_HELLO, 'Hello you!')
     // })
+    socket.on(IO_CLIENT_JOIN_ROOM, (payload) => {
+      socket.join(payload.roomID)
+      console.log(`${payload.username} has connected to room ${payload.roomID}`)
+      io.to(payload.roomID).emit(IO_USER_JOIN_ROOM, payload)
+    })
+
+    // After a user joins, all the other members send in their info
+    socket.on(IO_USER_JOIN_ROOM, (payload) => {
+      io.to(payload.roomID).emit(IO_USER_JOIN_RESPONSE, payload)
+    })
 
     // log message in server console
-    socket.on(IO_CLIENT_HELLO, (clientMessage) => {
+    socket.on(config.IO_CLIENT_HELLO, (clientMessage) => {
       console.log(`[socket.io] Client: ${clientMessage}`)
     })
 
     // log disconnections
-    socket.on(IO_DISCONNECT, () => {
-      console.log('[socket.io] A client disconnected.')
+    socket.on(config.IO_DISCONNECT, (payload) => {
+      socket.leaveAll()
+      console.log(`${payload.username} disconnected.`)
     })
 
     // create a user in the database
@@ -77,19 +84,6 @@ const setUpSocket = (io: Object) => {
         }
       })
     })
-
-    // make client join the room it wants
-    socket.on('join_room', (room, member) => {
-      socket.join(room, () => {
-        console.log(`[socket.io] ${member} joined room ${room}.`)
-        io.to(room).emit('new_member', member)
-      })
-    })
-
-    // // get list of members of a room
-    // socket.on('get_room_members', (room) => {
-    //
-    // })
   })
 }
 /* eslint-enable no-console */

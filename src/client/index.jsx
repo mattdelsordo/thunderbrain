@@ -22,7 +22,7 @@ import App from '../shared/app'
 import helloReducer from '../shared/reducer/reducer'
 import { APP_CONTAINER_SELECTOR } from '../shared/config'
 import { isProd } from '../shared/util'
-import setUpSocket from './socket'
+import { setUpSocket, sessionMiddleware } from './socket'
 
 // load bootstrap
 window.jQuery = $
@@ -39,7 +39,7 @@ const preloadedState = window.__PRELOADED_STATE__
 const store = createStore(
   combineReducers({ hello: helloReducer }),
   { hello: Immutable.fromJS(preloadedState.hello) },
-  composeEnhancers(applyMiddleware(thunkMiddleware)),
+  composeEnhancers(applyMiddleware(thunkMiddleware), applyMiddleware(sessionMiddleware)),
 )
 
 const rootEl = document.querySelector(APP_CONTAINER_SELECTOR)
