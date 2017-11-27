@@ -22,21 +22,7 @@ const HomePage = () =>
       <BigTitle alexkautz={APP_NAME} />
       <div className="container">
         <div className="row">
-          {/* <div className="col-md-4 mb-4">
-            <h3 className="mb-3">Bootstrap</h3>
-            <p>
-              <button type="button" role="button" data-toggle="modal"
-              data-target=".js-modal-example" className="btn btn-primary">Open Modal</button>
-            </p>
-          </div>
-          <div className="col-md-4 mb-4">
-            <h3 className="mb-3">JSS (soon)</h3>
-          </div>
-          <div className="col-md-4 mb-4">
-            <h3 className="mb-3">Websockets</h3>
-            <p>Open your browser console.</p>
-          </div> */}
-          {''}
+          <h3>ThunderBrain: A brainstorming web app for unique ideas. Now in alpha!</h3>
         </div>
       </div>
       {/* <ModalExample /> */}
