@@ -96,12 +96,19 @@ const setUpSocket = (io: Object) => {
         deliberationTimeLimit: payload.deliberationTimeLimit,
       })
       let brainStormTimer = Number(payload.brainstormTimeLimit)
-      setInterval(() => {
+      const timer = setInterval(() => {
         brainStormTimer -= 1
+
         io.to(payload.roomID).emit('update_timer', {
           brainStormTimeLeft: brainStormTimer,
         })
         console.log(`[socket.io] ${brainStormTimer}s left in the brainstorm session for room ${payload.roomID}`)
+
+        if (brainStormTimer === 0) {
+          clearInterval(timer)
+          console.log('Timer done!')
+          io.to(payload.roomID).emit('collect_ideas')
+        }
       }, 1000)
     })
   })
