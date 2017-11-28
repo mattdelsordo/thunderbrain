@@ -51,7 +51,23 @@ body{
   margin-bottom: 10px;
 }
 
+.modal-content {
+  background-color: #41099B;
+  color: #F7F2FF;
+}
+.modal-content .btn {
+  /*background-color: #F7F2FF;*/
+  /*border-color: #F7F2FF;*/
+  /*color: #3c3744; !important;*/
+}
 
+.modal-header {
+  background-color: #3c3744;
+}
+
+input {
+  background-color: #F7F2FF;
+}
 
 
 
