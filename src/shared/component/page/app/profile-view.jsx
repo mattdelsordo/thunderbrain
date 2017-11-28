@@ -19,8 +19,10 @@ import CreateGroupModal from '../../create-room-modal'
 import { joinRoom, createRoom } from '../../../action/actions'
 import { LOGOUT, INROOM } from '../../../redirect'
 import AppNav from '../../../container/app-nav'
+import { STATIC_PATH } from '../../../config'
 
 const socket = io('http://localhost:8080')
+const defaultPath = `${STATIC_PATH}/res/profile_default.jpg`
 
 const mapStateToProps = (state) => {
   const user = state.hello.get('user')
@@ -47,7 +49,8 @@ const PVP = ({
   photoPath,
   pastCalls,
   redirect,
-}: Props) => {
+}: 
+Props) => {
   if (redirect === LOGOUT) {
     return (
       <Redirect to={SIGN_IN_ROUTE} />
@@ -71,20 +74,21 @@ const PVP = ({
       />
       <AppNav />
       <div className="row" width="100%">
-        <div className="col-xs-6" width="50%">
-          <ProfileViewInfo username={user} photoPath={photoPath} />
-        </div>
-        <div className="col-xs-6" width="50%">
-          <div className="row m-2">
-            <div className="col-lg-12">
-              <button type="button" role="button" data-toggle="modal" data-target=".create-group-modal" className="btn btn-primary mt-1"> Create Room </button>
-            </div>
-            <div className="col-lg-12">
-              <button type="button" role="button" data-toggle="modal" data-target=".join-group-modal" className="btn btn-primary mt-1"> Join Room </button>
-            </div>
-          </div>
+        <div className="col-sm-12 col" width="50%">
+            <h2 className="display-4">{user || 'NO PROFILE FOUND'}</h2>
         </div>
       </div>
+        <div className="row" width="100%">
+            <div className="col-md-6 col-lg-3">
+            <img src={photoPath || defaultPath} alt="Profile" height="200" width="200" />
+            </div>
+            <div className="col-md-3">
+                <button type="button" role="button" data-toggle="modal" data-target=".create-group-modal" className="btn btn-primary mt-1 big"> Create Room </button>
+            </div>
+            <div className="col-md-3">
+                <button type="button" role="button" data-toggle="modal" data-target=".join-group-modal" className="btn btn-primary mt-1 big"> Join Room </button>
+            </div>
+        </div>
       <div>
         <ul>
           {pastCalls.map((call, i) => (
