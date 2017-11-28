@@ -22,16 +22,27 @@ export function sessionMiddleware({ getState }) {
     if (socket) {
       // console.log('middleware works!', getState())
       // check action types
-      if (action.type === actions.JOIN_ROOM) {
-        socket.emit(IO_CLIENT_JOIN_ROOM, {
-          roomID: action.roomID,
-          username: action.username,
-        })
-      } else if (action.type === actions.CREATE_ROOM) {
-        socket.emit(IO_CLIENT_JOIN_ROOM, {
-          roomID: action.roomID,
-          username: action.hostName,
-        })
+      switch (action.type) {
+        default:
+          break
+        case actions.JOIN_ROOM:
+          socket.emit(IO_CLIENT_JOIN_ROOM, {
+            roomID: action.roomID,
+            username: action.username,
+          })
+          break
+        case actions.CREATE_ROOM:
+          socket.emit(IO_CLIENT_JOIN_ROOM, {
+            roomID: action.roomID,
+            username: action.hostName,
+          })
+          break
+        case actions.BEGIN_BRAINSTORM:
+          socket.emit('begin_brainstorm', {
+            brainstormTimeLimit: action.brainstormSeconds,
+            deliberationTimeLimit: action.deliberationSeconds,
+            roomID: action.roomID,
+          })
       }
     }
     return next(action)
@@ -62,6 +73,18 @@ export const setUpSocket = (store: Object) => {
           phase: state.hello.get('session').get('phase'),
         })
       }
+    }
+  })
+
+  socket.on('load_brainstorm_room', (payload) => {
+    // if host, broadcast state to the rest of the users
+    const state = store.getState()
+    if (state.hello.get('user').get('name') !== state.hello.get('session').get('host')) {
+      store.dispatch(actions.moveToBrainstorm(
+        payload.brainstormTimeLimit,
+        payload.deliberationTimeLimit,
+        payload.roomID,
+      ))
     }
   })
 

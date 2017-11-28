@@ -1,9 +1,9 @@
 // @flow
 
 import * as config from '../shared/config'
-import {IO_CLIENT_JOIN_ROOM} from "../shared/config";
-import {IO_USER_JOIN_ROOM} from "../shared/config";
-import {IO_USER_JOIN_RESPONSE} from "../shared/config";
+import { IO_CLIENT_JOIN_ROOM } from '../shared/config'
+import { IO_USER_JOIN_ROOM } from '../shared/config'
+import { IO_USER_JOIN_RESPONSE } from '../shared/config'
 
 const User = require('../../models/User')
 const bcrypt = require('bcrypt')
@@ -85,6 +85,15 @@ const setUpSocket = (io: Object) => {
         } else {
           console.log('[socket.io] A user that does not exist has tried to log in.')
         }
+      })
+    })
+
+    // send all members of a room to the brainstorming page
+    socket.on('begin_brainstorm', (payload) => {
+      console.log('[socket.io] host has begun the brainstorm session')
+      io.to(payload.roomID).emit('load_brainstorm_room', {
+        brainstormTimeLimit: payload.brainstormTimeLimit,
+        deliberationTimeLimit: payload.deliberationTimeLimit,
       })
     })
   })

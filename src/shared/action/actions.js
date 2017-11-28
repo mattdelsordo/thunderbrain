@@ -68,12 +68,23 @@ export const addIdea = text => ({
   text,
 })
 
-// Begins the room brainstorming phase
+// Begins the brainstorming phase
 export const BEGIN_BRAINSTORM = 'BEGIN_BRAINSTORMING'
-export const beginBrainstorm = (brainstormSeconds, deliberationSeconds) => ({
+export const beginBrainstorm = (brainstormSeconds, deliberationSeconds, roomID) => ({
   type: BEGIN_BRAINSTORM,
   brainstormSeconds,
   deliberationSeconds,
+  roomID,
+  phase: BRAINSTORM,
+})
+
+// Move to the brainstorming phase
+export const MOVE_TO_BRAINSTORM = 'MOVE_TO_BRAINSTORMING'
+export const moveToBrainstorm = (brainstormSeconds, deliberationSeconds, roomID) => ({
+  type: MOVE_TO_BRAINSTORM,
+  brainstormSeconds,
+  deliberationSeconds,
+  roomID,
   phase: BRAINSTORM,
 })
 
