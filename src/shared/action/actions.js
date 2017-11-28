@@ -103,8 +103,8 @@ export const voteIdea = (idea, user) => ({
   user,
 })
 
-export const SET_DELIB_TIME = 'SET_DELIBERATION_TIME'
-export const setDelibTime = newTime => ({
-  type: SET_DELIB_TIME,
+export const SET_BRAINSTORM_TIME = 'SET_BRAINSTORM_TIME'
+export const setBrainstormTime = newTime => ({
+  type: SET_BRAINSTORM_TIME,
   newTime,
 })

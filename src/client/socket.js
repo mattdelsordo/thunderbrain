@@ -88,6 +88,10 @@ export const setUpSocket = (store: Object) => {
     }
   })
 
+  socket.on('update_timer', (payload) => {
+    store.dispatch(actions.setBrainstormTime(payload.brainStormTimeLeft))
+  })
+
   socket.on(IO_USER_JOIN_RESPONSE, (payload) => {
     store.dispatch(actions.refreshUserJoined(payload))
   })

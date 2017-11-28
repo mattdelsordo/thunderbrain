@@ -90,11 +90,19 @@ const setUpSocket = (io: Object) => {
 
     // send all members of a room to the brainstorming page
     socket.on('begin_brainstorm', (payload) => {
-      console.log('[socket.io] host has begun the brainstorm session')
+      console.log('[socket.io] Host has begun the brainstorm session')
       io.to(payload.roomID).emit('load_brainstorm_room', {
         brainstormTimeLimit: payload.brainstormTimeLimit,
         deliberationTimeLimit: payload.deliberationTimeLimit,
       })
+      let brainStormTimer = Number(payload.brainstormTimeLimit)
+      setInterval(() => {
+        brainStormTimer -= 1
+        io.to(payload.roomID).emit('update_timer', {
+          brainStormTimeLeft: brainStormTimer,
+        })
+        console.log(`[socket.io] ${brainStormTimer}s left in the brainstorm session for room ${payload.roomID}`)
+      }, 1000)
     })
   })
 }
