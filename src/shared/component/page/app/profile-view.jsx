@@ -20,6 +20,7 @@ import { joinRoom, createRoom } from '../../../action/actions'
 import { LOGOUT, INROOM } from '../../../redirect'
 import AppNav from '../../../container/app-nav'
 import { STATIC_PATH } from '../../../config'
+import BigTitle from '../../big-title'
 
 const socket = io('http://localhost:8080')
 const defaultPath = `${STATIC_PATH}/res/profile_default.jpg`
@@ -49,7 +50,7 @@ const PVP = ({
   photoPath,
   pastCalls,
   redirect,
-}: 
+}:
 Props) => {
   if (redirect === LOGOUT) {
     return (
@@ -64,31 +65,33 @@ Props) => {
   const title = `${user}'s Profile`
 
   return (
-    <div className="container mt-4">
-      <Helmet
-        title={title}
-        meta={[
-          { name: 'description', content: title },
-          { property: 'og:title', content: title },
-        ]}
-      />
-      <AppNav />
+    <div>
+        <Helmet
+            title={title}
+            meta={[
+                { name: 'description', content: title },
+                { property: 'og:title', content: title },
+            ]}
+        />
+        <AppNav text="Profile" />
+        {/*<BigTitle alexkautz="Profile"/>*/}
+        <div className="container mt-4">
       <div className="row" width="100%">
         <div className="col-sm-12 col" width="50%">
             <h2 className="display-4">{user || 'NO PROFILE FOUND'}</h2>
         </div>
       </div>
-        <div className="row" width="100%">
-            <div className="col-md-6 col-lg-3">
-            <img src={photoPath || defaultPath} alt="Profile" height="200" width="200" />
-            </div>
-            <div className="col-md-3">
-                <button type="button" role="button" data-toggle="modal" data-target=".create-group-modal" className="btn btn-primary mt-1 big"> Create Room </button>
-            </div>
-            <div className="col-md-3">
-                <button type="button" role="button" data-toggle="modal" data-target=".join-group-modal" className="btn btn-primary mt-1 big"> Join Room </button>
-            </div>
+      <div className="row" width="100%">
+        <div className="col-md-6 col-lg-3">
+          <img src={photoPath || defaultPath} alt="Profile" height="200" width="200" />
         </div>
+        <div className="col-md-3">
+          <button type="button" role="button" data-toggle="modal" data-target=".create-group-modal" className="btn btn-primary mt-1 big"> Create Room </button>
+        </div>
+        <div className="col-md-3">
+          <button type="button" role="button" data-toggle="modal" data-target=".join-group-modal" className="btn btn-primary mt-1 big"> Join Room </button>
+        </div>
+      </div>
       <div>
         <ul>
           {pastCalls.map((call, i) => (
@@ -112,6 +115,7 @@ Props) => {
           dispatch(createRoom(newRoomID, user, topic))
         }}
       />
+    </div>
     </div>
   )
 }

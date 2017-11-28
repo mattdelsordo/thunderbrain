@@ -12,6 +12,7 @@ import SignInForm from '../../../container/sign-in-form'
 import Nav2 from '../../nav2'
 import { PROFILE_VIEW, REGISTER_ROUTE, GUEST_ROUTE } from '../../../routes'
 import AppNav from '../../../container/app-nav'
+import BigTitle from "../../big-title";
 
 const title = 'Sign In'
 
@@ -22,16 +23,17 @@ const mapStateToProps = state => ({
 const SIP = ({ notLoggedIn }: Props) => {
   if (notLoggedIn) {
     return (
+        <dev>
+          <Helmet
+              title={title}
+              meta={[
+                  { name: 'description', content: 'A page to sign in from' },
+                  { property: 'og:title', content: title },
+              ]}
+          />
+          <AppNav text="Sign in" />
+            {/*<BigTitle alexkautz="" />*/}
       <div className="container mt-4">
-        <Nav2 />
-        <Helmet
-          title={title}
-          meta={[
-            { name: 'description', content: 'A page to sign in from' },
-            { property: 'og:title', content: title },
-          ]}
-        />
-        <AppNav />
         <div className="row">
           <div className="col-12">
             <h1>{title}</h1>
@@ -42,6 +44,7 @@ const SIP = ({ notLoggedIn }: Props) => {
 
         </div>
       </div>
+        </dev>
     )
   }
 
