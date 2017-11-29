@@ -92,7 +92,11 @@ export const moveToBrainstorm = (brainstormSeconds, deliberationSeconds, roomID)
 export const BEGIN_DELIBERATIONS = 'BEGIN_DELIBERATIONS'
 export const beginDeliberations = allUserIdeas => ({
   type: BEGIN_DELIBERATIONS,
-  allUserIdeas,
+  ideas: allUserIdeas.map(text => ({
+    text,
+    points: [],
+    userDidVote: false,
+  })),
   phase: DELIBERATION,
 })
 

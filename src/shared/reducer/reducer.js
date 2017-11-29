@@ -96,11 +96,7 @@ const sessionReducer = (state, action) => {
     case BEGIN_DELIBERATIONS:
       return state.merge({
         phase: action.phase,
-        ideas: action.allUserIdeas.map(text => ({
-          text,
-          points: [],
-          userDidVote: false,
-        })),
+        ideas: action.ideas,
       })
     case RESET_VOTES:
       return state.set('ideas', state.get('ideas').map(idea => ({
