@@ -14,7 +14,7 @@ const formatSecondsAsTime = (seconds) => {
 
 // TODO: the clock needs to be made look pretty
 const Clock = ({ time }: Props) => (
-  <div>{formatSecondsAsTime(time)}</div>
+  <div className="add-center">{formatSecondsAsTime(time)}</div>
 )
 
 export default Clock

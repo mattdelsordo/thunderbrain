@@ -65,8 +65,8 @@ const BrainstormPhase = ({ brainstormSeconds, topic, redirect, phase, dispatch }
         <div className="row">
           <div className="col-sm-6 p-4">
             <div className="jumbotron mh-100">
-              <h3>Enter as many ideas as you can for the following question:</h3>
-              <h4>{topic}</h4>
+              <h4>Enter as many ideas as you can for the following topic:</h4>
+              <h2>{topic}</h2>
               <Countdown time={brainstormSeconds} />
             </div>
           </div>

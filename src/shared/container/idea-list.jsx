@@ -14,7 +14,7 @@ const IdeaList = ({ ideas }: Props) => {
   const ids = ideas || []
   return (
     <div>
-      <ul>
+      <ul className="list-group">
         {ids.map((idea, i) => (
           <li key={i} className="list-group-item">{idea.text}</li>
         ))}
