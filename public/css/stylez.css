@@ -1,3 +1,5 @@
+
+
 .storyboard_cell {
   display: block;
   width: 100%;
@@ -27,13 +29,13 @@ body{
 .btn {
   background-color: #3c3744;
   border-color: #3c3744;
-  color: #F7F2FF !important;
+  color: #F7F2FF;
 }
 
 .btn:hover {
   background-color: #783ED6;
   border-color:#783ED6 ;
-  color: #F7F2FF !important;
+  color: #F7F2FF;
 }
 
 .btn.big {
@@ -52,13 +54,14 @@ body{
 }
 
 .modal-content {
-  background-color: #41099B;
+  background-color: #783ED6;
+  /*background-color: #3c3744;*/
   color: #F7F2FF;
 }
-.modal-content .btn {
-  /*background-color: #F7F2FF;*/
-  /*border-color: #F7F2FF;*/
-  /*color: #3c3744; !important;*/
+.modal-content .btn:hover {
+  color: #3c3744; !important;
+  background-color: #F7F2FF; !important;
+  border-color: #F7F2FF;
 }
 
 .modal-header {
@@ -69,9 +72,13 @@ input {
   background-color: #F7F2FF;
 }
 
+button.close, button.close:hover {
+  color: #F7F2FF;
+}
 
-
-
+input[type=text]:required, input[type=password]:required {
+  box-shadow: none;
+}
 
 
 
