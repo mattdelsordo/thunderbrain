@@ -89,13 +89,12 @@ const DeliberationPage = ({
               <Clock time={deliberationSeconds} />
             </div>
             <div className="row">
-                {ideas.map((idea, i) => <VotingButton key={i} idea={idea} totalMembers={members.length} user={username} />)}
+              {ideas.map((idea, i) => <VotingButton key={i} idea={idea} totalMembers={members.length} user={username} />)}
             </div>
             <div className="row">
               <VideoChat roomID={roomID} />
             </div>
           </div>
-          <button onClick={() => { dispatch(setDelibTime(0)) }}>DEBUG END DELIBERATIONS</button>
         </div>
       )
     }

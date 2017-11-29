@@ -76,12 +76,6 @@ const BrainstormPhase = ({ brainstormSeconds, topic, redirect, phase, dispatch }
             <SubmitString placeholder="Your next great idea." buttonText="Add" action={addIdea} />
           </div>
         </div>
-
-        <button
-          onClick={() => { dispatch(beginDeliberations()) }}
-        >
-          DEBUG ONLY PLS COMMENT OUT
-        </button>
       </div>
     )
   }
