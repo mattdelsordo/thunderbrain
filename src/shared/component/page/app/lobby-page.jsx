@@ -21,7 +21,7 @@ import {
   RESULTS,
 } from '../../../phases'
 
- const socket = io('http://localhost:8080')
+const socket = io('http://localhost:8080')
 
 const mapStateToProps = (state) => {
   const user = state.hello.get('user')
@@ -76,9 +76,9 @@ const LobbyPage = ({
             { property: 'og:title', content: topic },
           ]}
         />
-        <AppNav />
+        <AppNav text="Lobby" />
         <div className="row">
-          <div className="col-sm-6 p-4">
+          <div className="col-md-6 p-4">
             <h2 className="m=10">Topic: {topic} </h2>
             <h3 className="m-10">Room ID: {roomID}</h3>
             <h4>Members:</h4>
@@ -93,7 +93,7 @@ const LobbyPage = ({
             <button className="btn btn-primary mt-1" onClick={() => { dispatch(leaveRoom()) }}>Leave</button>
           </div>
           {username === host &&
-            <div className="col-sm-6 p-4">
+            <div className="col-md-6 p-4">
               <form
                 className="form-group"
                 onSubmit={(e) => {

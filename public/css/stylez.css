@@ -76,11 +76,9 @@ button.close, button.close:hover {
   color: #F7F2FF;
 }
 
-input[type=text]:required, input[type=password]:required {
+input:required {
   box-shadow: none;
 }
-
-
 
 /* NAVBAR */
 .navbar-default {
