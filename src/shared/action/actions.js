@@ -90,8 +90,9 @@ export const moveToBrainstorm = (brainstormSeconds, deliberationSeconds, roomID)
 
 // Begins deliberations
 export const BEGIN_DELIBERATIONS = 'BEGIN_DELIBERATIONS'
-export const beginDeliberations = () => ({
+export const beginDeliberations = allUserIdeas => ({
   type: BEGIN_DELIBERATIONS,
+  allUserIdeas,
   phase: DELIBERATION,
 })
 

@@ -92,6 +92,23 @@ export const setUpSocket = (store: Object) => {
     store.dispatch(actions.setBrainstormTime(payload.brainStormTimeLeft))
   })
 
+  socket.on('collect_ideas', () => {
+    const state = store.getState()
+    const ideasToSend = state.hello.get('session').get('ideas')
+    const userName = state.hello.get('user').get('name')
+    const room = state.hello.get('session').get('roomID')
+    socket.emit('send_ideas', {
+      userIdeas: ideasToSend,
+      username: userName,
+      roomID: room,
+    })
+  })
+
+  socket.on('load_deliberation_room', (payload) => {
+    console.log('IDEAS: ', payload.ideasToRender)
+    store.dispatch(actions.beginDeliberations(payload.ideasToRender))
+  })
+
   socket.on(IO_USER_JOIN_RESPONSE, (payload) => {
     store.dispatch(actions.refreshUserJoined(payload))
   })

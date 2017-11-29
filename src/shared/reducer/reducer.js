@@ -5,20 +5,20 @@ import type { fromJS as Immut } from 'immutable'
 import io from 'socket.io-client'
 
 import {
-    // SAY_HELLO,
-    // SAY_HELLO_ASYNC_REQUEST,
-    // SAY_HELLO_ASYNC_SUCCESS,
-    // SAY_HELLO_ASYNC_FAILURE,
-    LOG_IN,
-    LOG_OUT,
-    CREATE_ROOM,
-    JOIN_ROOM,
-    ADD_IDEA,
-    LEAVE_ROOM,
-    BEGIN_BRAINSTORM,
-    BEGIN_DELIBERATIONS,
-    VOTE_IDEA,
-    UNVOTE_IDEA, SET_BRAINSTORM_TIME, ADD_MEMBER, REFRESH_USER_JOINED, MOVE_TO_BRAINSTORM,
+  // SAY_HELLO,
+  // SAY_HELLO_ASYNC_REQUEST,
+  // SAY_HELLO_ASYNC_SUCCESS,
+  // SAY_HELLO_ASYNC_FAILURE,
+  LOG_IN,
+  LOG_OUT,
+  CREATE_ROOM,
+  JOIN_ROOM,
+  ADD_IDEA,
+  LEAVE_ROOM,
+  BEGIN_BRAINSTORM,
+  BEGIN_DELIBERATIONS,
+  VOTE_IDEA,
+  UNVOTE_IDEA, SET_BRAINSTORM_TIME, ADD_MEMBER, REFRESH_USER_JOINED, MOVE_TO_BRAINSTORM,
 } from '../action/actions'
 
 const initialState = Immutable.fromJS({
@@ -93,7 +93,10 @@ const sessionReducer = (state, action) => {
         phase: action.phase,
       })
     case BEGIN_DELIBERATIONS:
-      return state.set('phase', action.phase)
+      return state.merge({
+        phase: action.phase,
+        ideas: action.allUserIdeas,
+      })
     case VOTE_IDEA:
       return state.set('ideas', state.get('ideas').map((idea) => {
         if (idea.text === action.idea) {
