@@ -96,6 +96,12 @@ export const beginDeliberations = allUserIdeas => ({
   phase: DELIBERATION,
 })
 
+// resets user votes on ideas
+export const RESET_VOTES = 'RESET_VOTES'
+export const resetVotes = () => ({
+  type: RESET_VOTES,
+})
+
 // Idea voting actions
 export const VOTE_IDEA = 'VOTE_IDEA'
 export const voteIdea = (idea, user) => ({

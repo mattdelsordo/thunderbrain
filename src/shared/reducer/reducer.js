@@ -19,6 +19,7 @@ import {
   BEGIN_DELIBERATIONS,
   VOTE_IDEA,
   UNVOTE_IDEA, SET_BRAINSTORM_TIME, SET_DELIBERATION_TIME, ADD_MEMBER, REFRESH_USER_JOINED, MOVE_TO_BRAINSTORM,
+  RESET_VOTES,
 } from '../action/actions'
 
 const initialState = Immutable.fromJS({
@@ -95,8 +96,18 @@ const sessionReducer = (state, action) => {
     case BEGIN_DELIBERATIONS:
       return state.merge({
         phase: action.phase,
-        ideas: action.allUserIdeas,
+        ideas: action.allUserIdeas.map(text => ({
+          text,
+          points: [],
+          userDidVote: false,
+        })),
       })
+    case RESET_VOTES:
+      return state.set('ideas', state.get('ideas').map(idea => ({
+        text: idea.text,
+        points: [],
+        userDidVote: idea.userDidVote,
+      })))
     case VOTE_IDEA:
       return state.set('ideas', state.get('ideas').map((idea) => {
         if (idea.text === action.idea) {

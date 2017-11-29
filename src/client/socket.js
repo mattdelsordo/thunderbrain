@@ -91,10 +91,11 @@ export const setUpSocket = (store: Object) => {
   socket.on('load_deliberation_room', (payload) => {
     console.log('IDEAS: ', payload.ideasToRender)
     const state = store.getState()
+    // store.dispatch(actions.resetVotes())
+    // console.log(state.hello.get('session').get('ideas').points)
     store.dispatch(actions.beginDeliberations(payload.ideasToRender))
     if (state.hello.get('user').get('name') === state.hello.get('session').get('host')) {
       const deliberationTime = state.hello.get('session').get('deliberationSeconds')
-      console.log('THIS IS THE DELIBERATION TIME: ', deliberationTime)
       const room = state.hello.get('session').get('roomID')
       socket.emit('begin_deliberations', {
         deliberationTimeLeft: deliberationTime,
