@@ -38,6 +38,7 @@ const mapStateToProps = (state) => {
       redirect: NO_SESSION,
     }
   }
+
   return {
     brainstormSeconds: session.get('brainstormSeconds'),
     topic: session.get('topic'),

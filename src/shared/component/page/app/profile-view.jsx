@@ -13,6 +13,7 @@ import ProfileViewInfo from '../../profile-view-info'
 import {
   LOBBY_ROUTE,
   SIGN_IN_ROUTE,
+  GUEST_ROUTE,
 } from '../../../routes'
 import JoinGroupModal from '../../join-group-modal'
 import CreateGroupModal from '../../create-room-modal'
@@ -22,7 +23,7 @@ import AppNav from '../../../container/app-nav'
 import { STATIC_PATH } from '../../../config'
 import BigTitle from '../../big-title'
 
-const socket = io('http://localhost:8080')
+// const socket = io('http://localhost:8080')
 const defaultPath = `${STATIC_PATH}/res/profile_default.jpg`
 
 const mapStateToProps = (state) => {
@@ -54,7 +55,7 @@ const PVP = ({
 Props) => {
   if (redirect === LOGOUT) {
     return (
-      <Redirect to={SIGN_IN_ROUTE} />
+      <Redirect to={GUEST_ROUTE} />
     )
   } else if (redirect === INROOM) {
     return (
@@ -102,17 +103,17 @@ Props) => {
       <JoinGroupModal
         handleClick={(roomID) => {
           // emitting socket event to join the host to the socket for the new room
-          socket.emit('join_room', roomID, user)
+          // socket.emit('join_room', roomID, user)
           $('.join-group-modal').modal('hide')
-          dispatch(joinRoom(roomID, '???', '???', '???', []))
+          dispatch(joinRoom(roomID.toLowerCase(), user))
         }}
       />
       <CreateGroupModal
         handleClick={(topic) => {
           const newRoomID = randomBytes(3).toString('hex')
-          socket.emit('join_room', newRoomID, user)
+          // socket.emit('join_room', newRoomID, user)
           $('.create-group-modal').modal('hide')
-          dispatch(createRoom(newRoomID, user, topic))
+          dispatch(createRoom(newRoomID.toLowerCase(), user, topic))
         }}
       />
     </div>

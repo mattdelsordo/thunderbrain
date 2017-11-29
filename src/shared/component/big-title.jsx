@@ -7,7 +7,7 @@ type Props = {
     alexkautz: string,
 }
 
-const BigTitle = ({ alexkautz }) => (
+const BigTitle = ({ alexkautz }: Props) => (
   <div className="jumbotron jumbotron-fluid">
     {/* <div className="container"> */}
     <h1 className="display-4">{alexkautz}</h1>

@@ -55,10 +55,10 @@ const LobbyPage = ({
   let brainstorm
   let deliberation
 
-  socket.on('new_member', (newMember) => {
-    console.log(`[socket.io] ${newMember} joined the lobby`)
-    // members.add(newMember)
-  })
+  // socket.on('new_member', (newMember) => {
+  //   console.log(`[socket.io] ${newMember} joined the lobby`)
+  //   // members.add(newMember)
+  // })
 
   if (redirect === NO_USER) return (<Redirect to={SIGN_IN_ROUTE} />)
   else if (redirect === NO_SESSION) return (<Redirect to={PROFILE_VIEW} />)
@@ -67,7 +67,6 @@ const LobbyPage = ({
   else if (phase === RESULTS) return (<Redirect to={RESULTS_ROUTE} />)
   else if (phase === LOBBY) {
     return (
-
       <div className="container mt-4">
         <Helmet
           title={`Lobby | ${topic}`}
@@ -80,7 +79,7 @@ const LobbyPage = ({
         <div className="row">
           <div className="col-md-6 p-4">
             <h2 className="m=10">Topic: {topic} </h2>
-            <h3 className="m-10">Room ID: {roomID}</h3>
+            <h3 className="m-10">Room ID: {roomID.toUpperCase()}</h3>
             <h4>Members:</h4>
             <ul className="list-group">
               {members.map((member) => {
@@ -102,7 +101,7 @@ const LobbyPage = ({
                   if (!bsTrimmed || !dTrimmed) {
                     return
                   }
-                  dispatch(beginBrainstorm(Number(bsTrimmed), Number(dTrimmed)))
+                  dispatch(beginBrainstorm(Number(bsTrimmed), Number(dTrimmed), roomID))
                 }}
               >
                 <div className="input-group mt-1">

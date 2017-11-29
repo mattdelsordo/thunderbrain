@@ -1,7 +1,7 @@
 import React from 'react'
 import { STATIC_PATH } from '../config'
 
-const defaultPath = `${STATIC_PATH}/res/profile_default.jpg`
+const defaultPath = `${STATIC_PATH}/res/default-user.png`
 
 const ProfileViewInfo = ({username, photoPath} : Props) =>
   (

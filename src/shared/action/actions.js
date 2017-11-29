@@ -33,13 +33,26 @@ export const createRoom = (roomID, hostName, topic) => ({
 
 // Join a room
 export const JOIN_ROOM = 'JOIN_ROOM'
-export const joinRoom = (roomID, hostName, topic, members) => ({
+export const joinRoom = (roomID, username) => ({
   type: JOIN_ROOM,
+  username,
   roomID,
-  hostName,
-  topic,
-  members,
   phase: LOBBY,
+})
+
+export const ADD_MEMBER = 'ADD_MEMBER'
+export const addMember = member => ({
+  type: ADD_MEMBER,
+  member,
+})
+
+export const REFRESH_USER_JOINED = 'REFRESH_USER_JOINED'
+export const refreshUserJoined = payload => ({
+  type: REFRESH_USER_JOINED,
+  host: payload.host,
+  members: payload.members,
+  topic: payload.topic,
+  phase: payload.phase,
 })
 
 // leave your room
@@ -55,19 +68,31 @@ export const addIdea = text => ({
   text,
 })
 
-// Begins the room brainstorming phase
+// Begins the brainstorming phase
 export const BEGIN_BRAINSTORM = 'BEGIN_BRAINSTORMING'
-export const beginBrainstorm = (brainstormSeconds, deliberationSeconds) => ({
+export const beginBrainstorm = (brainstormSeconds, deliberationSeconds, roomID) => ({
   type: BEGIN_BRAINSTORM,
   brainstormSeconds,
   deliberationSeconds,
+  roomID,
+  phase: BRAINSTORM,
+})
+
+// Move to the brainstorming phase
+export const MOVE_TO_BRAINSTORM = 'MOVE_TO_BRAINSTORMING'
+export const moveToBrainstorm = (brainstormSeconds, deliberationSeconds, roomID) => ({
+  type: MOVE_TO_BRAINSTORM,
+  brainstormSeconds,
+  deliberationSeconds,
+  roomID,
   phase: BRAINSTORM,
 })
 
 // Begins deliberations
 export const BEGIN_DELIBERATIONS = 'BEGIN_DELIBERATIONS'
-export const beginDeliberations = () => ({
+export const beginDeliberations = allUserIdeas => ({
   type: BEGIN_DELIBERATIONS,
+  allUserIdeas,
   phase: DELIBERATION,
 })
 
@@ -79,8 +104,14 @@ export const voteIdea = (idea, user) => ({
   user,
 })
 
-export const SET_DELIB_TIME = 'SET_DELIBERATION_TIME'
-export const setDelibTime = newTime => ({
-  type: SET_DELIB_TIME,
+export const SET_BRAINSTORM_TIME = 'SET_BRAINSTORM_TIME'
+export const setBrainstormTime = newTime => ({
+  type: SET_BRAINSTORM_TIME,
+  newTime,
+})
+
+export const SET_DELIBERATION_TIME = 'SET_DELIBERATION_TIME'
+export const setDeliberationTime = newTime => ({
+  type: SET_DELIBERATION_TIME,
   newTime,
 })
