@@ -7,23 +7,42 @@ import { voteIdea } from '../action/actions'
 
 const VotingButton = ({
   dispatch, idea, totalMembers, user,
-}: Props) =>
-  // const threshold = (totalMembers / 2) || 0
+}: Props) => {
+    const test = {
+        text: "hi",
+        points: [],
+    }
+    console.log(`Test ${test}`)
+    console.log(`idea: ${idea}`)
+    console.log(`idea points: ${idea.points}`)
+  const threshold = (totalMembers / 2) || 0
   // console.log(`${idea.points.length}/${threshold}`)
   // TODO: theme these dynamically in a way that actually makes sense
-  // if (idea.points.length > threshold) {
-  (
+  if (idea.points.length > threshold) {
+    return (
+      <div>
+        <button
+          onClick={() => {
+                    dispatch(voteIdea(idea, user))
+                }}
+          className="btn btn-primary m-4"
+        >{`${idea} +${idea.points.length}`}
+        </button>
+      </div>
+    )
+  }
+  return (
     <div>
-      <button onClick={() => { dispatch(voteIdea(idea, user)) }} className="btn btn-primary m-4">{`${idea}`}</button>
+      <button
+        onClick={() => {
+                    dispatch(voteIdea(idea, user))
+                }}
+        className="btn btn-secondary m-4"
+      >{`${idea} +${idea.points.length}`}
+      </button>
     </div>
-  //   )
-  // } else {
-  //   return (
-  //     <div>
-  //       <button onClick={() => { dispatch(voteIdea(idea.text, user)) }} className="btn btn-secondary m-4">{`${idea.text} +${idea.points.length}`}</button>
-  //     </div>
   )
-  // }
+}
 
 
 export default connect()(VotingButton)
