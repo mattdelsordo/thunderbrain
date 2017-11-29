@@ -86,15 +86,14 @@ class VideoChat extends React.Component {
     console.log(`Joined as '${this.state.identity}'`)
 
     // Attach LocalParticipant's Tracks, if not already done
-    const previewContainer = document.getElementById('local-media')
+    const previewContainer = document.getElementById('media')
     if (!previewContainer.querySelector('video')) {
       attachParticipantTracks(room.localParticipant, previewContainer)
     }
 
     // Attach the Tracks of the Room's Participants.
     room.participants.forEach((participant) => {
-      this.log(`Already in Room: '${participant.identity}'`)
-      const steviewContainer = document.getElementById('remote-media')
+      const steviewContainer = document.getElementById('media')
       attachParticipantTracks(participant, steviewContainer)
     })
 
@@ -106,7 +105,7 @@ class VideoChat extends React.Component {
     // When a Participant adds a Track, attach it to the DOM.
     room.on('trackAdded', (track, participant) => {
       console.log(`${participant.identity} added track: ${track.kind}`)
-      const steviewContainer = document.getElementById('remote-media')
+      const steviewContainer = document.getElementById('media')
       attachTracks([track], steviewContainer)
     })
 
@@ -146,13 +145,12 @@ class VideoChat extends React.Component {
     localTracksPromise.then((tracks) => {
       window.previewTracks = tracks
       this.setState({ previewTracks: tracks })
-      const previewContainer = document.getElementById('local-media')
+      const previewContainer = document.getElementById('media')
       if (!previewContainer.querySelector('video')) {
         attachTracks(tracks, previewContainer)
       }
     }, (error) => {
       console.error('Unable to access local media', error)
-      this.log('Unable to access Camera and Microphone')
     })
   }
 
@@ -173,14 +171,9 @@ class VideoChat extends React.Component {
     }
 
     return (
-      <div className="row">
+      <div className="container">
         Room: {this.state.roomID}
-        <div className="col-sm-12">
-          <div id="local-media" />
-        </div>
-        <div className="col">
-          <div id="remote-media" />
-        </div>
+        <div id="media" />
       </div>
     )
   }
