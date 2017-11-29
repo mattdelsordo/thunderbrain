@@ -102,7 +102,7 @@ const LobbyPage = ({
                   if (!bsTrimmed || !dTrimmed) {
                     return
                   }
-                  dispatch(beginBrainstorm(Number(bsTrimmed), Number(dTrimmed)))
+                  dispatch(beginBrainstorm(Number(bsTrimmed), Number(dTrimmed), roomID))
                 }}
               >
                 <div className="input-group mt-1">

@@ -18,7 +18,7 @@ import {
   BEGIN_BRAINSTORM,
   BEGIN_DELIBERATIONS,
   VOTE_IDEA,
-  UNVOTE_IDEA, SET_DELIB_TIME, ADD_MEMBER, REFRESH_USER_JOINED,
+  UNVOTE_IDEA, SET_BRAINSTORM_TIME, SET_DELIBERATION_TIME, ADD_MEMBER, REFRESH_USER_JOINED, MOVE_TO_BRAINSTORM,
 } from '../action/actions'
 
 const initialState = Immutable.fromJS({
@@ -86,8 +86,17 @@ const sessionReducer = (state, action) => {
         deliberationSeconds: action.deliberationSeconds,
         phase: action.phase,
       })
+    case MOVE_TO_BRAINSTORM:
+      return state.merge({
+        brainstormSeconds: action.brainstormSeconds,
+        deliberationSeconds: action.deliberationSeconds,
+        phase: action.phase,
+      })
     case BEGIN_DELIBERATIONS:
-      return state.set('phase', action.phase)
+      return state.merge({
+        phase: action.phase,
+        ideas: action.allUserIdeas,
+      })
     case VOTE_IDEA:
       return state.set('ideas', state.get('ideas').map((idea) => {
         if (idea.text === action.idea) {
@@ -102,16 +111,16 @@ const sessionReducer = (state, action) => {
           } else if (idea.userDidVote === true) {
             return {
               text: idea.text,
-              points: idea.points.filter((user) => {
-                return user !== action.user
-              }),
+              points: idea.points.filter(user => user !== action.user),
               userDidVote: false,
             }
           }
         }
         return idea
       }))
-    case SET_DELIB_TIME:
+    case SET_BRAINSTORM_TIME:
+      return state.set('brainstormSeconds', action.newTime)
+    case SET_DELIBERATION_TIME:
       return state.set('deliberationSeconds', action.newTime)
     case LOG_OUT:
       return null
@@ -132,11 +141,9 @@ const sessionReducer = (state, action) => {
   }
 }
 
-const AppReducer = (state: Immut = initialState, action: { type: string, payload: any }) => {
-  return Immutable.fromJS({
-    user: userReducer(state.get('user'), action),
-    session: sessionReducer(state.get('session'), action),
-  })
-}
+const AppReducer = (state: Immut = initialState, action: { type: string, payload: any }) => Immutable.fromJS({
+  user: userReducer(state.get('user'), action),
+  session: sessionReducer(state.get('session'), action),
+})
 
 export default AppReducer
