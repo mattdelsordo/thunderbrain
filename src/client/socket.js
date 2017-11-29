@@ -88,8 +88,27 @@ export const setUpSocket = (store: Object) => {
     }
   })
 
-  socket.on('update_timer', (payload) => {
+  socket.on('load_deliberation_room', (payload) => {
+    console.log('IDEAS: ', payload.ideasToRender)
+    const state = store.getState()
+    store.dispatch(actions.beginDeliberations(payload.ideasToRender))
+    if (state.hello.get('user').get('name') === state.hello.get('session').get('host')) {
+      const deliberationTime = state.hello.get('session').get('deliberationSeconds')
+      console.log('THIS IS THE DELIBERATION TIME: ', deliberationTime)
+      const room = state.hello.get('session').get('roomID')
+      socket.emit('begin_deliberations', {
+        deliberationTimeLeft: deliberationTime,
+        roomID: room,
+      })
+    }
+  })
+
+  socket.on('update_brainstorm_timer', (payload) => {
     store.dispatch(actions.setBrainstormTime(payload.brainStormTimeLeft))
+  })
+
+  socket.on('update_deliberation_timer', (payload) => {
+    store.dispatch(actions.setDeliberationTime(payload.deliberationTimeLeft))
   })
 
   socket.on('collect_ideas', () => {
@@ -102,11 +121,6 @@ export const setUpSocket = (store: Object) => {
       username: userName,
       roomID: room,
     })
-  })
-
-  socket.on('load_deliberation_room', (payload) => {
-    console.log('IDEAS: ', payload.ideasToRender)
-    store.dispatch(actions.beginDeliberations(payload.ideasToRender))
   })
 
   socket.on(IO_USER_JOIN_RESPONSE, (payload) => {

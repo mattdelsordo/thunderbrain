@@ -102,18 +102,37 @@ const setUpSocket = (io: Object) => {
         deliberationTimeLimit: payload.deliberationTimeLimit,
       })
       let brainStormTimer = Number(payload.brainstormTimeLimit)
-      const timer = setInterval(() => {
+      const brainTimer = setInterval(() => {
         brainStormTimer -= 1
 
-        io.to(payload.roomID).emit('update_timer', {
+        io.to(payload.roomID).emit('update_brainstorm_timer', {
           brainStormTimeLeft: brainStormTimer,
         })
         console.log(`[socket.io] ${brainStormTimer}s left in the brainstorm session for room ${payload.roomID}`)
 
         if (brainStormTimer === 0) {
-          clearInterval(timer)
+          clearInterval(brainTimer)
           console.log('Timer done!')
           io.to(payload.roomID).emit('collect_ideas')
+        }
+      }, 1000)
+    })
+
+    // sets up the server work for the deliberations page server-end socket
+    socket.on('begin_deliberations', (payload) => {
+      console.log('[socket.io] Host has begun the deliberation session')
+      let deliberationTimer = Number(payload.deliberationTimeLeft)
+      const delibTimer = setInterval(() => {
+        deliberationTimer -= 1
+
+        io.to(payload.roomID).emit('update_deliberation_timer', {
+          deliberationTimeLeft: deliberationTimer,
+        })
+        console.log(`[socket.io] ${deliberationTimer}s left in the deliberation session for room ${payload.roomID}`)
+
+        if (deliberationTimer === 0) {
+          clearInterval(delibTimer)
+          console.log('Timer done!')
         }
       }, 1000)
     })

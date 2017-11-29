@@ -109,3 +109,9 @@ export const setBrainstormTime = newTime => ({
   type: SET_BRAINSTORM_TIME,
   newTime,
 })
+
+export const SET_DELIBERATION_TIME = 'SET_DELIBERATION_TIME'
+export const setDeliberationTime = newTime => ({
+  type: SET_DELIBERATION_TIME,
+  newTime,
+})
