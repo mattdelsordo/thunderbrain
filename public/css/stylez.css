@@ -89,13 +89,26 @@ input[type=number] {
   margin-right: 0;
 }
 
-.alex {
+.add-right {
   height: 36px;
   line-height: 36px;
   text-align: center;
   background-color: #F7F2FF;
   color: #3c3744;
   border-radius: 0px 5px 5px 0px;
+  /*border-color: #1d1e1f;*/
+  margin-top: 11px;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-left: 0;
+}
+.add-left {
+  height: 36px;
+  line-height: 36px;
+  text-align: center;
+  background-color: #F7F2FF;
+  color: #3c3744;
+  border-radius: 5px 0px 0px 5px;
   /*border-color: #1d1e1f;*/
   margin-top: 11px;
   padding-left: 15px;

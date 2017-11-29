@@ -115,7 +115,7 @@ const LobbyPage = ({
                       brainstorm = node
                     }}
                   />
-                  <span className="alex">seconds</span>
+                  <span className="add-right">seconds</span>
                 </div>
                 <div className="input-group mt-1">
                   <input
@@ -127,7 +127,7 @@ const LobbyPage = ({
                       deliberation = node
                     }}
                   />
-                  <span className="alex">seconds</span>
+                  <span className="add-right">seconds</span>
                 </div>
                 <button
                   className="btn btn-primary"
