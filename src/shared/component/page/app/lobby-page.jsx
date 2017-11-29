@@ -93,7 +93,6 @@ const LobbyPage = ({
             <button className="btn btn-primary mt-1" onClick={() => { dispatch(leaveRoom()) }}>Leave</button>
           </div>
           {username === host &&
-            <div className="col-md-6 p-4">
               <form
                 className="form-group"
                 onSubmit={(e) => {
@@ -116,7 +115,7 @@ const LobbyPage = ({
                       brainstorm = node
                     }}
                   />
-                  <span className="input-group-addon">seconds</span>
+                  <span className="alex">seconds</span>
                 </div>
                 <div className="input-group mt-1">
                   <input
@@ -128,7 +127,7 @@ const LobbyPage = ({
                       deliberation = node
                     }}
                   />
-                  <span className="input-group-addon">seconds</span>
+                  <span className="alex">seconds</span>
                 </div>
                 <button
                   className="btn btn-primary"
@@ -137,7 +136,6 @@ const LobbyPage = ({
                   Begin Session
                 </button>
               </form>
-            </div>
             }
         </div>
       </div>
