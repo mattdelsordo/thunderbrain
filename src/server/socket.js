@@ -14,6 +14,28 @@ const saltRounds = 10
 const rooms = {}
 const userToRoom = {}
 
+/* eslint-disable no-param-reassign */
+function shuffle(array) {
+  let currentIndex = array.length,
+    temporaryValue,
+    randomIndex
+
+    // While there remain elements to shuffle...
+  while (currentIndex !== 0) {
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex)
+    currentIndex -= 1
+
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex]
+    array[currentIndex] = array[randomIndex]
+    array[randomIndex] = temporaryValue
+  }
+
+  return array
+}
+/* eslint-enable no-param-reassign */
+
 /* eslint-disable no-console */
 const setUpSocket = (io: Object) => {
   // when client connects get access to socket object
@@ -171,6 +193,7 @@ const setUpSocket = (io: Object) => {
       console.log(`[socket.io] All ideas so far: ${rooms[userToRoom[socket.id]].ideas} (${rooms[userToRoom[socket.id]].ideaShipmentCounter}/${rooms[userToRoom[socket.id]].userCount})`)
       if (rooms[userToRoom[socket.id]].ideaShipmentCounter === rooms[userToRoom[socket.id]].userCount) {
         console.log(`[socket.io] All ideas have been collected: ${rooms[userToRoom[socket.id]].ideas}`)
+        rooms[userToRoom[socket.id]].ideas = shuffle(rooms[userToRoom[socket.id]].ideas)
         io.to(payload.roomID).emit('load_deliberation_room', {
           ideasToRender: rooms[userToRoom[socket.id]].ideas,
         })
