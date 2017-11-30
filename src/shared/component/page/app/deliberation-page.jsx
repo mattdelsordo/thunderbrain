@@ -126,10 +126,10 @@ const DeliberationPage = ({
           <div className="row">
             <ol className="list-group">
               {ideas.sort((a, b) => {
-                if (a.points > b.points) return -1
-                else if (a.points < b.points) return 1
+                if (a.get('points').size > b.get('points').size) return -1
+                else if (a.get('points').size < b.get('points').size) return 1
                 return 0
-              }).map((idea, i) => (<li key={i} className="list-group-item">{idea.get('text')}</li>))}
+              }).map((idea, i) => (<li key={i} className="list-group-item">{`${idea.get('text')} +${idea.get('points').size}`}</li>))}
             </ol>
             <button onClick={() => dispatch(leaveRoom())} className="btn btn-primary m-3">Exit Call</button>
           </div>
