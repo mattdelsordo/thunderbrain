@@ -183,6 +183,13 @@ const setUpSocket = (io: Object) => {
         user: payload.userVoted,
       })
     })
+
+    socket.on('add_to_deliberation_timer', (payload) => {
+      const extraTime = 30
+      io.in(payload.roomID).emit('update_deliberation_timer', {
+        deliberationTimeLeft: extraTime,
+      })
+    })
   })
 }
 /* eslint-enable no-console */

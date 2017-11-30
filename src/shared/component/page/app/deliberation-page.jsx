@@ -23,7 +23,7 @@ import {
 } from '../../../phases'
 import { NO_SESSION, NO_USER } from '../../../redirect'
 import VotingButton from '../../../container/voting-button'
-import { leaveRoom, setDelibTime } from '../../../action/actions'
+import {addDeliberationTime, leaveRoom, setDeliberationTime, setDelibTime} from '../../../action/actions'
 
 const mapStateToProps = (state) => {
   const user = state.hello.get('user')
@@ -118,7 +118,7 @@ const DeliberationPage = ({
             {username === host &&
             <button
               className="btn btn-primary"
-              onClick={() => { dispatch(setDelibTime(30)) }}
+              onClick={() => { dispatch(addDeliberationTime(roomID)) }}
             >
               30 More Seconds?
             </button>}

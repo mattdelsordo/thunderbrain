@@ -45,7 +45,10 @@ export function sessionMiddleware({ getState }) {
             roomID: action.roomID,
           })
           break
-
+        case actions.ADD_DELIBERATION_TIME:
+          socket.emit('add_to_deliberation_timer', {
+            roomID: action.roomID,
+          })
         case actions.VOTE_IDEA:
           socket.emit('vote_made', {
             ideaVoted: action.idea,

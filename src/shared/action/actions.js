@@ -137,3 +137,9 @@ export const setDeliberationTime = newTime => ({
   type: SET_DELIBERATION_TIME,
   newTime,
 })
+
+export const ADD_DELIBERATION_TIME = 'ADD_DELIBERATION_TIME'
+export const addDeliberationTime = roomID => ({
+  type: ADD_DELIBERATION_TIME,
+  roomID,
+})
