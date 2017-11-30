@@ -185,10 +185,19 @@ const setUpSocket = (io: Object) => {
     })
 
     socket.on('add_to_deliberation_timer', (payload) => {
-      const extraTime = 30
-      io.in(payload.roomID).emit('update_deliberation_timer', {
-        deliberationTimeLeft: extraTime,
-      })
+      let extraTime = 30
+      const extraDelibTimer = setInterval(() => {
+        extraTime -= 1
+
+        io.in(payload.roomID).emit('update_deliberation_timer', {
+          deliberationTimeLeft: extraTime,
+        })
+
+        if (extraTime === 0) {
+          clearInterval(extraDelibTimer)
+          console.log('Timer done!')
+        }
+      }, 1000)
     })
   })
 }
