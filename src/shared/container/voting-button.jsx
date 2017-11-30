@@ -24,6 +24,7 @@ const VotingButton = ({
       </div>
     )
   }
+
   return (
     <div>
       <button
