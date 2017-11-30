@@ -52,7 +52,7 @@ export function sessionMiddleware({ getState }) {
 /* eslint-disable no-console */
 // eslint-disable-next-line no-unused-vars
 export const setUpSocket = (store: Object) => {
-  socket = io('http://localhost:8080')
+  socket = io('/')
 
   socket.on(IO_USER_JOIN_ROOM, (payload) => {
     console.log(`${payload.username} joined your room.`)
