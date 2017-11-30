@@ -117,7 +117,7 @@ const DeliberationPage = ({
             <Clock time={deliberationSeconds} />
             {username === host &&
             <button
-              className="btn btn-primary"
+              className="btn btn-primary m-3"
               onClick={() => { dispatch(addDeliberationTime(roomID)) }}
             >
               30 More Seconds?
