@@ -106,21 +106,21 @@ const sessionReducer = (state, action) => {
       })))
     case VOTE_IDEA:
       return state.set('ideas', state.get('ideas').map((idea) => {
-        if (idea.text === action.idea) {
+        if (idea.get('text') === action.idea) {
           // add point to idea
-          if (idea.userDidVote === false) {
-            return {
-              text: idea.text,
-              points: idea.points.concat([action.user]),
+          if (idea.get('userDidVote') === false) {
+            return Immutable.fromJS({
+              text: idea.get('text'),
+              points: idea.get('points').push(action.user),
               userDidVote: true,
-            }
+            })
           // remove point from idea
-          } else if (idea.userDidVote === true) {
-            return {
-              text: idea.text,
-              points: idea.points.filter(user => user !== action.user),
+          } else if (idea.get('userDidVote') === true) {
+            return Immutable.fromJS({
+              text: idea.get('text'),
+              points: idea.get('points').filter(user => user !== action.user),
               userDidVote: false,
-            }
+            })
           }
         }
         return idea

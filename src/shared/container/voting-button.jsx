@@ -8,9 +8,6 @@ import { voteIdea } from '../action/actions'
 const VotingButton = ({
   dispatch, idea, totalMembers, user,
 }: Props) => {
-  console.log(`idea: ${idea.get('text')}`)
-  console.log(idea.get('points'))
-  console.log(`user: ${user}`)
   const threshold = (totalMembers / 2) || 0
   // console.log(`${idea.points.length}/${threshold}`)
   // TODO: theme these dynamically in a way that actually makes sense

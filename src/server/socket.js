@@ -5,6 +5,7 @@ import { IO_CLIENT_JOIN_ROOM } from '../shared/config'
 import { IO_USER_JOIN_ROOM } from '../shared/config'
 import { IO_USER_JOIN_RESPONSE } from '../shared/config'
 
+
 const User = require('../../models/User')
 const bcrypt = require('bcrypt')
 
@@ -108,7 +109,7 @@ const setUpSocket = (io: Object) => {
         io.to(payload.roomID).emit('update_brainstorm_timer', {
           brainStormTimeLeft: brainStormTimer,
         })
-        console.log(`[socket.io] ${brainStormTimer}s left in the brainstorm session for room ${payload.roomID}`)
+        // console.log(`[socket.io] ${brainStormTimer}s left in the brainstorm session for room ${payload.roomID}`)
 
         if (brainStormTimer === 0) {
           clearInterval(brainTimer)
@@ -128,7 +129,7 @@ const setUpSocket = (io: Object) => {
         io.to(payload.roomID).emit('update_deliberation_timer', {
           deliberationTimeLeft: deliberationTimer,
         })
-        console.log(`[socket.io] ${deliberationTimer}s left in the deliberation session for room ${payload.roomID}`)
+        // console.log(`[socket.io] ${deliberationTimer}s left in the deliberation session for room ${payload.roomID}`)
 
         if (deliberationTimer === 0) {
           clearInterval(delibTimer)
