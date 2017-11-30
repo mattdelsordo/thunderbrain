@@ -11,9 +11,8 @@ const bcrypt = require('bcrypt')
 
 const saltRounds = 10
 
-let allIdeas = []
-let numberOfUsers = 0
-let ideaShipmentCounter = 0
+const rooms = {}
+const userToRoom = {}
 
 /* eslint-disable no-console */
 const setUpSocket = (io: Object) => {
@@ -31,18 +30,25 @@ const setUpSocket = (io: Object) => {
     //   socket.emit(IO_SERVER_HELLO, 'Hello you!')
     // })
 
-    socket.on(IO_DISCONNECT, () => {
-      numberOfUsers -= 1
-    })
-
     socket.on(IO_CLIENT_JOIN_ROOM, (payload) => {
       socket.join(payload.roomID)
       console.log(`${payload.username} has connected to room ${payload.roomID}`)
-      numberOfUsers += 1
       io.to(payload.roomID).emit(IO_USER_JOIN_ROOM, {
         username: payload.username,
         socketID: socket.id,
       })
+
+      userToRoom[socket.id] = payload.roomID
+
+      if (payload.roomID in rooms) {
+        rooms[payload.roomID].userCount += 1
+      } else {
+        rooms[payload.roomID] = {
+          ideas: [],
+          userCount: 1,
+          ideaShipmentCounter: 0,
+        }
+      }
     })
 
     // After a user joins, all the other members send in their info
@@ -101,7 +107,6 @@ const setUpSocket = (io: Object) => {
 
     // send all members of a room to the brainstorming page
     socket.on('begin_brainstorm', (payload) => {
-      allIdeas = []
       console.log('[socket.io] Host has begun the brainstorm session')
       io.to(payload.roomID).emit('load_brainstorm_room', {
         brainstormTimeLimit: payload.brainstormTimeLimit,
@@ -144,21 +149,19 @@ const setUpSocket = (io: Object) => {
     })
 
     socket.on('send_ideas', (payload) => {
-      ideaShipmentCounter += 1
+      rooms[userToRoom[socket.id]].ideaShipmentCounter += 1
       const sentIdeas = []
       for (let i = 0; i < payload.userIdeas.length; i += 1) {
         sentIdeas.push(payload.userIdeas[i].text)
-        allIdeas.push(payload.userIdeas[i].text)
+        rooms[userToRoom[socket.id]].ideas.push(payload.userIdeas[i].text)
       }
       console.log(`[socket.io] ${payload.username} sent the ideas: ${JSON.stringify((sentIdeas))}`)
-      console.log(`[socket.io] All ideas so far: ${allIdeas} (${ideaShipmentCounter}/${numberOfUsers})`)
-      if (ideaShipmentCounter === numberOfUsers) {
-        console.log(`[socket.io] All ideas have been collected: ${allIdeas}`)
+      console.log(`[socket.io] All ideas so far: ${rooms[userToRoom[socket.id]].ideas} (${rooms[userToRoom[socket.id]].ideaShipmentCounter}/${rooms[userToRoom[socket.id]].userCount})`)
+      if (rooms[userToRoom[socket.id]].ideaShipmentCounter === rooms[userToRoom[socket.id]].userCount) {
+        console.log(`[socket.io] All ideas have been collected: ${rooms[userToRoom[socket.id]].ideas}`)
         io.to(payload.roomID).emit('load_deliberation_room', {
-          ideasToRender: allIdeas,
+          ideasToRender: rooms[userToRoom[socket.id]].ideas,
         })
-        numberOfUsers = 0
-        ideaShipmentCounter = 0
       }
     })
   })
