@@ -145,7 +145,7 @@ const setUpSocket = (io: Object) => {
         allIdeas.push(payload.userIdeas[i].text)
       }
       console.log(`[socket.io] ${payload.username} sent the ideas: ${JSON.stringify((sentIdeas))}`)
-      console.log(`[socket.io] All ideas so far: ${allIdeas}`)
+      console.log(`[socket.io] All ideas so far: ${allIdeas} (${ideaShipmentCounter}/${numberOfUsers})`)
       ideaShipmentCounter += 1
       if (ideaShipmentCounter === numberOfUsers) {
         console.log(`[socket.io] All ideas have been collected: ${allIdeas}`)
