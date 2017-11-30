@@ -50,8 +50,8 @@ export function sessionMiddleware({ getState }) {
           if (action.login_type === 'login') {
             // emitting a socket event to check login credentials
             socket.emit('log_in', {
-              Username: name,
-              Password: pass,
+              Username: action.name,
+              Password: action.pass,
             })
           } else if (action.login_type === 'signup') {
             // emitting a socket event to register a user
