@@ -122,6 +122,14 @@ const DeliberationPage = ({
             >
               30 More Seconds?
             </button>}
+            {/*<button onClick={() => dispatch(leaveRoom())} className="btn btn-primary m-3">Exit Call</button>*/}
+            <a
+              href="https://docs.google.com/forms/d/e/1FAIpQLSdhTWqdMZ-yeLi1o4SFUhJQ3OhAC2MW_7MVjQxgcplyPDC20w/viewform?usp=sf_link"
+              onClick={() => dispatch(leaveRoom())}
+              className="btn btn-primary m-3"
+            >
+              Exit Call
+            </a>
           </div>
           <div className="row">
             <ol className="list-group">
@@ -131,7 +139,6 @@ const DeliberationPage = ({
                 return 0
               }).map((idea, i) => (<li key={i} className="list-group-item">{`${idea.get('text')} +${idea.get('points').size}`}</li>))}
             </ol>
-            <button onClick={() => dispatch(leaveRoom())} className="btn btn-primary m-3">Exit Call</button>
           </div>
           <div className="row">
             <VideoChat roomID={roomID} />
