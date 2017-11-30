@@ -4,8 +4,9 @@ import React from 'react'
 import { connect } from 'react-redux'
 import io from 'socket.io-client'
 import { logIn } from '../action/actions'
+import { SOCKET_PATH } from '../config'
 
-const socket = io('http://localhost:8080')
+const socket = io(SOCKET_PATH)
 
 const SignUpForm = ({ dispatch }: Props) => {
   let password

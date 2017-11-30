@@ -10,6 +10,7 @@ import {
   IO_CLIENT_JOIN_ROOM,
   IO_SERVER_HELLO,
   IO_CREATE_USER, IO_USER_JOIN_ROOM, IO_USER_JOIN_RESPONSE,
+  SOCKET_PATH,
 } from '../shared/config'
 
 import * as actions from '../shared/action/actions'
@@ -52,7 +53,7 @@ export function sessionMiddleware({ getState }) {
 /* eslint-disable no-console */
 // eslint-disable-next-line no-unused-vars
 export const setUpSocket = (store: Object) => {
-  socket = io('https://thunderbrain.herokuapp.com/')
+  socket = io(SOCKET_PATH)
 
   socket.on(IO_USER_JOIN_ROOM, (payload) => {
     console.log(`${payload.username} joined your room.`)
