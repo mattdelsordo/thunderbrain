@@ -3,7 +3,7 @@
 import * as config from '../shared/config'
 import { IO_CLIENT_JOIN_ROOM } from '../shared/config'
 import { IO_USER_JOIN_ROOM } from '../shared/config'
-import { IO_USER_JOIN_RESPONSE } from '../shared/config'
+import { IO_USER_JOIN_RESPONSE, IO_DISCONNECT } from '../shared/config'
 
 
 const User = require('../../models/User')
@@ -30,6 +30,11 @@ const setUpSocket = (io: Object) => {
     //   io.to(room).emit(IO_SERVER_HELLO, `Hello clients of room ${room}!`)
     //   socket.emit(IO_SERVER_HELLO, 'Hello you!')
     // })
+
+    socket.on(IO_DISCONNECT, () => {
+      numberOfUsers -= 1
+    })
+
     socket.on(IO_CLIENT_JOIN_ROOM, (payload) => {
       socket.join(payload.roomID)
       console.log(`${payload.username} has connected to room ${payload.roomID}`)
@@ -139,6 +144,7 @@ const setUpSocket = (io: Object) => {
     })
 
     socket.on('send_ideas', (payload) => {
+      ideaShipmentCounter += 1
       const sentIdeas = []
       for (let i = 0; i < payload.userIdeas.length; i += 1) {
         sentIdeas.push(payload.userIdeas[i].text)
@@ -146,7 +152,6 @@ const setUpSocket = (io: Object) => {
       }
       console.log(`[socket.io] ${payload.username} sent the ideas: ${JSON.stringify((sentIdeas))}`)
       console.log(`[socket.io] All ideas so far: ${allIdeas} (${ideaShipmentCounter}/${numberOfUsers})`)
-      ideaShipmentCounter += 1
       if (ideaShipmentCounter === numberOfUsers) {
         console.log(`[socket.io] All ideas have been collected: ${allIdeas}`)
         io.to(payload.roomID).emit('load_deliberation_room', {

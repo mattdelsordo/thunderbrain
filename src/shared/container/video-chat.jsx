@@ -171,7 +171,7 @@ class VideoChat extends React.Component {
     }
 
     return (
-      <div className="container">
+      <div>
         Room: {this.state.roomID}
         <div id="media" />
       </div>
