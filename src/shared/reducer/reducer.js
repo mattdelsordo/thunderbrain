@@ -18,6 +18,7 @@ import {
   BEGIN_BRAINSTORM,
   BEGIN_DELIBERATIONS,
   VOTE_IDEA,
+  UPDATE_VOTED_IDEA,
   UNVOTE_IDEA, SET_BRAINSTORM_TIME, SET_DELIBERATION_TIME, ADD_MEMBER, REFRESH_USER_JOINED, MOVE_TO_BRAINSTORM,
   RESET_VOTES,
 } from '../action/actions'
@@ -114,7 +115,7 @@ const sessionReducer = (state, action) => {
               points: idea.get('points').push(action.user),
               userDidVote: true,
             })
-          // remove point from idea
+            // remove point from idea
           } else if (idea.get('userDidVote') === true) {
             return Immutable.fromJS({
               text: idea.get('text'),
@@ -125,6 +126,26 @@ const sessionReducer = (state, action) => {
         }
         return idea
       }))
+    case UPDATE_VOTED_IDEA:
+      return state.set('ideas', state.get('ideas').map((idea) => {
+        if (idea.get('text') === action.idea) {
+          // remove point from the idea
+          if (idea.get('points').contains(action.user)) {
+            return Immutable.fromJS({
+              text: idea.get('text'),
+              points: idea.get('points').filter(user => user !== action.user),
+              userDidVote: idea.get('userDidVote'),
+            })
+            // add point to idea
+          } return Immutable.fromJS({
+            text: idea.get('text'),
+            points: idea.get('points').push(action.user),
+            userDidVote: idea.get('userDidVote'),
+          })
+        }
+        return idea
+      }))
+
     case SET_BRAINSTORM_TIME:
       return state.set('brainstormSeconds', action.newTime)
     case SET_DELIBERATION_TIME:

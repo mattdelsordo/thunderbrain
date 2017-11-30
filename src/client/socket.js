@@ -45,6 +45,14 @@ export function sessionMiddleware({ getState }) {
             roomID: action.roomID,
           })
           break
+
+        case actions.VOTE_IDEA:
+          socket.emit('vote_made', {
+            ideaVoted: action.idea,
+            userVoted: action.user,
+            roomID: action.roomID,
+          })
+          break
         case actions.LOG_IN:
           // emitting a socket event to check login credentials
           if (action.login_type === 'login') {
@@ -144,6 +152,12 @@ export const setUpSocket = (store: Object) => {
       username: userName,
       roomID: room,
     })
+  })
+
+  socket.on('update_votes', (payload) => {
+    const ideaToVote = payload.idea
+    const userWhoVotes = payload.user
+    store.dispatch(actions.updateVotedIdea(ideaToVote, userWhoVotes))
   })
 
   socket.on(IO_USER_JOIN_RESPONSE, (payload) => {

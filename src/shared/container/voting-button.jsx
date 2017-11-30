@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 import { voteIdea } from '../action/actions'
 
 const VotingButton = ({
-  dispatch, idea, totalMembers, user,
+  dispatch, idea, totalMembers, user, roomID,
 }: Props) => {
   const threshold = (totalMembers / 2) || 0
   // console.log(`${idea.points.length}/${threshold}`)
@@ -16,7 +16,7 @@ const VotingButton = ({
       <div>
         <button
           onClick={() => {
-                    dispatch(voteIdea(idea.get('text'), user))
+                    dispatch(voteIdea(idea.get('text'), user, roomID))
                 }}
           className="btn btn-primary m-4"
         >{`${idea.get('text')} +${idea.get('points').size}`}
@@ -28,7 +28,7 @@ const VotingButton = ({
     <div>
       <button
         onClick={() => {
-                    dispatch(voteIdea(idea.get('text'), user))
+                    dispatch(voteIdea(idea.get('text'), user, roomID))
                 }}
         className="btn btn-secondary m-4"
       >{`${idea.get('text')} +${idea.get('points').size}`}

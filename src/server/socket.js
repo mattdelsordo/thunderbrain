@@ -176,6 +176,13 @@ const setUpSocket = (io: Object) => {
         })
       }
     })
+
+    socket.on('vote_made', (payload) => {
+      socket.broadcast.to(payload.roomID).emit('update_votes', {
+        idea: payload.ideaVoted,
+        user: payload.userVoted,
+      })
+    })
   })
 }
 /* eslint-enable no-console */

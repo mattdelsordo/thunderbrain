@@ -110,11 +110,21 @@ export const resetVotes = () => ({
 
 // Idea voting actions
 export const VOTE_IDEA = 'VOTE_IDEA'
-export const voteIdea = (idea, user) => ({
+export const voteIdea = (idea, user, roomID) => ({
   type: VOTE_IDEA,
   idea,
   user,
+  roomID,
 })
+
+// Updates idea votes
+export const UPDATE_VOTED_IDEA = 'UPDATE_VOTED_IDEA'
+export const updateVotedIdea = (idea, user) => ({
+  type: UPDATE_VOTED_IDEA,
+  idea,
+  user,
+})
+
 
 export const SET_BRAINSTORM_TIME = 'SET_BRAINSTORM_TIME'
 export const setBrainstormTime = newTime => ({
