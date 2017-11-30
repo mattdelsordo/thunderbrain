@@ -51,6 +51,18 @@ const setUpSocket = (io: Object) => {
       }
     })
 
+    socket.on(IO_DISCONNECT, () => {
+      if (rooms[userToRoom[socket.id]]) {
+        rooms[userToRoom[socket.id]].userCount -= 1
+        rooms[userToRoom[socket.id]].ideaShipmentCounter -= 1
+
+        if (rooms[userToRoom[socket.id]].userCount < 1) {
+          rooms[userToRoom[socket.id]] = null
+          console.log(`Deleted room ${userToRoom[socket.id]}`)
+        }
+      }
+    })
+
     // After a user joins, all the other members send in their info
     socket.on(IO_USER_JOIN_ROOM, (payload) => {
       io.to(payload.roomID).emit(IO_USER_JOIN_RESPONSE, payload)
