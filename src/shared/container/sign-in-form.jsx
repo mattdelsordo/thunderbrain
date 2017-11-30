@@ -7,7 +7,7 @@ import io from 'socket.io-client'
 import { logIn } from '../action/actions'
 import { SOCKET_PATH } from '../config'
 
-const socket = io(SOCKET_PATH)
+const socket = io()
 
 const SIF = ({ dispatch }: Props) => {
   let username
