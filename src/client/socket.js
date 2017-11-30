@@ -44,6 +44,27 @@ export function sessionMiddleware({ getState }) {
             deliberationTimeLimit: action.deliberationSeconds,
             roomID: action.roomID,
           })
+          break
+        case actions.LOG_IN:
+          // emitting a socket event to check login credentials
+          if (action.login_type === 'login') {
+            // emitting a socket event to check login credentials
+            socket.emit('log_in', {
+              Username: name,
+              Password: pass,
+            })
+          } else if (action.login_type === 'signup') {
+            // emitting a socket event to register a user
+            socket.emit('create_user', {
+              Username: action.name,
+              Password: action.pass,
+            })
+          } else {
+            socket.emit('create_guest_user', {
+              Username: action.name,
+            })
+          }
+          break
       }
     }
     return next(action)

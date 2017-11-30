@@ -10,9 +10,11 @@ import {
 
 // Make user logged in
 export const LOG_IN = 'LOG_IN'
-export const logIn = name => ({
+export const logIn = (name, pass, login_type) => ({
   type: LOG_IN,
   name,
+  pass,
+  login_type,
 })
 
 // Make user logged out

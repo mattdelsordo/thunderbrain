@@ -3,11 +3,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import io from 'socket.io-client'
 import { logIn } from '../action/actions'
-import { SOCKET_PATH } from '../config'
-
-const socket = io()
 
 const SIF = ({ dispatch }: Props) => {
   let username
@@ -22,14 +18,8 @@ const SIF = ({ dispatch }: Props) => {
                     if (!username.value.trim() || !password.value.trim()) {
                         return
                     }
-                    // emitting a socket event to check login credentials
-                    socket.emit('log_in', {
-                        Username: username.value.trim(),
-                        Password: password.value.trim(),
-                    })
-
                     // dispatching to the state
-                    dispatch(logIn(username.value.trim()))
+                    dispatch(logIn(username.value.trim(), password.value.trim(), 'login'))
                     username.value = ''
                 }}
       >
