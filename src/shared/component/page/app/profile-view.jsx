@@ -24,7 +24,7 @@ import { STATIC_PATH } from '../../../config'
 import BigTitle from '../../big-title'
 
 // const socket = io('http://localhost:8080')
-const defaultPath = `${STATIC_PATH}/res/profile_default.jpg`
+const defaultPath = `${STATIC_PATH}/res/default-user.png`
 
 const mapStateToProps = (state) => {
   const user = state.hello.get('user')
