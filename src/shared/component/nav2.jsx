@@ -67,7 +67,7 @@ import {
 
 const Nav2 = () => (
   <nav className="navbar navbar-default fixed-top">
-    <span className="navbar-brand">{APP_NAME}</span>
+    <Link to={HOME_PAGE_ROUTE} className="navbar-brand"><img src={logoPath} className="mb-1" alt="ThunderBrain" height="32px" width="auto" /></Link>
   </nav>
 )
 

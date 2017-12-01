@@ -4,7 +4,6 @@
 import $ from 'jquery'
 import React from 'react'
 import { Link, NavLink } from 'react-router-dom'
-import { APP_NAME } from '../config'
 import {
   HOME_PAGE_ROUTE,
   // HELLO_PAGE_ROUTE,
@@ -18,6 +17,9 @@ import {
   SIGN_IN_ROUTE,
   REGISTER_ROUTE
 } from '../routes'
+import { STATIC_PATH, APP_NAME } from '../config'
+
+const logoPath = `${STATIC_PATH}/res/logo.png`
 
 const handleNavLinkClick = () => {
   $('body').scrollTop(0)
@@ -30,7 +32,7 @@ const Nav = () =>
       <button className="navbar-toggler navbar-toggler-right" type="button" role="button" data-toggle="collapse" data-target=".js-navbar-collapse">
         <span className="navbar-toggler-icon" />
       </button>
-      <Link to={HOME_PAGE_ROUTE} className="navbar-brand">{APP_NAME}</Link>
+      <Link to={HOME_PAGE_ROUTE} className="navbar-brand"><img src={logoPath} className="mb-1" alt="ThunderBrain" height="30px" width="auto" /></Link>
       <div className="js-navbar-collapse collapse navbar-collapse">
         <ul className="navbar-nav mr-auto ak-7">
           {[
