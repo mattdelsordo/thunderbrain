@@ -26,13 +26,13 @@ const StoryboardPage = () =>
       />
       <Nav />
       <BigTitle alexkautz={title} />
-      <div className="container mt-4">
+      <div className="container">
         <div className="row">
           <div className="col-12">
             {/* <h1>{title}</h1> */}
-            <img src={path1} className="storyboard_cell" alt="The tragedy of the modern age." />
-            <img src={path2} className="storyboard_cell" alt="Suddenly, a new savior appears." />
-            <img src={path3} className="storyboard_cell" alt="ThunderBrain: the true hero of our time." />
+            <img src={path1} className="storyboard_cell mt-2" alt="The tragedy of the modern age." />
+            <img src={path2} className="storyboard_cell mt-2" alt="Suddenly, a new savior appears." />
+            <img src={path3} className="storyboard_cell mt-2" alt="ThunderBrain: the true hero of our time." />
           </div>
         </div>
       </div>
