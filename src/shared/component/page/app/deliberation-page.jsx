@@ -24,6 +24,7 @@ import {
 import { NO_SESSION, NO_USER } from '../../../redirect'
 import VotingButton from '../../../container/voting-button'
 import {addDeliberationTime, leaveRoom, setDeliberationTime, setDelibTime} from '../../../action/actions'
+import ImmutableIdeaList from '../../immutable-idea-list'
 
 const mapStateToProps = (state) => {
   const user = state.hello.get('user')
@@ -107,6 +108,7 @@ const DeliberationPage = ({
       }).filter((idea, i) => {
         return i < 5 && idea.get('points').size > 0
       })
+      console.log(`results: ${results}`)
 
       return (
         <div>
@@ -144,13 +146,7 @@ const DeliberationPage = ({
             </div>
             <div className="col">
               <h4>Results:</h4>
-              <ol className="list-group">
-                {
-                  ((results.length > 0)
-                  ? results.map((idea, i) => (<li key={i} className="list-group-item">{`${idea.get('text')} +${idea.get('points').size}`}</li>))
-                  : <h3>Nothing!</h3>)
-                }
-              </ol>
+              <ImmutableIdeaList list={results} />
             </div>
             <div className="row">
               <VideoChat roomID={roomID} />
