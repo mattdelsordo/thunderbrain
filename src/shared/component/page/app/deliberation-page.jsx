@@ -88,7 +88,7 @@ const DeliberationPage = ({
             <div className="row">
               <Clock time={deliberationSeconds} />
             </div>
-            <div className="row">
+            <div className="row mt-3 mb-3">
               {ideas.map((idea, i) => <VotingButton key={i} idea={idea} totalMembers={members.length} user={username} roomID={roomID} />)}
             </div>
             <div className="row">

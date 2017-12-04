@@ -18,7 +18,7 @@ const VotingButton = ({
           onClick={() => {
                     dispatch(voteIdea(idea.get('text'), user, roomID))
                 }}
-          className="btn btn-primary m-4"
+          className="btn btn-secondary m-1"
         >{`${idea.get('text')} +${idea.get('points').size}`}
         </button>
       </div>
@@ -31,7 +31,7 @@ const VotingButton = ({
         onClick={() => {
                     dispatch(voteIdea(idea.get('text'), user, roomID))
                 }}
-        className="btn btn-secondary m-4"
+        className="btn btn-primary m-1"
       >{`${idea.get('text')} +${idea.get('points').size}`}
       </button>
     </div>

@@ -39,6 +39,12 @@ body{
   color: #F7F2FF;
 }
 
+.btn-secondary {
+  background-color: #C5B3E2;
+  border-color: #C5B3E2;
+  color: #F7F2FF;
+}
+
 .btn:hover {
   background-color: #783ED6;
   border-color:#783ED6 ;
