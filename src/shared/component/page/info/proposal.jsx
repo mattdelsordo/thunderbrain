@@ -31,7 +31,7 @@ const ProposalPage = () =>
               title="proposal"
               src="https://docs.google.com/document/d/e/2PACX-1vTtIdwaRDK1zlgs8Szt0n7zpiz9Gb8j28TPtdKVHlOeBUtcDIJeBvMm1Csfmq1o8jjE8TBJqSYOJDhS/pub?embedded=true"
               height="1000px"
-              width="100%"
+              width="80%"
             />
           </div>
         </div>
