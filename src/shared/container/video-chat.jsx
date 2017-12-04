@@ -40,6 +40,7 @@ class VideoChat extends React.Component {
       previewTracks: null,
       identity: null,
       roomID: props.roomID,
+      checkVideoMsg: props.checkVideoMsg,
     }
 
     if (props.roomID) jQuery.getJSON('/token', this.processToken)
@@ -172,7 +173,16 @@ class VideoChat extends React.Component {
 
     return (
       <div>
-        Room: {this.state.roomID}
+        <div className="row">
+          <div className="col">
+            {this.state.checkVideoMsg &&
+              <h5>Make sure that your video chat is working!</h5>
+            }
+          </div>
+          <div className="col text-right">
+            Room: {this.state.roomID}
+          </div>
+        </div>
         <div id="media" />
       </div>
     )

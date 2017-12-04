@@ -4,7 +4,6 @@ import React from 'react'
 import Helmet from 'react-helmet'
 import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
-import io from 'socket.io-client'
 
 import {
   SIGN_IN_ROUTE,
@@ -20,8 +19,7 @@ import {
   DELIBERATION,
   RESULTS,
 } from '../../../phases'
-
-const socket = io('http://localhost:8080')
+import VideoChat from '../../../container/video-chat'
 
 const mapStateToProps = (state) => {
   const user = state.hello.get('user')
@@ -178,6 +176,9 @@ Props) => {
             </form>
             }
           </div>
+        </div>
+        <div className="row">
+          <VideoChat roomID={roomID} checkVideoMsg />
         </div>
       </div>
     )

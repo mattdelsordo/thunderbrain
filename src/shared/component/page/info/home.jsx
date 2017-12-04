@@ -23,8 +23,8 @@ const HomePage = () =>
       <Nav />
       {/*<BigTitle alexkautz={APP_NAME} />*/}
       <div className="container-fluid">
-          {/*<h3>ThunderBrain: A brainstorming web app for unique ideas. Now in alpha!</h3>*/}
-          <img src={posterPath} className="poster-cell pl-5 pr-5 pb-3 pt-3" alt="science." />
+        {/*<h3>ThunderBrain: A brainstorming web app for unique ideas. Now in alpha!</h3>*/}
+        <img src={posterPath} className="poster-cell pl-5 pr-5 pb-3 pt-3" alt="science." />
       </div>
       {/* <ModalExample /> */}
     </div>// eslint-disable-next-line no-console
