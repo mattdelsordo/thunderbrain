@@ -51,9 +51,12 @@ const mapStateToProps = (state) => {
 
 const LobbyPage = ({
   dispatch, username, host, members, roomID, topic, redirect, phase,
-}: Props) => {
-  let brainstorm
-  let deliberation
+}:
+Props) => {
+  let brainstormM
+  let brainstormS
+  let deliberationM
+  let deliberationS
 
   // socket.on('new_member', (newMember) => {
   //   console.log(`[socket.io] ${newMember} joined the lobby`)
@@ -91,51 +94,90 @@ const LobbyPage = ({
             </ul>
             <button className="btn btn-primary mt-1" onClick={() => { dispatch(leaveRoom()) }}>Leave</button>
           </div>
-          {username === host &&
-              <form
-                className="form-group"
-                onSubmit={(e) => {
-                  e.preventDefault()
-                  const bsTrimmed = brainstorm.value.trim()
-                  const dTrimmed = deliberation.value.trim()
-                  if (!bsTrimmed || !dTrimmed) {
-                    return
-                  }
-                  dispatch(beginBrainstorm(Number(bsTrimmed), Number(dTrimmed), roomID))
-                }}
+          <div className="col-md-6 p-4">
+            {username === host &&
+            <form
+              className="form-group"
+              onSubmit={(e) => {
+                e.preventDefault()
+                const bmTrimmed = brainstormM.value.trim()
+                const bsTrimmed = brainstormS.value.trim()
+                const dmTrimmed = deliberationM.value.trim()
+                const dsTrimmed = deliberationS.value.trim()
+                if (!bmTrimmed && !bsTrimmed && !dmTrimmed && !dsTrimmed) {
+                  return
+                }
+                const brainstormingSeconds = (Number(bmTrimmed) * 60) + Number(bsTrimmed)
+                const deliberationSeconds = (Number(dmTrimmed) * 60) + Number(dsTrimmed)
+                // console.log(`brainstorming: ${brainstormingSeconds} deliberation: ${deliberationSeconds}`)
+                dispatch(beginBrainstorm(brainstormingSeconds, deliberationSeconds, roomID))
+              }}
+            >
+              <div className="input-group">
+                <span className="add-left">Brainstorm Time:</span>
+                <input
+                  required
+                  type="number"
+                  className="form-control"
+                  placeholder="minutes"
+                  ref={(node) => {
+                    brainstormM = node
+                  }}
+                  onChange={() => {
+                    if (brainstormM.value < 0) brainstormM.value = 0
+                  }}
+                />
+                <span className="add-center">:</span>
+                <input
+                  required
+                  type="number"
+                  className="form-control"
+                  placeholder="seconds"
+                  ref={(node) => {
+                    brainstormS = node
+                  }}
+                  onChange={() => {
+                    if (brainstormM.value < 0) brainstormM.value = 0
+                  }}
+                />
+              </div>
+              <div className="input-group">
+                <span className="add-left">Deliberation Time:</span>
+                <input
+                  required
+                  type="number"
+                  className="form-control"
+                  placeholder="minutes"
+                  ref={(node) => {
+                    deliberationM = node
+                  }}
+                  onChange={() => {
+                    if (brainstormM.value < 0) brainstormM.value = 0
+                  }}
+                />
+                <span className="add-center">:</span>
+                <input
+                  required
+                  type="number"
+                  className="form-control"
+                  placeholder="seconds"
+                  ref={(node) => {
+                    deliberationS = node
+                  }}
+                  onChange={() => {
+                    if (brainstormM.value < 0) brainstormM.value = 0
+                  }}
+                />
+              </div>
+              <button
+                className="btn btn-primary"
+                type="submit"
               >
-                <div className="input-group mt-1">
-                  <input
-                    required
-                    type="number"
-                    className="form-control"
-                    placeholder="Brainstorming Time"
-                    ref={(node) => {
-                      brainstorm = node
-                    }}
-                  />
-                  <span className="add-right">seconds</span>
-                </div>
-                <div className="input-group mt-1">
-                  <input
-                    required
-                    type="number"
-                    className="form-control"
-                    placeholder="Deliberation Time"
-                    ref={(node) => {
-                      deliberation = node
-                    }}
-                  />
-                  <span className="add-right">seconds</span>
-                </div>
-                <button
-                  className="btn btn-primary"
-                  type="submit"
-                >
-                  Begin Session
-                </button>
-              </form>
+                Begin Session
+              </button>
+            </form>
             }
+          </div>
         </div>
       </div>
     )
