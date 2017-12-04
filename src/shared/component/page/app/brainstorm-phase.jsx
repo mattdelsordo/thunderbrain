@@ -72,8 +72,8 @@ const BrainstormPhase = ({ brainstormSeconds, topic, redirect, phase, dispatch }
             </div>
           </div>
           <div className="col-sm-6 p-4">
-            <IdeaList />
             <SubmitString placeholder="Your next great idea." buttonText="Add" action={addIdea} />
+            <IdeaList />
           </div>
         </div>
       </div>

@@ -7,7 +7,7 @@ const ss = ({ placeholder = 'Enter your text.', buttonText = 'Submit', action, d
   let input
 
   return (
-    <div>
+    <div className="m-1">
       <form
         className="form-inline"
         onSubmit={(e) => {
