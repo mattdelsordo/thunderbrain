@@ -23,18 +23,13 @@ const ProposalPage = () =>
       />
       <Nav />
       <BigTitle alexkautz={title} />
-      <div className="container mt-4">
-        <div className="row">
-          <div className="col-12">
-            {/* <h1>{title}</h1> */}
-            <iframe
-              title="proposal"
-              src="https://docs.google.com/document/d/e/2PACX-1vTtIdwaRDK1zlgs8Szt0n7zpiz9Gb8j28TPtdKVHlOeBUtcDIJeBvMm1Csfmq1o8jjE8TBJqSYOJDhS/pub?embedded=true"
-              height="1000px"
-              width="80%"
-            />
-          </div>
-        </div>
+      <div className="container">
+        <iframe
+          title="proposal"
+          src="https://docs.google.com/document/d/e/2PACX-1vTtIdwaRDK1zlgs8Szt0n7zpiz9Gb8j28TPtdKVHlOeBUtcDIJeBvMm1Csfmq1o8jjE8TBJqSYOJDhS/pub?embedded=true"
+          height="1000px"
+          width="80%"
+        />
       </div>
     </div>
   )
