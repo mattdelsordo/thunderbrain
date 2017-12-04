@@ -29,7 +29,7 @@ const ss = ({ placeholder = 'Enter your text.', buttonText = 'Submit', action, d
           placeholder={placeholder}
         />
         <button
-          className="btn btn-primary mt-1"
+          className="btn btn-primary float-right mt-1"
           type="submit"
           onClick={() => {
             input.focus()

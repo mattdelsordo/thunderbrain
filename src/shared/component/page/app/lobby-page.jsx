@@ -168,7 +168,7 @@ Props) => {
                 />
               </div>
               <button
-                className="btn btn-primary"
+                className="btn btn-primary float-right"
                 type="submit"
               >
                 Begin Session
