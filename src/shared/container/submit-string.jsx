@@ -20,15 +20,21 @@ const ss = ({ placeholder = 'Enter your text.', buttonText = 'Submit', action, d
         }}
       >
         <input
+          id="text_input"
           className="form-control mt-1"
           ref={(node) => {
             input = node
+            node.focus()
           }}
           placeholder={placeholder}
         />
-        <button className="btn btn-primary mt-1" type="submit" onClick={() => {
-          input.focus()
-        }}>
+        <button
+          className="btn btn-primary mt-1"
+          type="submit"
+          onClick={() => {
+            input.focus()
+          }}
+        >
           {buttonText}
         </button>
       </form>
