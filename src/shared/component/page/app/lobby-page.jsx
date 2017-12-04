@@ -102,7 +102,7 @@ Props) => {
                 const bsTrimmed = brainstormS.value.trim()
                 const dmTrimmed = deliberationM.value.trim()
                 const dsTrimmed = deliberationS.value.trim()
-                if (!bmTrimmed && !bsTrimmed && !dmTrimmed && !dsTrimmed) {
+                if ((!bmTrimmed && !bsTrimmed && !dmTrimmed && !dsTrimmed) || !((bmTrimmed > 0 || bsTrimmed > 0) && (dmTrimmed > 0 || dsTrimmed > 0))) {
                   return
                 }
                 const brainstormingSeconds = (Number(bmTrimmed) * 60) + Number(bsTrimmed)
