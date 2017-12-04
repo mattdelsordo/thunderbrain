@@ -49,7 +49,7 @@ class VideoChat extends React.Component {
 
   // Disconnect from room if this gets unmounted
   componentWillUnmount() {
-    this.leaveRoomIfJoined().bind(this)
+    this.leaveRoomIfJoined()
   }
 
   // Function to pass to json call because we need to call bind on it

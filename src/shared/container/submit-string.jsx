@@ -24,7 +24,7 @@ const ss = ({ placeholder = 'Enter your text.', buttonText = 'Submit', action, d
           className="form-control mt-1"
           ref={(node) => {
             input = node
-            node.focus()
+            if (node) node.focus()
           }}
           placeholder={placeholder}
         />
