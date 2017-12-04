@@ -127,7 +127,7 @@ Props) => {
                     if (brainstormM.value < 0) brainstormM.value = 0
                   }}
                 />
-                <span className="add-center">:</span>
+                <span className="add-middle">:</span>
                 <input
                   required
                   type="number"
@@ -155,7 +155,7 @@ Props) => {
                     if (brainstormM.value < 0) brainstormM.value = 0
                   }}
                 />
-                <span className="add-center">:</span>
+                <span className="add-middle">:</span>
                 <input
                   required
                   type="number"
