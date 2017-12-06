@@ -42,7 +42,7 @@ const Nav = () =>
             // { route: NOT_FOUND_DEMO_PAGE_ROUTE, label: '404 Demo' },
             { route: PROPOSAL_ROUTE, label: 'Proposal' },
             { route: STORYBOARD_ROUTE, label: 'Storyboard' },
-            { route: COMMERCIAL_ROUTE, label: 'Commercial' },
+            { route: COMMERCIAL_ROUTE, label: 'Videos' },
             { route: 'wireframe', label: 'Wireframe' },
             // { route: PROFILE_VIEW, label: 'Profile View' },
             // { route: CHAT_ROUTE, label: 'Video Chat Test' },
