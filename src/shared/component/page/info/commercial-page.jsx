@@ -4,7 +4,7 @@ import Helmet from 'react-helmet'
 import Nav from '../../nav'
 import BigTitle from '../../big-title'
 
-const title = 'Commercial'
+const title = 'Videos'
 
 const CommercialPage = () =>
   (
