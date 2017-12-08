@@ -15,7 +15,8 @@ import {
   STORYBOARD_ROUTE,
   COMMERCIAL_ROUTE,
   SIGN_IN_ROUTE,
-  REGISTER_ROUTE
+  REGISTER_ROUTE,
+  VALIDATION_ROUTE,
 } from '../routes'
 import { STATIC_PATH, APP_NAME } from '../config'
 
@@ -44,6 +45,7 @@ const Nav = () =>
             { route: STORYBOARD_ROUTE, label: 'Storyboard' },
             { route: COMMERCIAL_ROUTE, label: 'Videos' },
             { route: 'wireframe', label: 'Wireframe' },
+            { route: VALIDATION_ROUTE, label: 'Validation & Results'},
             // { route: PROFILE_VIEW, label: 'Profile View' },
             // { route: CHAT_ROUTE, label: 'Video Chat Test' },
             { route: PROFILE_VIEW, label: 'Web App' },
@@ -66,11 +68,5 @@ const Nav = () =>
       </div>
     </nav>
   )
-
-
-
-
-
-
 
 export default Nav

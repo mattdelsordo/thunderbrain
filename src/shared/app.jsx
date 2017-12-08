@@ -25,6 +25,7 @@ import SignUpPage from './component/page/app/register'
 import SignInPage from './component/page/app/sign-in'
 import GuestSignInPage from './component/page/app/guest-sign-in'
 import BrainstormPhase from './component/page/app/brainstorm-phase'
+import ValidationPage from './component/page/info/validation'
 import {
   HOME_PAGE_ROUTE,
   // HELLO_PAGE_ROUTE,
@@ -41,6 +42,7 @@ import {
   REGISTER_ROUTE,
   GUEST_ROUTE,
   APP_DEFAULT,
+  VALIDATION_ROUTE,
 } from './routes'
 
 const App = () =>
@@ -56,6 +58,7 @@ const App = () =>
         <Route path={CHAT_ROUTE} render={() => <VideoChatPage />} />
         <Route path={STORYBOARD_ROUTE} render={() => <StoryboardPage />} />
         <Route path={COMMERCIAL_ROUTE} render={() => <CommercialPage />} />
+        <Route path={VALIDATION_ROUTE} render={() => <ValidationPage />} />
         <Route path={LOBBY_ROUTE} render={() => <LobbyPage />} />
         <Route path={BRAINSTORM_ROUTE} render={() => <BrainstormPhase />} />
         <Route path={SIGN_IN_ROUTE} render={() => <SignInPage />} />
