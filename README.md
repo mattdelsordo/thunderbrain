@@ -1,3 +1,5 @@
+This is a project created by Luis Nova, Matt DelSordo, Sharfuz Shifat, and Alex Kautz as part of Human-Computer Interaction at the University of Rochester, Fall 2017. This repo contains the web app code, results from the project can be found here: https://github.com/mattdelsordo/thunderbrain/tree/master/results. http://thunderbrain.xyz is no longer online and this repo was formerly private.
+
 # Thunderbrain
 This is where the readme is going to go! For now, we can use this as a teaching document to inform everyone on how this stack and the file structure even work. If you do something whack, add it here! For initial setup, Matt followed this tutorial: https://github.com/verekia/js-stack-from-scratch
 
